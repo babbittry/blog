@@ -2,7 +2,7 @@
 
 discuss on GST toillet
 
-## 海湾安全技术有限公司厕所文化交流博客
+海湾安全技术有限公司厕所文化交流博客
 
 每周一更，欢迎投稿。
 
@@ -16,3 +16,14 @@ discuss on GST toillet
 - 关注前沿的科技知识。
 - 提高整体的技术水平。
 - 引起人们对文化、科技、经济等方面的思考。
+
+## 用到的工具：
+
+- Hexo（静态博客框架）
+- NexT（主题）
+- Github Pages（静态网站）
+- Travis CI（自动测试、部署）
+- Gitee（图床）
+- PicGo（图床上传，自动生成链接）
+- Snipaste（截图、贴图）
+- Typora（Markdown 编辑器）
