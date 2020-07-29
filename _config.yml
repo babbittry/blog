@@ -5,7 +5,7 @@
 # Site
 title: 海湾厕所文化
 subtitle: '海湾安全技术有限公司厕所文化博客'
-description: ''
+description: 'Don’t be sorry. Be better.'
 keywords:
 author: 小菜鸡
 language: zh-CN
@@ -93,8 +93,8 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-# theme: hexo-theme-next
-theme: landscape
+theme: hexo-theme-next
+# theme: landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
