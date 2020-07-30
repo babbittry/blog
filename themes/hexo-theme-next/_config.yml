@@ -615,7 +615,7 @@ valine:
   appkey: oT1V70GhVWjFphXtB5r2sg9R # Your leancloud application appkey
   notify: false # Mail notifier
   verify: false # Verification code
-  placeholder: 无需登录即可开始评论，可以自定义昵称。 # Comment box placeholder
+  placeholder: 无需登录即可开始评论，可以在左上角自定义昵称。 # Comment box placeholder
   avatar: mm # Gravatar style
   guest_info: nick,mail # Custom comment header
   pageSize: 10 # Pagination size
