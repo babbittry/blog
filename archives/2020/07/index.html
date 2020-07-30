@@ -171,7 +171,7 @@
 
       <div class="post-meta">
         <time itemprop="dateCreated"
-              datetime="2020-07-30T11:23:04+08:00"
+              datetime="2020-07-30T16:21:48+08:00"
               content="2020-07-30">
           07-30
         </time>
@@ -367,6 +367,35 @@
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'Rhzh0UWLrm4hTV0ILG9LFaGt-gzGzoHsz',
+      appKey     : 'oT1V70GhVWjFphXtB5r2sg9R',
+      placeholder: "无需登录即可开始评论，可以自定义昵称。",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
