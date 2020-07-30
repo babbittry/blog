@@ -616,7 +616,7 @@ valine:
   notify: false # Mail notifier
   verify: false # Verification code
   placeholder: 无需登录即可开始评论，可以在左上角自定义昵称。 # Comment box placeholder
-  avatar: mm # Gravatar style
+  avatar: monsterid # Gravatar style
   guest_info: nick,mail # Custom comment header
   pageSize: 10 # Pagination size
   language: # Language, available values: en, zh-cn
