@@ -44,7 +44,7 @@ int main(void)
 i = 2;
 j = 1;
 k = 3;
-if i < j < k:      # 这里输出第一行，但是这是错的
+if i < j < k:      # 这里输出第二行，可见Python进行了特殊处理
     print("i小于j，j小于k，j在i和k中间\r\n");
 else:
     print("j不在i和k中间\r\n");
