@@ -164,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/03/16/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/DOGT/images/head.png">
@@ -178,7 +178,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/DOGT/2021/03/16/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-title-link" itemprop="url">ARM-linux 嵌入式板子移植 lrzsz V1.1</a>
+            <a href="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-title-link" itemprop="url">ARM-linux 嵌入式板子移植 lrzsz V1.1</a>
         </h2>
 
         <div class="post-meta">
@@ -188,11 +188,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 21:56:31" itemprop="dateCreated datePublished" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+              <time title="创建时间：2021-04-08 16:18:47" itemprop="dateCreated datePublished" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
             </span>
 
           
-            <span id="/DOGT/2021/03/16/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-meta-item leancloud_visitors" data-flag-title="ARM-linux 嵌入式板子移植 lrzsz V1.1" title="阅读次数">
+            <span id="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-meta-item leancloud_visitors" data-flag-title="ARM-linux 嵌入式板子移植 lrzsz V1.1" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -207,8 +207,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/DOGT/2021/03/16/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/03/16/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" itemprop="commentCount"></span>
+    <a title="valine" href="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -224,56 +224,14 @@
 
       
           <h2 id="ARM-linux-嵌入式板子移植-lrzsz"><a href="#ARM-linux-嵌入式板子移植-lrzsz" class="headerlink" title="ARM-linux 嵌入式板子移植 lrzsz"></a>ARM-linux 嵌入式板子移植 lrzsz</h2><p>因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。</p>
-<h3 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h3><p>首先下载最新版的 lrzsz， <a href="https://ohse.de/uwe/software/lrzsz.html" target="_blank" rel="noopener"><strong>点我开始下载</strong></a>。下面以 0.12.20 版本为例，下载后文件名为：lrzsz-0.12.20.tar.gz。</p>
-<h3 id="复制到-ubuntu-主机并解压"><a href="#复制到-ubuntu-主机并解压" class="headerlink" title="复制到 ubuntu 主机并解压"></a>复制到 ubuntu 主机并解压</h3><p>复制并解压源码包将下载的源码包复制到Linux主机，然后进行解压：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/lrzsz</span><br><span class="line">cp lrzsz-0.12.20.tar.gz ~/lrzsz</span><br><span class="line">cd ~/lrzsz</span><br><span class="line">tar zxvf lrzsz-0.12.20.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装并使用交叉编译工具链"><a href="#安装并使用交叉编译工具链" class="headerlink" title="安装并使用交叉编译工具链"></a>安装并使用交叉编译工具链</h3><p>使用APT安装ARM-GCC安装交叉编译工具链有如下三种方式：</p>
-<ul>
-<li>直接在Ubuntu下使用APT包管理工具下载安装，操作简单，我们直接使用该方式安装即可。</li>
-<li>自行下载第三方制作好的工具链，如Linaro，好处是选择丰富，能找到很多不同的版本。</li>
-<li>使用crosstool-ng根据需要自己制作，过程复杂，不推荐。</li>
-</ul>
-<p>我们直接在Ubuntu系统下使用APT包管理工具安装。使用的编译器主要有两种类型：</p>
-<ul>
-<li>arm-linux-gnueabihf-gcc：名称中的Linux表示目标应用程序是运行在Linux操作系统之上的，例如前面的hello.c程序。</li>
-<li>arm-none-eabi-gcc，名称中的none表示无操作系统，目标应用程序的运行环境是不带操作系统的，例如裸机代码、uboot、内核代码本身。</li>
-</ul>
-<p>不过在开发中比较多的开发者对所有程序都直接用arm-linux-gnueabihf-gcc来编译，包括裸机代码和uboot，虽然可能因为代码本身没有调用到Linux相关的内容而不会出错，但这样做不够严谨，条件允许的话，我们还是严格区分开来。在编译 lrzsz 的时候只需要使用arm-linux-gnueabihf-gcc编译器，可通过APT包管理工具可直接执行以下命令安装：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">在主机上执行如下命令</span></span><br><span class="line">sudo apt install gcc-arm-linux-gnueabihf</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装完成后使用如下命令查看版本</span></span><br><span class="line">arm-linux-gnueabihf-gcc -v  或 arm-linux-gnueabihf-gcc --version</span><br></pre></td></tr></table></figure>
-
-<p>可以看到下图的内容，它表明交叉编译工具链安装成功了，输出信息中的 “Target: arm-linux-gnueabihf”表明了它的目标架构。<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210306203223.png" alt=""></p>
-<p>安装完成后输入<code>arm-linux-gnueabihf-</code>，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链Binutils的各种工具。<img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png" alt="安装后包含的Binutils工具集"></p>
-<h3 id="交叉编译-需要提前装好交叉编译环境"><a href="#交叉编译-需要提前装好交叉编译环境" class="headerlink" title="交叉编译(需要提前装好交叉编译环境)"></a>交叉编译(需要提前装好交叉编译环境)</h3><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CFLAGS=-O2 CC=arm-linux-gnueabi-gcc ./configure --cache-file=arml_cachefile0 --prefix=/usr/local/</span><br></pre></td></tr></table></figure>
-<p>这里 ./configure 必须放在后面，否则无法识别到交叉编译工具。 </p>
-<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>编译命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 并行编译，使用4个CPU同时编译，可提高编译速度</span></span><br><span class="line">make -j4</span><br></pre></td></tr></table></figure>
-
-<p> make完成之后，会在当前目录 src/ 下生成 lrz 和 lsz 两个文件。 </p>
-<h3 id="安装到开发板"><a href="#安装到开发板" class="headerlink" title="安装到开发板"></a>安装到开发板</h3><p>通过网络、U盘、SD卡等方式，将生成的 lrz 和 lsz  复制到目标板的 /usr/bin 目录，并在目标版上添加可执行权限。</p>
-<h4 id="挂载优盘"><a href="#挂载优盘" class="headerlink" title="挂载优盘"></a>挂载优盘</h4><ol>
-<li>以root用户登陆</li>
-<li>查看当前挂载 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
- 一般情况未挂载的硬盘都在最后，以/dev/sdb1为例。</li>
-<li>新建一个目录来挂载硬盘，挂载到mnt/usb <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt</span><br><span class="line">mkdir /mnt/usb</span><br></pre></td></tr></table></figure></li>
-<li>挂载 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sdb1 /mnt/usb</span><br></pre></td></tr></table></figure></li>
-<li>卸载u盘：在使用完u盘后，在拔出前需要先键入卸载U盘命令: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /mnt/usb</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="复制到开发板并安装"><a href="#复制到开发板并安装" class="headerlink" title="复制到开发板并安装"></a>复制到开发板并安装</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mount -t vfat /dev/sda1 /mnt/usb       # 挂载U盘</span><br><span class="line">cp lrz lsz /usr/bin                            # 复制</span><br><span class="line">cd /usr/bin/</span><br><span class="line">chmod +x lrz lsz</span><br></pre></td></tr></table></figure>
-
-<p>至此安装完成。</p>
-<h3 id="使用-lrzsz-传输文件"><a href="#使用-lrzsz-传输文件" class="headerlink" title="使用 lrzsz 传输文件"></a>使用 lrzsz 传输文件</h3><p><strong>注意</strong>：我用的串口软件是 mobaxterm，其它软件稍有区别。</p>
-<h4 id="执行-lrz-命令将文件从PC机传送到目标版上："><a href="#执行-lrz-命令将文件从PC机传送到目标版上：" class="headerlink" title="执行 lrz 命令将文件从PC机传送到目标版上："></a>执行 lrz 命令将文件从PC机传送到目标版上：</h4><p>进入目标板的文件夹，然后输入<code>lrz</code>，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png" alt=""><br>然后在弹出的界面上选中文件，就可以将文件传输到目标版的目标文件夹。</p>
-<p><strong>注意</strong>：这里右键选择的和输入的命令正好相反。</p>
-<p>下面以“/usr/src”为目标文件夹为例，命令如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/src     # 进入目标文件夹</span><br><span class="line">lrc                 # 输入命令后右键，选择“send file using Z-modem”，然后选择文件</span><br></pre></td></tr></table></figure>
-
-<h4 id="执行-lsz-命令将文件从目标版传到PC机上："><a href="#执行-lsz-命令将文件从目标版传到PC机上：" class="headerlink" title="执行 lsz 命令将文件从目标版传到PC机上："></a>执行 lsz 命令将文件从目标版传到PC机上：</h4><p>以“/usr/src”文件夹里面的readme.txt为例，命令如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/src     # 进入目标文件夹</span><br><span class="line">lsz readme.txt      # 输入命令后右键，选择“receive file using Z-modem”，然后选择要保存的路径</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -292,7 +250,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/03/16/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/04/08/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/DOGT/images/head.png">
@@ -306,7 +264,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/DOGT/2021/03/16/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/DOGT/2021/04/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
         <div class="post-meta">
@@ -316,11 +274,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-03-16 21:56:31" itemprop="dateCreated datePublished" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+              <time title="创建时间：2021-04-08 16:18:47" itemprop="dateCreated datePublished" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
             </span>
 
           
-            <span id="/DOGT/2021/03/16/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
+            <span id="/DOGT/2021/04/08/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -335,8 +293,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/DOGT/2021/03/16/hello-world/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/03/16/hello-world/" itemprop="commentCount"></span>
+    <a title="valine" href="/DOGT/2021/04/08/hello-world/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/04/08/hello-world/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -355,7 +313,7 @@
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/DOGT/2021/03/16/hello-world/#more" rel="contents">
+              <a class="btn" href="/DOGT/2021/04/08/hello-world/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -410,7 +368,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 21:56:31" itemprop="dateModified" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-08 16:18:47" itemprop="dateModified" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
               </span>
 
           
@@ -503,7 +461,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 21:56:31" itemprop="dateModified" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-08 16:18:47" itemprop="dateModified" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
               </span>
 
           
@@ -602,7 +560,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 21:56:31" itemprop="dateModified" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-08 16:18:47" itemprop="dateModified" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
               </span>
 
           
@@ -702,7 +660,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 21:56:31" itemprop="dateModified" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-08 16:18:47" itemprop="dateModified" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
               </span>
 
           
@@ -800,7 +758,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 21:56:31" itemprop="dateModified" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-08 16:18:47" itemprop="dateModified" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
               </span>
 
           
@@ -898,7 +856,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 21:56:31" itemprop="dateModified" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-08 16:18:47" itemprop="dateModified" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
               </span>
 
           
@@ -999,7 +957,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-03-16 21:56:31" itemprop="dateModified" datetime="2021-03-16T21:56:31+08:00">2021-03-16</time>
+                <time title="修改时间：2021-04-08 16:18:47" itemprop="dateModified" datetime="2021-04-08T16:18:47+08:00">2021-04-08</time>
               </span>
 
           
