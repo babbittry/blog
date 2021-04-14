@@ -164,7 +164,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/04/14/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/DOGT/images/head.png">
@@ -178,7 +178,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-title-link" itemprop="url">ARM-linux 嵌入式板子移植 lrzsz V1.1</a>
+            <a href="/DOGT/2021/04/14/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-title-link" itemprop="url">ARM-linux 嵌入式板子移植 lrzsz V1.1</a>
         </h2>
 
         <div class="post-meta">
@@ -188,11 +188,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-04-08 16:18:50" itemprop="dateCreated datePublished" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+              <time title="创建时间：2021-04-14 08:59:57" itemprop="dateCreated datePublished" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
             </span>
 
           
-            <span id="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-meta-item leancloud_visitors" data-flag-title="ARM-linux 嵌入式板子移植 lrzsz V1.1" title="阅读次数">
+            <span id="/DOGT/2021/04/14/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" class="post-meta-item leancloud_visitors" data-flag-title="ARM-linux 嵌入式板子移植 lrzsz V1.1" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -207,8 +207,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" itemprop="commentCount"></span>
+    <a title="valine" href="/DOGT/2021/04/14/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/04/14/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -226,7 +226,7 @@
           <h2 id="ARM-linux-嵌入式板子移植-lrzsz"><a href="#ARM-linux-嵌入式板子移植-lrzsz" class="headerlink" title="ARM-linux 嵌入式板子移植 lrzsz"></a>ARM-linux 嵌入式板子移植 lrzsz</h2><p>因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/DOGT/2021/04/08/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/#more" rel="contents">
+              <a class="btn" href="/DOGT/2021/04/14/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -250,7 +250,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/04/08/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/DOGT/2021/04/14/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/DOGT/images/head.png">
@@ -264,7 +264,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/DOGT/2021/04/08/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/DOGT/2021/04/14/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
         </h2>
 
         <div class="post-meta">
@@ -274,11 +274,11 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-04-08 16:18:50" itemprop="dateCreated datePublished" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+              <time title="创建时间：2021-04-14 08:59:57" itemprop="dateCreated datePublished" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
             </span>
 
           
-            <span id="/DOGT/2021/04/08/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
+            <span id="/DOGT/2021/04/14/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -293,8 +293,8 @@
       </span>
       <span class="post-meta-item-text">评论数：</span>
     
-    <a title="valine" href="/DOGT/2021/04/08/hello-world/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/04/08/hello-world/" itemprop="commentCount"></span>
+    <a title="valine" href="/DOGT/2021/04/14/hello-world/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/DOGT/2021/04/14/hello-world/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -313,7 +313,7 @@
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/DOGT/2021/04/08/hello-world/#more" rel="contents">
+              <a class="btn" href="/DOGT/2021/04/14/hello-world/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -368,7 +368,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-08 16:18:50" itemprop="dateModified" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+                <time title="修改时间：2021-04-14 08:59:57" itemprop="dateModified" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
               </span>
 
           
@@ -461,7 +461,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-08 16:18:50" itemprop="dateModified" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+                <time title="修改时间：2021-04-14 08:59:57" itemprop="dateModified" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
               </span>
 
           
@@ -560,7 +560,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-08 16:18:50" itemprop="dateModified" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+                <time title="修改时间：2021-04-14 08:59:57" itemprop="dateModified" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
               </span>
 
           
@@ -660,7 +660,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-08 16:18:50" itemprop="dateModified" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+                <time title="修改时间：2021-04-14 08:59:57" itemprop="dateModified" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
               </span>
 
           
@@ -758,7 +758,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-08 16:18:50" itemprop="dateModified" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+                <time title="修改时间：2021-04-14 08:59:57" itemprop="dateModified" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
               </span>
 
           
@@ -856,7 +856,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-08 16:18:50" itemprop="dateModified" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+                <time title="修改时间：2021-04-14 08:59:57" itemprop="dateModified" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
               </span>
 
           
@@ -957,7 +957,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-08 16:18:50" itemprop="dateModified" datetime="2021-04-08T16:18:50+08:00">2021-04-08</time>
+                <time title="修改时间：2021-04-14 08:59:57" itemprop="dateModified" datetime="2021-04-14T08:59:57+08:00">2021-04-14</time>
               </span>
 
           
