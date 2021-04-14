@@ -74,7 +74,10 @@ y为：1
 
 在多层`seitch`嵌套中，`break`只能终止距离它最近的`switch`。 
 
+函数中的`return`与`break`比较像，`return`的含义是：
 
+1. 终止被调函数，并像主调函数返回表达式的值
+2. `break`是用来终止循环和`switch`的，`return`是用来终止函数的。
 
 
 
