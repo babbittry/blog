@@ -19,11 +19,11 @@ discuss on GST toillet
 
 ## 用到的工具：
 
-- Hexo（静态博客框架）
+- ![](https://img.shields.io/badge/-Hexo-0E83CD?style=flat-square&logo=Hexo&logoColor=ffffff)Hexo（静态博客框架）
 - NexT（主题）
 - Github Pages（静态网站）
-- Travis CI（自动测试、部署）
-- Gitee（图床）
+- ![](https://img.shields.io/badge/-Travis CI-3EAAAF?style=flat-square&logo=Travis-CI&logoColor=ffffff)Travis CI（自动测试、部署）
+- ![](https://img.shields.io/badge/-Gitee-C71D23?style=flat-square&logo=Gitee&logoColor=ffffff)Gitee（图床）
 - PicGo（图床上传，自动生成链接）
 - Snipaste（截图、贴图）
 - Typora（Markdown 编辑器）
