@@ -1,5 +1,5 @@
 ---
-title: i\<j\<k的C语言表达
+title: i&ltj&ltk的C语言表达
 date: 2020-11-03 20:01:20
 tags:
 - C语言
