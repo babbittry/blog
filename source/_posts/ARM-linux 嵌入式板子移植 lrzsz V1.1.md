@@ -1,14 +1,14 @@
-## ARM-linux 嵌入式板子移植 lrzsz
+# ARM-linux 嵌入式板子移植 lrzsz
 
 因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。
 
 <!-- more -->
 
-### 下载源码
+## 下载源码
 
 首先下载最新版的 lrzsz， [**点我开始下载**](https://ohse.de/uwe/software/lrzsz.html)。下面以 0.12.20 版本为例，下载后文件名为：lrzsz-0.12.20.tar.gz。
 
- ### 复制到 ubuntu 主机并解压
+## 复制到 ubuntu 主机并解压
 
 复制并解压源码包将下载的源码包复制到Linux主机，然后进行解压：
 ```shell
@@ -18,7 +18,7 @@ cd ~/lrzsz
 tar zxvf lrzsz-0.12.20.tar.gz
 ```
 
-### 安装并使用交叉编译工具链
+## 安装并使用交叉编译工具链
 
 使用APT安装ARM-GCC安装交叉编译工具链有如下三种方式：
 
@@ -49,16 +49,16 @@ arm-linux-gnueabihf-gcc -v  或 arm-linux-gnueabihf-gcc --version
 安装完成后输入`arm-linux-gnueabihf-`，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链Binutils的各种工具。![安装后包含的Binutils工具集](https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png)
 
 
-### 交叉编译(需要提前装好交叉编译环境)
+## 交叉编译(需要提前装好交叉编译环境)
 
- #### 配置
+### 配置
 
  ```shell
 CFLAGS=-O2 CC=arm-linux-gnueabi-gcc ./configure --cache-file=arml_cachefile0 --prefix=/usr/local/
  ```
 这里 ./configure 必须放在后面，否则无法识别到交叉编译工具。 
 
-#### 编译
+### 编译
 
 编译命令：
 
@@ -67,13 +67,13 @@ CFLAGS=-O2 CC=arm-linux-gnueabi-gcc ./configure --cache-file=arml_cachefile0 --p
 make -j4                              
 ```
 
- make完成之后，会在当前目录 src/ 下生成 lrz 和 lsz 两个文件。 
+make完成之后，会在当前目录 src/ 下生成 lrz 和 lsz 两个文件。 
 
- ### 安装到开发板
+## 安装到开发板
 
 通过网络、U盘、SD卡等方式，将生成的 lrz 和 lsz  复制到目标板的 /usr/bin 目录，并在目标版上添加可执行权限。
 
-#### 挂载优盘
+### 挂载优盘
 
 
 1. 以root用户登陆
@@ -96,7 +96,7 @@ make -j4
     umount /mnt/usb 
     ```
 
-#### 复制到开发板并安装
+### 复制到开发板并安装
 
 ```shell
 mount -t vfat /dev/sda1 /mnt/usb       # 挂载U盘
@@ -107,11 +107,11 @@ chmod +x lrz lsz
 
 至此安装完成。
 
-### 使用 lrzsz 传输文件
+## 使用 lrzsz 传输文件
 
 **注意**：我用的串口软件是 mobaxterm，其它软件稍有区别。
 
-#### 执行 lrz 命令将文件从PC机传送到目标版上：
+### 执行 lrz 命令将文件从PC机传送到目标版上：
 
 进入目标板的文件夹，然后输入`lrz`，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”
 ![](https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png)
@@ -126,7 +126,7 @@ cd /usr/src     # 进入目标文件夹
 lrc                 # 输入命令后右键，选择“send file using Z-modem”，然后选择文件
 ```
 
-#### 执行 lsz 命令将文件从目标版传到PC机上：
+### 执行 lsz 命令将文件从目标版传到PC机上：
 
 以“/usr/src”文件夹里面的readme.txt为例，命令如下：
 
