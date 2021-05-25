@@ -1,3 +1,10 @@
+---
+title: ARM-linux 嵌入式板子移植 lrzsz
+date: 2021-03-21 21:45:18
+tags: Linux
+comments: true
+---
+
 # ARM-linux 嵌入式板子移植 lrzsz
 
 因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。
