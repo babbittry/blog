@@ -10,6 +10,8 @@ tags:
 
 换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是`i < j && j < k`.
 
+<!-- more -->
+
 ```C
 #include <stdio.h>
 #include <stdlib.h>
