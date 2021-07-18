@@ -19,6 +19,8 @@ System.StackOverflowException:“Exception_WasThrown”
 
 错误。
 
+<!-- more -->
+
 涉及到的代码如下：
 
 ```C#
