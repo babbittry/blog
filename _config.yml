@@ -92,6 +92,7 @@ ignore:
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
+Plugins: hexo-generator-sitemap
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-next
 # theme: landscape
