@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 海湾厕所文化
-subtitle: '海湾安全技术有限公司厕所文化博客'
+title: 观心塾
+subtitle: '不要成为一个无趣的大人'
 description: 'Don’t be sorry. Be better.'
 keywords:
 author: 海湾彭于晏
@@ -13,8 +13,8 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://babbittry.github.io/DOGT
-root: /DOGT/
+url: https://babbittry.github.io/blog
+root: /blog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
