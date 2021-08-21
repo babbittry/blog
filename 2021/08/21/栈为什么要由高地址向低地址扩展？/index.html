@@ -248,7 +248,7 @@
 
 <p>这是来自apue里一张经典的ｃ程序内存分布图，着重看一下heap和stack的内存分布。</p>
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg" alt="typical memory arrangement"></p>
-<h2 id="栈要由高地址向低地址扩展的优点"><a href="#栈要由高地址向低地址扩展的优点" class="headerlink" title="栈要由高地址向低地址扩展的优点"></a>栈要由高地址向低地址扩展的优点</h2><p><code>stack</code>从高地址向低地址扩展，这样栈空间的起始位置就能确定下来。动态的调整栈空间大小也不需要移动栈内的数据，如果是从低地址到高地址的扩展，结尾的地址是固定的，如果要扩大或缩小，则需要移动整个栈的数据。</p>
+<h2 id="栈由高地址向低地址扩展的优点"><a href="#栈由高地址向低地址扩展的优点" class="headerlink" title="栈由高地址向低地址扩展的优点"></a>栈由高地址向低地址扩展的优点</h2><p><code>stack</code>从高地址向低地址扩展，这样栈空间的起始位置就能确定下来。动态的调整栈空间大小也不需要移动栈内的数据，如果是从低地址到高地址的扩展，结尾的地址是固定的，如果要扩大或缩小，则需要移动整个栈的数据。</p>
 <p>并且<strong>这样设计可以使得堆和栈能够充分利用空闲的地址空间。</strong>如果栈向上涨的话，我们就必须得指定栈和堆的一个严格分界线，但这个分界线怎么确定呢？平均分？但是有的程序使用的堆空间比较多，而有的程序使用的栈空间比较多。</p>
 <p>所以就可能出现这种情况：一个程序因为栈溢出而崩溃的时候，其实它还有大量闲置的堆空间呢，但是我们却无法使用这些闲置的堆空间。所以呢，最好的办法就是让堆和栈一个向上涨，一个向下涨，这样它们就可以最大程度地共用这块剩余的地址空间，达到利用率的最大化！</p>
 <h2 id="现在-CPU-指令集的设计"><a href="#现在-CPU-指令集的设计" class="headerlink" title="现在 CPU 指令集的设计"></a>现在 CPU 指令集的设计</h2><p>大部分CPU指令集设计了函数调用架构，定义了专用的调用/返回指令，并在指令中隐含规定栈的方向。</p>
@@ -364,7 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">栈要由高地址向低地址扩展的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E5%9C%A8-CPU-%E6%8C%87%E4%BB%A4%E9%9B%86%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">现在 CPU 指令集的设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">栈由高地址向低地址扩展的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E5%9C%A8-CPU-%E6%8C%87%E4%BB%A4%E9%9B%86%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">现在 CPU 指令集的设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
