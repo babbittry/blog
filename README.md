@@ -13,4 +13,7 @@
 - ![Snipaste](https://img.shields.io/badge/-Snipaste-eeeeee?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZD0iTTI3MiAwdjE5MmgxNzZWMHoiIGZpbGw9IiNmZmM3MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjxwYXRoIGQ9Ik02NCAyMjR2Mjg4bDE3Ni0xNzZWMjI0eiIgZmlsbD0iI2U5NDI0MiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTI3MiAyMjR2MTEybDE3NiAxNzZWMjI0eiIgZmlsbD0iIzgwYzM0MiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PHBhdGggZD0iTTY0IDB2MTkyaDE3NlYweiIgZmlsbD0iIzRkOTBmZSIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+&logoColor=555555)Snipaste（截图、贴图）
 - ![Typora](https://img.shields.io/badge/-Markdown-000000?style=flat-square&logo=Markdown&logoColor=ffffff)Typora（Markdown 编辑器）
 
+## TODO
 
+- 设置 NexT 的 Tags 样式。
+- 设置 copy_button style
