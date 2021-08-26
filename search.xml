@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>ARM-linux 嵌入式板子移植 lrzsz</title>
+    <url>/blog/2021/03/21/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/</url>
+    <content><![CDATA[<h1 id="ARM-linux-嵌入式板子移植-lrzsz"><a href="#ARM-linux-嵌入式板子移植-lrzsz" class="headerlink" title="ARM-linux 嵌入式板子移植 lrzsz"></a>ARM-linux 嵌入式板子移植 lrzsz</h1><p>因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。</p>
+<span id="more"></span>
+
+<h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>首先下载最新版的 lrzsz， <a href="https://ohse.de/uwe/software/lrzsz.html"><strong>点我开始下载</strong></a>。下面以 0.12.20 版本为例，下载后文件名为：lrzsz-0.12.20.tar.gz。</p>
+<h2 id="复制到-ubuntu-主机并解压"><a href="#复制到-ubuntu-主机并解压" class="headerlink" title="复制到 ubuntu 主机并解压"></a>复制到 ubuntu 主机并解压</h2><p>复制并解压源码包将下载的源码包复制到Linux主机，然后进行解压：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir ~/lrzsz</span><br><span class="line">cp lrzsz-0.12.20.tar.gz ~/lrzsz</span><br><span class="line">cd ~/lrzsz</span><br><span class="line">tar zxvf lrzsz-0.12.20.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装并使用交叉编译工具链"><a href="#安装并使用交叉编译工具链" class="headerlink" title="安装并使用交叉编译工具链"></a>安装并使用交叉编译工具链</h2><p>使用APT安装ARM-GCC安装交叉编译工具链有如下三种方式：</p>
+<ul>
+<li>直接在Ubuntu下使用APT包管理工具下载安装，操作简单，我们直接使用该方式安装即可。</li>
+<li>自行下载第三方制作好的工具链，如Linaro，好处是选择丰富，能找到很多不同的版本。</li>
+<li>使用crosstool-ng根据需要自己制作，过程复杂，不推荐。</li>
+</ul>
+<p>我们直接在Ubuntu系统下使用APT包管理工具安装。使用的编译器主要有两种类型：</p>
+<ul>
+<li>arm-linux-gnueabihf-gcc：名称中的Linux表示目标应用程序是运行在Linux操作系统之上的，例如前面的hello.c程序。</li>
+<li>arm-none-eabi-gcc，名称中的none表示无操作系统，目标应用程序的运行环境是不带操作系统的，例如裸机代码、uboot、内核代码本身。</li>
+</ul>
+<p>不过在开发中比较多的开发者对所有程序都直接用arm-linux-gnueabihf-gcc来编译，包括裸机代码和uboot，虽然可能因为代码本身没有调用到Linux相关的内容而不会出错，但这样做不够严谨，条件允许的话，我们还是严格区分开来。在编译 lrzsz 的时候只需要使用arm-linux-gnueabihf-gcc编译器，可通过APT包管理工具可直接执行以下命令安装：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">在主机上执行如下命令</span></span><br><span class="line">sudo apt install gcc-arm-linux-gnueabihf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装完成后使用如下命令查看版本</span></span><br><span class="line">arm-linux-gnueabihf-gcc -v  或 arm-linux-gnueabihf-gcc --version</span><br></pre></td></tr></table></figure>
+
+<p>可以看到下图的内容，它表明交叉编译工具链安装成功了，输出信息中的 “Target: arm-linux-gnueabihf”表明了它的目标架构。<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210306203223.png"></p>
+<p>安装完成后输入<code>arm-linux-gnueabihf-</code>，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链Binutils的各种工具。<img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png" alt="安装后包含的Binutils工具集"></p>
+<h2 id="交叉编译-需要提前装好交叉编译环境"><a href="#交叉编译-需要提前装好交叉编译环境" class="headerlink" title="交叉编译(需要提前装好交叉编译环境)"></a>交叉编译(需要提前装好交叉编译环境)</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3> <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">CFLAGS=-O2 CC=arm-linux-gnueabi-gcc ./configure --cache-file=arml_cachefile0 --prefix=/usr/local/</span><br></pre></td></tr></table></figure>
+<p>这里 ./configure 必须放在后面，否则无法识别到交叉编译工具。 </p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>编译命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 并行编译，使用4个CPU同时编译，可提高编译速度</span></span><br><span class="line">make -j4                              </span><br></pre></td></tr></table></figure>
+
+<p>make完成之后，会在当前目录 src/ 下生成 lrz 和 lsz 两个文件。 </p>
+<h2 id="安装到开发板"><a href="#安装到开发板" class="headerlink" title="安装到开发板"></a>安装到开发板</h2><p>通过网络、U盘、SD卡等方式，将生成的 lrz 和 lsz  复制到目标板的 /usr/bin 目录，并在目标版上添加可执行权限。</p>
+<h3 id="挂载优盘"><a href="#挂载优盘" class="headerlink" title="挂载优盘"></a>挂载优盘</h3><ol>
+<li>以root用户登陆</li>
+<li>查看当前挂载 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fdisk -l</span><br></pre></td></tr></table></figure>
+ 一般情况未挂载的硬盘都在最后，以/dev/sdb1为例。</li>
+<li>新建一个目录来挂载硬盘，挂载到mnt/usb <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /mnt</span><br><span class="line">mkdir /mnt/usb</span><br></pre></td></tr></table></figure></li>
+<li>挂载 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mount /dev/sdb1 /mnt/usb</span><br></pre></td></tr></table></figure></li>
+<li>卸载u盘：在使用完u盘后，在拔出前需要先键入卸载U盘命令: <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">umount /mnt/usb </span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="复制到开发板并安装"><a href="#复制到开发板并安装" class="headerlink" title="复制到开发板并安装"></a>复制到开发板并安装</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mount -t vfat /dev/sda1 /mnt/usb       # 挂载U盘</span><br><span class="line">cp lrz lsz /usr/bin                            # 复制</span><br><span class="line">cd /usr/bin/</span><br><span class="line">chmod +x lrz lsz</span><br></pre></td></tr></table></figure>
+
+<p>至此安装完成。</p>
+<h2 id="使用-lrzsz-传输文件"><a href="#使用-lrzsz-传输文件" class="headerlink" title="使用 lrzsz 传输文件"></a>使用 lrzsz 传输文件</h2><p><strong>注意</strong>：我用的串口软件是 mobaxterm，其它软件稍有区别。</p>
+<h3 id="执行-lrz-命令将文件从PC机传送到目标版上："><a href="#执行-lrz-命令将文件从PC机传送到目标版上：" class="headerlink" title="执行 lrz 命令将文件从PC机传送到目标版上："></a>执行 lrz 命令将文件从PC机传送到目标版上：</h3><p>进入目标板的文件夹，然后输入<code>lrz</code>，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png"><br>然后在弹出的界面上选中文件，就可以将文件传输到目标版的目标文件夹。</p>
+<p><strong>注意</strong>：这里右键选择的和输入的命令正好相反。</p>
+<p>下面以“/usr/src”为目标文件夹为例，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/src     # 进入目标文件夹</span><br><span class="line">lrc                 # 输入命令后右键，选择“send file using Z-modem”，然后选择文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="执行-lsz-命令将文件从目标版传到PC机上："><a href="#执行-lsz-命令将文件从目标版传到PC机上：" class="headerlink" title="执行 lsz 命令将文件从目标版传到PC机上："></a>执行 lsz 命令将文件从目标版传到PC机上：</h3><p>以“/usr/src”文件夹里面的readme.txt为例，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/src     # 进入目标文件夹</span><br><span class="line">lsz readme.txt      # 输入命令后右键，选择“receive file using Z-modem”，然后选择要保存的路径</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言学习笔记-break和continue</title>
+    <url>/blog/2020/10/31/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-break%E5%92%8Ccontinue/</url>
+    <content><![CDATA[<p>在循环体中，C 提供了下列的循环控制语句。</p>
+<ul>
+<li>break</li>
+<li>continue</li>
+<li>goto</li>
+</ul>
+<p>但是 <code>goto</code> 尽量不要使用。它会导致代码结构混乱。</p>
+<span id="more"></span>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (x &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x为：%d\r\n&quot;</span>, x);</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        x--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (y &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;y为：%d\r\n&quot;</span>, y);</span><br><span class="line">        y--;</span><br><span class="line">        <span class="keyword">if</span> (y &lt;= <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;y为：%d\r\n&quot;</span>, y + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面代码执行的结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x为：5</span><br><span class="line">x为：4</span><br><span class="line">x为：3</span><br><span class="line">y为：5</span><br><span class="line">y为：5</span><br><span class="line">y为：4</span><br><span class="line">y为：4</span><br><span class="line">y为：3</span><br><span class="line">y为：2</span><br><span class="line">y为：1</span><br></pre></td></tr></table></figure>
+
+<p>从结果可以看出来：</p>
+<p>当<code>break</code>语句出现在一个循环内时，循环会立即终止，且程序流将继续执行紧接着循环的下一条语句。</p>
+<p>而<code>continue</code>会跳过当前循环中的代码，强迫开始下一次循环。</p>
+<p>在多层循环中，<code>break</code>只能终止距离它最近的循环。 </p>
+<p>在多层<code>seitch</code>嵌套中，<code>break</code>只能终止距离它最近的<code>switch</code>。 </p>
+<p>函数中的<code>return</code>与<code>break</code>比较像，<code>return</code>的含义是：</p>
+<ol>
+<li>终止被调函数，并像主调函数返回表达式的值</li>
+<li><code>break</code>是用来终止循环和<code>switch</code>的，<code>return</code>是用来终止函数的。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>i&amp;ltj&amp;ltk的C语言表达</title>
+    <url>/blog/2020/11/03/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/</url>
+    <content><![CDATA[<p>表达式<code>i &lt; j &lt; k</code>在C语言中是合法的，但是它不是你所期望的意思。因为<code>＜</code>运算符是左结合的， 所以这个表达式等价于<code>(i &lt; j) &lt; k</code>.</p>
+<p>换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是<code>i &lt; j &amp;&amp; j &lt; k</code>.</p>
+<span id="more"></span>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &lt; k)&#123;      <span class="comment">// 这里输出第一行，但是这是错的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &amp;&amp; j &lt; k)&#123;      <span class="comment">// 这里输出第二行，这样处理是对的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>Python</code>中没有这样的问题，如下面程序：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line">i = <span class="number">2</span>;</span><br><span class="line">j = <span class="number">1</span>;</span><br><span class="line">k = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> i &lt; j &lt; k:      <span class="comment"># 这里输出第二行，可见Python进行了特殊处理</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> i &lt; j <span class="keyword">and</span> j &lt; k:      <span class="comment"># 这里输出第二行，这样处理是对的</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>输出的结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">j不在i和k中间</span><br><span class="line">j不在i和k中间</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言学习笔记-数组</title>
+    <url>/blog/2020/10/31/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E7%BB%84/</url>
+    <content><![CDATA[<p>数组：</p>
+<ol>
+<li><p>所有元素得存储空间是连续的</p>
+</li>
+<li><p>所有元素的数据类型是一样的</p>
+</li>
+<li><p>所有元素的所占的字节大小必须相等</p>
+</li>
+</ol>
+<span id="more"></span>
+
+<p>数组只有在定义数组的同时才可以整体赋值，其他情况下整体赋值都是错误的。</p>
+<p>例如下面是错误写法：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>];</span><br><span class="line">a = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组的元素不是代表的这几个元素，而是代表的第一个元素的地址。</p>
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言学习笔记-浮点数的使用注意事项</title>
+    <url>/blog/2021/08/20/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h2 id="浮点数都是有符号的，没有-unsigned-浮点数"><a href="#浮点数都是有符号的，没有-unsigned-浮点数" class="headerlink" title="浮点数都是有符号的，没有 unsigned 浮点数"></a>浮点数都是有符号的，没有 <code>unsigned</code> 浮点数</h2><h3 id="Q"><a href="#Q" class="headerlink" title="Q:"></a>Q:</h3><p>为什么没有无符号的浮点型，比如 <code>unsigned float</code> 或 <code>unsigned double</code>？</p>
+<h3 id="A"><a href="#A" class="headerlink" title="A:"></a>A:</h3><p>为什么 <code>C/C++</code> 不支持无符号浮点数是因为CPU没有等效的机器代码操作来执行。因此支持它是非常低效的。</p>
+<span id="more"></span>
+
+<p>所以问题就是为什么硬件实施者不支持它？我认为答案是最初没有定义无符号浮点标准。由于语言喜欢向后兼容，即使添加了语言也无法使用它。要查看浮点规范，您应该查看<a href="http://steve.hollasch.net/cgindex/coding/ieeefloat.html">IEEE标准754浮点数</a>。</p>
+<p>我肯定无符号浮点数是有用处的。但是 <code>C/C++</code> 倾向于选择效率最高的安全性。</p>
+<h2 id="C-语言两个浮点数比较大小的办法"><a href="#C-语言两个浮点数比较大小的办法" class="headerlink" title="C 语言两个浮点数比较大小的办法"></a>C 语言两个浮点数比较大小的办法</h2><p>浮点数并非真正意义上的实数，只是其在某个范围内的近似。</p>
+<p>因此两个浮点数比较大小时，不能简单地使用大于小于号进行比较，应该判断连个浮点数差值的绝对值是否近似为0。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="comment">// 这里的 EPS 是自己定义的精度</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> EPS 1e-7     <span class="comment">// 判断浮点数是否位于0的一个很小的邻域内[-EPS,EPS]内</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">/* 判断一个浮点数是否等于 0*/</span></span><br><span class="line">    <span class="keyword">float</span> a;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%f&quot;</span>, &amp;a);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">fabs</span>(a) &lt;= EPS)  <span class="comment">// a=0</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(a &gt; EPS)    <span class="comment">// a&gt;0</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">else</span>                <span class="comment">// a&lt;0</span></span><br><span class="line">        ...</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* 比较两个浮点数大小 */</span></span><br><span class="line">    <span class="keyword">float</span> a,b;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%f%f&quot;</span>,&amp;a, &amp;b);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">fabs</span>(a-b) &lt;= EPS)  <span class="comment">// a=b</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>( (a-b) &gt; EPS)  <span class="comment">// a&gt;b</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="keyword">else</span>                   <span class="comment">// a&lt;b</span></span><br><span class="line">        ...</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Weekly2</title>
+    <url>/blog/2020/09/06/Weekly2/</url>
+    <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>有机会一定要试一试，其实试错的成本并不高，而错过的成本却非常高。</p>
+<p align="right"> --- 雷军</p>
+
+<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>一件事”做得好”比较好，还是”做得快”比较好？</strong></p>
+<p>鱼和熊掌不能得兼，你怎么选择：做得好，付出的代价可能是耗时长、成本高；做得快，意味着完成度低、不是精品。</p>
+<p>我很赞同一篇文章的结论：</p>
+<blockquote>
+<p>做得快更好。做得快不仅可以让你在单位时间内完成更多的工作，而且因为你工作得很快，所以你会觉得成本低，从而倾向于做更多。</p>
+</blockquote>
+<span id="more"></span>
+
+<p>写一篇博客，你可能需要两天。这是很高的时间成本，你觉得太贵了，于是你很少写。但是，做好一件事的唯一方法，就是多做这件事。 做得越快，这件事的时间成本就越低，你会愿意做得更多。</p>
+<p>人们总是倾向于，多消费时间成本低的东西。网站很快，就会多访问；搜索很快，就会多搜索；文章很容易读懂，就会多读几篇。做得快的核心，就是要让时间成本降下来，从而多做。</p>
+<p>全球FPGA第一大厂商Xilinx认为，更快比更便宜重要，产品晚上市六个月5年内将少33%的利润，每晚四周等于损失14%的市场份额。</p>
+]]></content>
+      <tags>
+        <tag>周刊</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Weekly3</title>
+    <url>/blog/2020/09/20/Weekly3/</url>
+    <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>do one thing，and do it well.</p>
+<p align="right"> --- 《Unix编程艺术》</p>
+
+<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>信息的半衰期</strong></p>
+<p>这个概念其实很好理解。根据爱因斯坦最著名的质能公式 E=mc²，能量即质量，任何释放能量的物体都必然会减轻质量。</p>
+<p>最近，我看到有人提出了一个新的概念，他说信息也有半衰期。 信息的半衰期指的是，一半的信息量变得无关紧要或者彻底过时所需的时间。</p>
+<span id="more"></span>
+
+<p>以报纸为例，出版当天的价值最大，第二天再看，价值至少减半，所以报纸的半衰期是一天到几天。微信和微博的半衰期也类似，早上发的朋友圈，晚上就不太有人看了。至于即时消息或聊天的半衰期就更短了，只有几个小时。</p>
+<p>当代社会的趋势是，信息的半衰期越来越短，有一个词叫做“快餐文化”。以前，一本新书可以在书店里卖几年，现在卖几个月就下架了，被新的出版物取代。大部分书籍的半衰期就是几个月到一年。</p>
+<p>我的建议是，不管你写什么，尽量写一些半衰期比较长的内容 ，这样有利于提高内容的使用价值（也是提高你的劳动的价值）。有些朋友喜欢发朋友圈和社交媒体，花了很多时间，但是内容马上就过时了，也没法重复使用。</p>
+<p>顺便说一句，这个周刊的半衰期就很短，过了一周就很少有人看了。我也在想，怎样才能延长周刊的半衰期，使得它有更多被用到的机会。</p>
+]]></content>
+      <tags>
+        <tag>周刊</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Weekly5</title>
+    <url>/blog/2020/10/10/Weekly5/</url>
+    <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>看到抽象的东西，应该尽量使它变得具体；看到具体的东西，应该尽量使它变得抽象。</p>
+<p align="right"> --- 李敖</p>
+
+<span id="more"></span>
+
+<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>五只猴子的故事</strong></p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E4%BA%94%E5%8F%AA%E7%8C%B4%E5%AD%90.jpg" alt="五只猴子的故事"><br>科学家在笼子里放了五只猴子。笼子中间有一架梯子，梯子上面放着香蕉。每当一只猴子爬上梯子，科学家就用冷水泼洒其余的猴子。过了一阵子，只要一只猴子爬上梯子，其他猴子就会殴打它。一段时间后，所有猴子都不敢爬上梯子。</p>
+<p>然后，科学家用一只新猴子，替换了原来的一只猴子，并且停止用冷水泼洒猴子。这只新猴子立即爬楼梯去拿香蕉，但随即遭到其他猴子的殴打。经过几次殴打，新猴子学会了不爬梯子，即使它从来不知道为什么。</p>
+<p>接着，替换了第二只猴子，也发生了同样的事情。刚才放进笼子的那只猴子，同样殴打了新来的猴子。替换了第三只猴子，也是如此。就这样，第四只、第五只猴子也接连被替换了。</p>
+<p>最终，笼子里面的五只猴子，尽管从未被泼冷水，仍然继续殴打任何试图爬上梯子的猴子。如果可以问猴子，为什么要殴打所有试图爬上梯子的成员，答案可能是：“这就是我们在这里做事的方式。”</p>
+<p>这个故事告诉我们，如果前人觉得某件事情不能做，阻力就会流传下来，阻止后来的人去做。</p>
+<p>但是，大多数人没有意识到，有时候情况会改变。二十年前不可能的事情今天也许并非不可能。比如，电动汽车以前是不可能的，现在随着电池技术的进步，才有可能。</p>
+<p>年轻人不知道为什么某事不能做，如果他们不怕阻力，就会去尝试那些不能做的事情。这就是为什么重大创新往往是年轻人做出来的原因。</p>
+<p>老年人通常看不到新的机会，因为他们相信有些事情是不可能的。年轻人在无知和热情推动下，愿意尝试那些不可能的事情。大多数年轻人会失败，但少数会成功。</p>
+]]></content>
+      <tags>
+        <tag>周刊</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Weekly4</title>
+    <url>/blog/2020/10/10/weekly4/</url>
+    <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>逝者已经逝去，活着的还要前行。</p>
+<p align="right"> --- 任正非 《我的父亲母亲》</p>
+
+<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>美国海军取消触摸屏</strong></p>
+<p>触控屏已经成为电子产品主流的交互模式，伴随触屏设备长大的年轻人被称为「触屏一代」。</p>
+<p>除了智能手机，触控屏还应用到了汽车、军舰等大型交通工具中，在科幻电影里，经常会将所有平面变成触控屏来呈现，似乎触控屏就是交互的未来。然而不是所有人都喜欢触控交互。</p>
+<span id="more"></span>
+
+<p>马自达和本田是我最喜欢的两个车企。日前，本田对外宣布，海外版全新飞度将回归物理按键，取消空调等功能的触屏操作。据悉，国内2020款飞度也已经取消了触控空调按键。按照本田项目负责人的说法，此举主要是为了尽可能避免车辆行驶期间车载功能干扰到驾驶员。</p>
+<p>该负责人表示：“根据用户反馈，空调或座椅加热功能如果使用触屏，必须要分神看着屏幕才能完成操作，不利于行车安全；而物理按键可以唤醒人脑的动作记忆，用户只需记住刻度盘的位置即可完成操作，双眼能够始终关注道路情况。因此，本田回归了物理按键，以便用户操作时减少分神。”</p>
+<p>事实上本田并不是第一家取消触控大屏的车企，早在去年7月初，马自达官方发布消息称：将在未来所有新车型上取消大尺寸中控屏幕，仅保留一小块的显示屏，而即将海外上市的马自达3将不再配备触摸屏。</p>
+<p>前几日，英国一项道路安全研究报告指出触控大屏比酒驾、毒驾更危险。当使用触摸屏操作 CarPlay 和 Android Auto 等互联系统时，驾驶员对路面情况的反应时间，会增加多达57%和 53%。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E7%BE%8E%E5%9B%BD%E6%B5%B7%E5%86%9B%E5%8F%96%E6%B6%88%E8%A7%A6%E6%91%B8%E5%B1%8F.jpg" alt="美国海军取消触摸屏"><br>这让我想到去年的新闻，2017年8月21日，美国麦凯恩号航空母舰在新加坡与一艘油轮相撞，造成油轮的10名船员死亡，麦凯恩号48人受伤。美国军方最近公布了调查报告，事故原因之一是航母操作人员对复杂的触摸屏界面不熟悉，有人将操作系统置于手动模式，但是其他人没有发现。</p>
+<p>事发后，海军进行了舰队范围内的调查，问卷调查中，大部分人表示，更喜欢机械控制，而不是触摸屏操作。因为机械装置“提供了即时的触觉反馈”。报告指出，如果存在机械控制，舵手可能会提前发现问题。军方因此决定，2020年开始在驱逐舰上，用机械装置取代触摸屏，控制油门和舵。</p>
+]]></content>
+      <tags>
+        <tag>周刊</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我不想让你记住我的脸</title>
+    <url>/blog/2020/07/26/%E6%88%91%E4%B8%8D%E6%83%B3%E8%AE%A9%E4%BD%A0%E8%AE%B0%E4%BD%8F%E6%88%91%E7%9A%84%E8%84%B8/</url>
+    <content><![CDATA[<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p>上海电视台最近报道：“本市徐汇区漕河泾街道的薛家宅小区，正在推行门禁系统的人脸识别。小区居民必须在指定时间，到社区办公区录入自己的脸。”</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E9%97%A8%E7%A6%81.jpg" alt="门禁"></p>
+<p>人脸识别系统将来就安装在每栋楼的门口，居民进出的时候，就识别一下。</p>
+<p>我的第一反应是惊吓，以后每天何时到家、有没有在家过夜，有关部门就都知道了。难道上下班打卡还不够，到家也要打卡吗！</p>
+<span id="more"></span>
+
+<p>人脸识别其实不是一个普遍适用的门禁方案，局限性很大。普通摄像头的识别准确度有限，最好使用 3D 摄像头，而且很不方便，戴着墨镜、口罩、帽子，就没法识别，夜里还要必须对着人脸亮灯。</p>
+<p>电视里说，这个项目是徐汇智慧公安项目，属于社区智能化管理和安防系统的重要组成部分，目的是提高小区安防，加强人口精细化管理。小区的党总支书记说，这可以防止陌生人和小偷入内。</p>
+<p>但是，门禁卡不也是这个效果吗？没有门禁卡的人进不来，而且现在小区都有摄像头，何必一定要装人脸识别呢。</p>
+<p>这个项目还有数据安全问题。人脸的数据保存在哪里呢？如果保存在云端，每次识别都要向机房发出请求，速度肯定不会特别快，还存在通信失败的可能性；如果保存在本地，小区所有居民的人脸数据，就储存在社区某台电脑的硬盘里面，这样是否安全，会不会有很大的个人信息泄漏风险？</p>
+<p>这个项目是政府全额出资。在我看来，那些人脸识别的方案公司，才是真正的赢家，尽管方案本身有种种缺陷，但还是赚到了大笔的项目费，没准就是他们怂恿政府上马这个项目。</p>
+<p>人脸识别是很敏感的事情，我觉得，国家应该出一个法律，规范一下。到底哪些机构、哪一级政府有权收集人脸信息？是不是任何组织都有权这么干，各种 App、楼宇的业主委员会、小学幼儿园、社区停车场等等，为了安装门禁，要收集人脸信息行不行？</p>
+<p>更重要的是，法律应该明确一个问题：居民是否有权拒绝提供自己的人脸信息？我不想让你记住我的脸，可以吗？</p>
+<p>而且指纹、脸部识别和视网膜扫描是比传统密码更安全的生物识别技术，它们很难伪造，但有一个巨大的弱点：一个人只有一张脸、两只眼睛和十个手指。一旦存有生物识别信息的数据库被入侵，那么重置密码几乎是不可能的。</p>
+<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p><strong>风险是可控的，只是需要高度自律：</strong></p>
+<p>纪录片《徒手攀岩》中，Alex 徒手没有任何保护，爬上了酋长岩。即使是在专业的攀岩运动员看来，这也是一个不可能完成的任务。说白了，就等于送死。</p>
+<p>他说了一句话，非常地奇怪，他说：“风险和后果是两回事。徒手攀岩的风险很低，只是后果很严重。”</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>栈为什么要由高地址向低地址扩展？</title>
+    <url>/blog/2021/08/21/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/</url>
+    <content><![CDATA[<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>计算机内存分了代码段（<code>.text</code>段）、初始化的数据段（<code>.data</code>段）、未初始化的数据段（<code>.bss</code>段）、堆空间（<code>heap</code>）、栈空间（<code>stack</code>）和命令行参数和环境变量区域。</p>
+<p>程序计数器(<code>Program Counter</code>，简称<code> PC</code>)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。</p>
+<p>因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展；</p>
+<p>heap从低地址向高地址扩展，做内存管理相对要简单些，为了避免栈空间和代码段冲突，最大利用地址空间，很自然的，我们会选择把栈底设置在高地址区间，然后让栈向下增长。</p>
+<span id="more"></span>
+
+<p>这是来自apue里一张经典的ｃ程序内存分布图，着重看一下heap和stack的内存分布。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg" alt="typical memory arrangement"></p>
+<h2 id="栈由高地址向低地址扩展的优点"><a href="#栈由高地址向低地址扩展的优点" class="headerlink" title="栈由高地址向低地址扩展的优点"></a>栈由高地址向低地址扩展的优点</h2><p><code>stack</code>从高地址向低地址扩展，这样栈空间的起始位置就能确定下来。动态的调整栈空间大小也不需要移动栈内的数据，如果是从低地址到高地址的扩展，结尾的地址是固定的，如果要扩大或缩小，则需要移动整个栈的数据。</p>
+<p>并且<strong>这样设计可以使得堆和栈能够充分利用空闲的地址空间。</strong>如果栈向上涨的话，我们就必须得指定栈和堆的一个严格分界线，但这个分界线怎么确定呢？平均分？但是有的程序使用的堆空间比较多，而有的程序使用的栈空间比较多。</p>
+<p>所以就可能出现这种情况：一个程序因为栈溢出而崩溃的时候，其实它还有大量闲置的堆空间呢，但是我们却无法使用这些闲置的堆空间。所以呢，最好的办法就是让堆和栈一个向上涨，一个向下涨，这样它们就可以最大程度地共用这块剩余的地址空间，达到利用率的最大化！</p>
+<h2 id="现在-CPU-指令集的设计"><a href="#现在-CPU-指令集的设计" class="headerlink" title="现在 CPU 指令集的设计"></a>现在 CPU 指令集的设计</h2><p>大部分CPU指令集设计了函数调用架构，定义了专用的调用/返回指令，并在指令中隐含规定栈的方向。</p>
+<ul>
+<li>主流1：向低地址扩展：x86，MIPS</li>
+<li>主流2：自由选择：Arm（但个别指令仅支持向低）</li>
+<li>罕见：向高地址扩展：PA-RISC，操作系统Multics</li>
+<li>非主流：System z，栈是个链表[2]</li>
+</ul>
+<p>如果CPU同时支持向上和向下，例如arm，那么编译器需要指定程序的调用方向，一般还是选择向下。比较罕见的极端的案例是Multics操作系统，这是Unix的巨无霸前身，设计者刻意选用向高地址扩展，因为该架构有助于防御缓冲区溢出攻击[3]。</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>[1] <a href="https://www.quora.com/What-is-the-logical-explanation-for-stacks-typically-growing-downward-and-heaps-growing-upward">What is the logical explanation for stacks typically growing downward and heaps growing upward?</a><br>[2] 列出了8种架构的栈增长方向 <a href="https://stackoverflow.com/questions/664744/what-is-the-direction-of-stack-growth-in-most-modern-systems">What is the direction of stack growth in most modern systems?</a><br>[3] 罕见的栈增长方向 <a href="https://softwareengineering.stackexchange.com/questions/137640/why-does-the-stack-grow-downward/137668">Why does the stack grow downward?</a></p>
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>计算机组成原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次 C# StackOverflowException 异常</title>
+    <url>/blog/2021/07/18/%E8%AE%B0%E4%B8%80%E6%AC%A1-C-StackOverflowException-%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<h1 id="记一次-C-StackOverflowException-异常"><a href="#记一次-C-StackOverflowException-异常" class="headerlink" title="记一次 C# StackOverflowException 异常"></a>记一次 C# StackOverflowException 异常</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在看<a href="https://www.bilibili.com/video/BV13b411b7Ht?p=17">刘铁猛老师的《C# 语言入门详解》的第17讲</a>的时候，在 45:00 处，学习属性的 <code>Get/Set</code> 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">System.StackOverflowException:“Exception_WasThrown”</span><br></pre></td></tr></table></figure>
+
+<p>错误。</p>
+<span id="more"></span>
+
+<p>涉及到的代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int Score       // 创建一个属性</span><br><span class="line">&#123;</span><br><span class="line">    get</span><br><span class="line">    &#123;</span><br><span class="line">        return Score;</span><br><span class="line">    &#125;</span><br><span class="line">    set</span><br><span class="line">    &#123;</span><br><span class="line">        if(value &gt;= 0 &amp;&amp; value &lt;= 100)</span><br><span class="line">        &#123;</span><br><span class="line">            Score = value;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            throw new Exception(&quot;输入的分数不对！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="错误原因分析"><a href="#错误原因分析" class="headerlink" title="错误原因分析"></a>错误原因分析</h2><p>经过查询得知，这个错误的原因是当使用<code>set()</code>设置 <code>Score</code> 属性的时候，会循环调用 <code>set()</code> 函数， <code>set()</code> 函数循环调用 <code>set()</code> 函数… 最终导致堆栈溢出。属性值获取的 <code>get</code> 方法，返回的是属性值本身，这属于递归循环了，导致堆栈溢出。<a href="https://stackoverflow.com/questions/37596282/exception-of-type-system-stackoverflowexception-was-thrown">Stack Overflow</a> 上的原文如下：</p>
+<blockquote>
+<p> When setting the price property, you invoke the setter, which invokes the setter which invokes the setter, etc..</p>
+</blockquote>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><h3 id="方法一：设置一个-private-属性名称相近的字段（field）来用于存储"><a href="#方法一：设置一个-private-属性名称相近的字段（field）来用于存储" class="headerlink" title="方法一：设置一个 private 属性名称相近的字段（field）来用于存储"></a>方法一：设置一个 <code>private</code> 属性名称相近的字段（field）来用于存储</h3><p>废话不多说，直接看代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">private int _Score;     // 字段</span><br><span class="line">public int Score        // 属性</span><br><span class="line">&#123;</span><br><span class="line">    get</span><br><span class="line">    &#123;</span><br><span class="line">        return _Score;</span><br><span class="line">    &#125;</span><br><span class="line">    set</span><br><span class="line">    &#123;</span><br><span class="line">        if(value &gt;= 0 &amp;&amp; value &lt;= 100)</span><br><span class="line">        &#123;</span><br><span class="line">            _Score = value;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            throw new Exception(&quot;输入的分数不对！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里定义一个私有的字段存储属性值，<code>get</code> 方法返回私有的值。属性没有存储数据的功能，数据都存在字段中，所以只有修改字段的数据才能更改数据，修改属性的值没用。</p>
+<h4 id="属性的作用："><a href="#属性的作用：" class="headerlink" title="属性的作用："></a>属性的作用：</h4><ul>
+<li>属性更灵活</li>
+<li>属性是一种方法</li>
+<li>属性实际是用来给字段赋值的，如果愿意的话。</li>
+</ul>
+<h3 id="方法二：直接设置-get-set"><a href="#方法二：直接设置-get-set" class="headerlink" title="方法二：直接设置 { get; set; }"></a>方法二：直接设置 <code>&#123; get; set; &#125;</code></h3><p>代码如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public int Score &#123; get; set; &#125; // 可以正常使用，不会报错</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>方法一感觉比较繁琐，但是方法二不能在接收值的时候进行初步的判断，有可能会接收到非法的值（不合常理的值，比如年龄200岁等）。方法二是 <code>C#</code> 的语法糖。</p>
+<p>最终重新看视频中的代码发现，老师除了声明这个属性之外，还声明了一个字段，但是首字母是小写的。所以属于看错了，但是也因此加深了一下对字段（field）和属性（property）的理解。</p>
+]]></content>
+      <tags>
+        <tag>语言学习</tag>
+        <tag>C#</tag>
+        <tag>BUG</tag>
+      </tags>
+  </entry>
+</search>
