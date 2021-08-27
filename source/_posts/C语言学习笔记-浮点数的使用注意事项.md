@@ -56,7 +56,6 @@ int main(void)
         ...
     else                   // a<b
         ...
-    
 }
 ```
 
