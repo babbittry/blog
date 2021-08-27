@@ -20,13 +20,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"babbittry.github.io","root":"/blog/","images":"/blog/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"Valine","storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
-<meta name="description" content="记一次 C# StackOverflowException 异常背景在看刘铁猛老师的《C# 语言入门详解》的第17讲的时候，在 45:00 处，学习属性的 Get&#x2F;Set 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了 1System.StackOverflowException:“Exception_WasThrown”  错误。">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"babbittry.github.io","root":"/blog/","images":"/blog/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"changyan","storage":true,"lazyload":false,"nav":null,"activeClass":"changyan"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
+<meta name="description" content="背景在看刘铁猛老师的《C# 语言入门详解》的第17讲的时候，在 45:00 处，学习属性的 Get&#x2F;Set 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了 1System.StackOverflowException:“Exception_WasThrown”  错误。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次 C# StackOverflowException 异常">
 <meta property="og:url" content="https://babbittry.github.io/blog/2021/07/18/%E8%AE%B0%E4%B8%80%E6%AC%A1-C-StackOverflowException-%E5%BC%82%E5%B8%B8/index.html">
 <meta property="og:site_name" content="观心塾">
-<meta property="og:description" content="记一次 C# StackOverflowException 异常背景在看刘铁猛老师的《C# 语言入门详解》的第17讲的时候，在 45:00 处，学习属性的 Get&#x2F;Set 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了 1System.StackOverflowException:“Exception_WasThrown”  错误。">
+<meta property="og:description" content="背景在看刘铁猛老师的《C# 语言入门详解》的第17讲的时候，在 45:00 处，学习属性的 Get&#x2F;Set 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了 1System.StackOverflowException:“Exception_WasThrown”  错误。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-18T08:14:22.000Z">
 <meta property="article:modified_time" content="2021-07-18T08:14:22.000Z">
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%B0%E4%B8%80%E6%AC%A1-C-StackOverflowException-%E5%BC%82%E5%B8%B8"><span class="nav-number">1.</span> <span class="nav-text">记一次 C# StackOverflowException 异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">错误原因分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA-private-%E5%B1%9E%E6%80%A7%E5%90%8D%E7%A7%B0%E7%9B%B8%E8%BF%91%E7%9A%84%E5%AD%97%E6%AE%B5%EF%BC%88field%EF%BC%89%E6%9D%A5%E7%94%A8%E4%BA%8E%E5%AD%98%E5%82%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">方法一：设置一个 private 属性名称相近的字段（field）来用于存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">属性的作用：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E7%9B%B4%E6%8E%A5%E8%AE%BE%E7%BD%AE-get-set"><span class="nav-number">1.3.2.</span> <span class="nav-text">方法二：直接设置 { get; set; }</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">错误原因分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA-private-%E5%B1%9E%E6%80%A7%E5%90%8D%E7%A7%B0%E7%9B%B8%E8%BF%91%E7%9A%84%E5%AD%97%E6%AE%B5%EF%BC%88field%EF%BC%89%E6%9D%A5%E7%94%A8%E4%BA%8E%E5%AD%98%E5%82%A8"><span class="nav-number">3.1.</span> <span class="nav-text">方法一：设置一个 private 属性名称相近的字段（field）来用于存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="nav-number">3.1.1.</span> <span class="nav-text">属性的作用：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E7%9B%B4%E6%8E%A5%E8%AE%BE%E7%BD%AE-get-set"><span class="nav-number">3.2.</span> <span class="nav-text">方法二：直接设置 { get; set; }</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -251,6 +251,22 @@
     </span>
 
   
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan：</span>
+    
+    
+      <a title="changyan" href="/blog/2021/07/18/%E8%AE%B0%E4%B8%80%E6%AC%A1-C-StackOverflowException-%E5%BC%82%E5%B8%B8/#SOHUCS" itemprop="discussionUrl">
+        <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2021/07/18/记一次-C-StackOverflowException-异常/" itemprop="commentCount"></span>
+      </a>
+    
+  </span>
+  
+  
 </div>
 
         </div>
@@ -260,7 +276,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="记一次-C-StackOverflowException-异常"><a href="#记一次-C-StackOverflowException-异常" class="headerlink" title="记一次 C# StackOverflowException 异常"></a>记一次 C# StackOverflowException 异常</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13b411b7Ht?p=17">刘铁猛老师的《C# 语言入门详解》的第17讲</a>的时候，在 45:00 处，学习属性的 <code>Get/Set</code> 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在看<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13b411b7Ht?p=17">刘铁猛老师的《C# 语言入门详解》的第17讲</a>的时候，在 45:00 处，学习属性的 <code>Get/Set</code> 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.StackOverflowException:“Exception_WasThrown”</span><br></pre></td></tr></table></figure>
 
 <p>错误。</p>
@@ -343,6 +359,7 @@
 
 
 
+    <div class="comments" id="SOHUCS"></div>
 </div>
   </main>
 
@@ -379,6 +396,8 @@
 
 
 
+<script class="next-config" data-name="changyan" type="application/json">{"enable":"enable","appid":"cyvCYPgyk","appkey":"e16850bb0918b1ee05d0c9d0f98f2812"}</script>
+<script src="/blog/js/third-party/comments/changyan.js"></script>
 
 </body>
 </html>

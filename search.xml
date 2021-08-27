@@ -3,7 +3,7 @@
   <entry>
     <title>ARM-linux 嵌入式板子移植 lrzsz</title>
     <url>/blog/2021/03/21/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/</url>
-    <content><![CDATA[<h1 id="ARM-linux-嵌入式板子移植-lrzsz"><a href="#ARM-linux-嵌入式板子移植-lrzsz" class="headerlink" title="ARM-linux 嵌入式板子移植 lrzsz"></a>ARM-linux 嵌入式板子移植 lrzsz</h1><p>因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。</p>
+    <content><![CDATA[<p>因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。</p>
 <span id="more"></span>
 
 <h2 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h2><p>首先下载最新版的 lrzsz， <a href="https://ohse.de/uwe/software/lrzsz.html"><strong>点我开始下载</strong></a>。下面以 0.12.20 版本为例，下载后文件名为：lrzsz-0.12.20.tar.gz。</p>
@@ -296,7 +296,7 @@
   <entry>
     <title>记一次 C# StackOverflowException 异常</title>
     <url>/blog/2021/07/18/%E8%AE%B0%E4%B8%80%E6%AC%A1-C-StackOverflowException-%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<h1 id="记一次-C-StackOverflowException-异常"><a href="#记一次-C-StackOverflowException-异常" class="headerlink" title="记一次 C# StackOverflowException 异常"></a>记一次 C# StackOverflowException 异常</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在看<a href="https://www.bilibili.com/video/BV13b411b7Ht?p=17">刘铁猛老师的《C# 语言入门详解》的第17讲</a>的时候，在 45:00 处，学习属性的 <code>Get/Set</code> 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了</p>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在看<a href="https://www.bilibili.com/video/BV13b411b7Ht?p=17">刘铁猛老师的《C# 语言入门详解》的第17讲</a>的时候，在 45:00 处，学习属性的 <code>Get/Set</code> 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">System.StackOverflowException:“Exception_WasThrown”</span><br></pre></td></tr></table></figure>
 
 <p>错误。</p>
