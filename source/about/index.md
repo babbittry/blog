@@ -3,11 +3,11 @@ title: 观心塾
 date: 2020-08-11 19:52:45 
 ---
 
-# 观心塾
+## 内容
 
 内容包括头脑风暴，时事分享，前沿科技，技术知识。
 
-- ## 用到的工具：
+## 用到的工具：
 
 - ![Hexo](https://img.shields.io/badge/-Hexo-0E83CD?style=flat-square&logo=Hexo&logoColor=ffffff)Hexo（静态博客框架）
 - ![NexT](https://img.shields.io/badge/-NexT-eeeeee?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJOZXhUIiB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgeD0iMCIgeT0iMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNTEyIDUxMiIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PG1ldGFkYXRhIGlkPSJtZXRhZGF0YTMzOTAiLz48cGF0aCBzdHlsZT0iZmlsbDojMjIyO2ZpbGwtb3BhY2l0eToxIiBpZD0icGF0aDMzODQiIGQ9Ik0gMjU2LjQsMjUuOCA1Ni40LDE0MS4zIDU2LDM3MS41IDI1NS42LDQ4Ni4yIDQ1NS42LDM3MC43IDQ1NiwxNDAuNSBaIG0gOTIuNiwzMjguOCAtMTguNCwxMC43IC0xOC42LC0xMSAwLDAgLTExMiwtMTQyLjMgMCwxNDIuNiAtMTguNCwxMC43IC0xOC42LC0xMSAwLC0xOTcgMTguNSwtMTAuNiAxOC41LDEwLjggMCwwIDExMiwxNDQuNSAwLC0xNDQuNiAxOC41LC0xMC42IDE4LjUsMTAuOCB6Ii8+PC9zdmc+&logoColor=555555)NexT（主题）
