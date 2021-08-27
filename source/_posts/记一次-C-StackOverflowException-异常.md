@@ -7,8 +7,6 @@ tags:
 - 语言学习
 ---
 
-# 记一次 C# StackOverflowException 异常
-
 ## 背景
 
 在看[刘铁猛老师的《C# 语言入门详解》的第17讲](https://www.bilibili.com/video/BV13b411b7Ht?p=17)的时候，在 45:00 处，学习属性的 `Get/Set` 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了
