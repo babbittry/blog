@@ -21,31 +21,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"babbittry.github.io","root":"/blog/","images":"/blog/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"Gitalk","storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
-<meta name="description" content="原因计算机内存分了代码段（.text段）、初始化的数据段（.data段）、未初始化的数据段（.bss段）、堆空间（heap）、栈空间（stack）和命令行参数和环境变量区域。 程序计数器(Program Counter，简称 PC)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。 因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展">
+<meta name="description" content="在使用宏定义的时候有一些注意事项必须注意，要适当的使用圆括号以保证计算次序的正确性。 比如： 1# define square(x) x * x  当使用 square(x + 1) 调用该宏定义的时候会出现什么情况呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="栈为什么要由高地址向低地址扩展？">
-<meta property="og:url" content="https://babbittry.github.io/blog/2021/08/21/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/index.html">
+<meta property="og:title" content="C语言学习笔记-宏定义的使用注意事项">
+<meta property="og:url" content="https://babbittry.github.io/blog/2021/08/30/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="观心塾">
-<meta property="og:description" content="原因计算机内存分了代码段（.text段）、初始化的数据段（.data段）、未初始化的数据段（.bss段）、堆空间（heap）、栈空间（stack）和命令行参数和环境变量区域。 程序计数器(Program Counter，简称 PC)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。 因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展">
+<meta property="og:description" content="在使用宏定义的时候有一些注意事项必须注意，要适当的使用圆括号以保证计算次序的正确性。 比如： 1# define square(x) x * x  当使用 square(x + 1) 调用该宏定义的时候会出现什么情况呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg">
-<meta property="article:published_time" content="2021-08-21T02:17:25.000Z">
-<meta property="article:modified_time" content="2021-08-21T02:17:25.000Z">
+<meta property="article:published_time" content="2021-08-30T14:20:14.000Z">
+<meta property="article:modified_time" content="2021-08-30T14:20:14.000Z">
 <meta property="article:author" content="海湾彭于晏">
 <meta property="article:tag" content="C语言">
-<meta property="article:tag" content="计算机组成原理">
+<meta property="article:tag" content="语言学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg">
 
 
-<link rel="canonical" href="https://babbittry.github.io/blog/2021/08/21/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/">
+<link rel="canonical" href="https://babbittry.github.io/blog/2021/08/30/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/2021/08/21/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/","path":"2021/08/21/栈为什么要由高地址向低地址扩展？/","title":"栈为什么要由高地址向低地址扩展？"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/2021/08/30/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/","path":"2021/08/30/C语言学习笔记-宏定义的使用注意事项/","title":"C语言学习笔记-宏定义的使用注意事项"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>栈为什么要由高地址向低地址扩展？ | 观心塾</title>
+<title>C语言学习笔记-宏定义的使用注意事项 | 观心塾</title>
   
 
   <script src="/blog/js/third-party/analytics/baidu-analytics.js"></script>
@@ -154,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">栈由高地址向低地址扩展的优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E5%9C%A8-CPU-%E6%8C%87%E4%BB%A4%E9%9B%86%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">3.</span> <span class="nav-text">现在 CPU 指令集的设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">引用</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E4%BD%BF%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E6%97%B6%E5%80%99%E6%9C%89%E4%B8%80%E4%BA%9B%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.</span> <span class="nav-text">在使用宏定义的时候有一些注意事项</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -224,7 +222,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/2021/08/21/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/2021/08/30/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/head.png">
@@ -237,7 +235,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          栈为什么要由高地址向低地址扩展？
+          C语言学习笔记-宏定义的使用注意事项
         </h1>
 
         <div class="post-meta-container">
@@ -248,7 +246,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-08-21 10:17:25" itemprop="dateCreated datePublished" datetime="2021-08-21T10:17:25+08:00">2021-08-21</time>
+      <time title="创建时间：2021-08-30 22:20:14" itemprop="dateCreated datePublished" datetime="2021-08-30T22:20:14+08:00">2021-08-30</time>
     </span>
 
   
@@ -261,26 +259,28 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>计算机内存分了代码段（<code>.text</code>段）、初始化的数据段（<code>.data</code>段）、未初始化的数据段（<code>.bss</code>段）、堆空间（<code>heap</code>）、栈空间（<code>stack</code>）和命令行参数和环境变量区域。</p>
-<p>程序计数器(<code>Program Counter</code>，简称<code> PC</code>)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。</p>
-<p>因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展；</p>
-<p>heap从低地址向高地址扩展，做内存管理相对要简单些，为了避免栈空间和代码段冲突，最大利用地址空间，很自然的，我们会选择把栈底设置在高地址区间，然后让栈向下增长。</p>
+        <h2 id="在使用宏定义的时候有一些注意事项"><a href="#在使用宏定义的时候有一些注意事项" class="headerlink" title="在使用宏定义的时候有一些注意事项"></a>在使用宏定义的时候有一些注意事项</h2><p>必须注意，要适当的使用圆括号以保证计算次序的正确性。</p>
+<p>比如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> square(x) x * x</span></span><br></pre></td></tr></table></figure>
+
+<p>当使用 <code>square(x + 1)</code> 调用该宏定义的时候会出现什么情况呢？</p>
 <span id="more"></span>
 
-<p>这是来自apue里一张经典的ｃ程序内存分布图，着重看一下heap和stack的内存分布。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg" alt="typical memory arrangement"></p>
-<h2 id="栈由高地址向低地址扩展的优点"><a href="#栈由高地址向低地址扩展的优点" class="headerlink" title="栈由高地址向低地址扩展的优点"></a>栈由高地址向低地址扩展的优点</h2><p><code>stack</code>从高地址向低地址扩展，这样栈空间的起始位置就能确定下来。动态的调整栈空间大小也不需要移动栈内的数据，如果是从低地址到高地址的扩展，结尾的地址是固定的，如果要扩大或缩小，则需要移动整个栈的数据。</p>
-<p>并且<strong>这样设计可以使得堆和栈能够充分利用空闲的地址空间。</strong>如果栈向上涨的话，我们就必须得指定栈和堆的一个严格分界线，但这个分界线怎么确定呢？平均分？但是有的程序使用的堆空间比较多，而有的程序使用的栈空间比较多。</p>
-<p>所以就可能出现这种情况：一个程序因为栈溢出而崩溃的时候，其实它还有大量闲置的堆空间呢，但是我们却无法使用这些闲置的堆空间。所以呢，最好的办法就是让堆和栈一个向上涨，一个向下涨，这样它们就可以最大程度地共用这块剩余的地址空间，达到利用率的最大化！</p>
-<h2 id="现在-CPU-指令集的设计"><a href="#现在-CPU-指令集的设计" class="headerlink" title="现在 CPU 指令集的设计"></a>现在 CPU 指令集的设计</h2><p>大部分CPU指令集设计了函数调用架构，定义了专用的调用/返回指令，并在指令中隐含规定栈的方向。</p>
-<ul>
-<li>主流1：向低地址扩展：x86，MIPS</li>
-<li>主流2：自由选择：Arm（但个别指令仅支持向低）</li>
-<li>罕见：向高地址扩展：PA-RISC，操作系统Multics</li>
-<li>非主流：System z，栈是个链表[2]</li>
-</ul>
-<p>如果CPU同时支持向上和向下，例如arm，那么编译器需要指定程序的调用方向，一般还是选择向下。比较罕见的极端的案例是Multics操作系统，这是Unix的巨无霸前身，设计者刻意选用向高地址扩展，因为该架构有助于防御缓冲区溢出攻击[3]。</p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>[1] <a target="_blank" rel="noopener" href="https://www.quora.com/What-is-the-logical-explanation-for-stacks-typically-growing-downward-and-heaps-growing-upward">What is the logical explanation for stacks typically growing downward and heaps growing upward?</a><br>[2] 列出了8种架构的栈增长方向 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/664744/what-is-the-direction-of-stack-growth-in-most-modern-systems">What is the direction of stack growth in most modern systems?</a><br>[3] 罕见的栈增长方向 <a target="_blank" rel="noopener" href="https://softwareengineering.stackexchange.com/questions/137640/why-does-the-stack-grow-downward/137668">Why does the stack grow downward?</a></p>
+<p>请见下面例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> square(x) (x * x)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i, i, square(i));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, square(i + <span class="number">1</span>));</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行这段函数得到的输出为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2 * 2 = 4</span><br><span class="line">3 * 3 = 5</span><br></pre></td></tr></table></figure>
+
+<p>究其原因，就是在执行 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, square(i + <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>的时候，系统在预编译之后，把这行代码替换成了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, i + <span class="number">1</span> * i + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>所以才导致的错误。</p>
+<p>所以用宏定义时，含参数时，参数本身要加<code>()</code>，此外，对参数的操作整体也要加<code>()</code>。</p>
+<p>同时在使用宏的时候，要充分考虑前后的语境，必要的时候亲自做一下代换试试，防止出现不必要的错误。</p>
 
     </div>
 
@@ -308,21 +308,18 @@
 
           <div class="post-tags">
               <a href="/blog/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
-              <a href="/blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag"># 计算机组成原理</a>
+              <a href="/blog/tags/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" rel="tag"># 语言学习</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2021/08/20/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" rel="prev" title="C语言学习笔记-浮点数的使用注意事项">
-                  <i class="fa fa-chevron-left"></i> C语言学习笔记-浮点数的使用注意事项
+                <a href="/blog/2021/08/30/%E6%A8%AA%E6%B2%B3%E7%94%B5%E6%9C%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/" rel="prev" title="横河电机面试经历">
+                  <i class="fa fa-chevron-left"></i> 横河电机面试经历
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/2021/08/30/%E6%A8%AA%E6%B2%B3%E7%94%B5%E6%9C%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/" rel="next" title="横河电机面试经历">
-                  横河电机面试经历 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -373,7 +370,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"babbittry","repo":"blog-common","client_id":"4e70a0f1d368b7e460a6","client_secret":"da6186ca78bf89639c2cc1968d5997d2665c81d6","admin_user":"babbittry","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"103c83fabe7c4520a18980c382f9975f"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"babbittry","repo":"blog-common","client_id":"4e70a0f1d368b7e460a6","client_secret":"da6186ca78bf89639c2cc1968d5997d2665c81d6","admin_user":"babbittry","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"75c4886fd9ba7edb9534e34a38cfcd05"}</script>
 <script src="/blog/js/third-party/comments/gitalk.js"></script>
 
 </body>
