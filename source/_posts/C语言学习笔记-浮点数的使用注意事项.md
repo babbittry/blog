@@ -59,5 +59,20 @@ int main(void)
 }
 ```
 
+## 扩展：分别写出 BOOL、int、float、指针类型的变量 a 与“零”的比较语句
 
+```C
+bool: 
+	为0：if(a)
+	不为0：if(!a)
+int: 
+	为0：if(a == 0)
+	不为0：if(a !== 0)
+float: #define EPS 0.0000001
+	为0：if(a < EPS && A > -EPS)
+	不为0：if(a > EPS || A < -EPS)
+pointer: 
+	为0：if(a == NULL)
+	不为0：if(a != NULL)
+```
 
