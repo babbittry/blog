@@ -49,9 +49,9 @@ arm-linux-gnueabihf-gcc -v  或 arm-linux-gnueabihf-gcc --version
 ```
 
 可以看到下图的内容，它表明交叉编译工具链安装成功了，输出信息中的 “Target: arm-linux-gnueabihf”表明了它的目标架构。
-![](https://gitee.com/babbittry321/blogImages/raw/master/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210306203223.png)
+![交叉编译工具链安装](https://gitee.com/babbittry321/blogImages/raw/master/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210306203223.png)
 
-安装完成后输入`arm-linux-gnueabihf-`，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链Binutils的各种工具。![安装后包含的Binutils工具集](https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png)
+安装完成后输入`arm-linux-gnueabihf-`，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链`Binutils`的各种工具。![安装后包含的Binutils工具集](https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png)
 
 
 ## 交叉编译(需要提前装好交叉编译环境)
@@ -119,7 +119,7 @@ chmod +x lrz lsz
 ### 执行 lrz 命令将文件从PC机传送到目标版上：
 
 进入目标板的文件夹，然后输入`lrz`，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”
-![](https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png)
+![传送文件的截图](https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png)
 然后在弹出的界面上选中文件，就可以将文件传输到目标版的目标文件夹。
 
 **注意**：这里右键选择的和输入的命令正好相反。
