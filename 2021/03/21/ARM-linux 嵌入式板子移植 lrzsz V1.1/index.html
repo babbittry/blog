@@ -285,8 +285,8 @@
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装完成后使用如下命令查看版本</span></span><br><span class="line">arm-linux-gnueabihf-gcc -v  或 arm-linux-gnueabihf-gcc --version</span><br></pre></td></tr></table></figure>
 
-<p>可以看到下图的内容，它表明交叉编译工具链安装成功了，输出信息中的 “Target: arm-linux-gnueabihf”表明了它的目标架构。<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210306203223.png"></p>
-<p>安装完成后输入<code>arm-linux-gnueabihf-</code>，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链Binutils的各种工具。<img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png" alt="安装后包含的Binutils工具集"></p>
+<p>可以看到下图的内容，它表明交叉编译工具链安装成功了，输出信息中的 “Target: arm-linux-gnueabihf”表明了它的目标架构。<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210306203223.png" alt="交叉编译工具链安装"></p>
+<p>安装完成后输入<code>arm-linux-gnueabihf-</code>，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链<code>Binutils</code>的各种工具。<img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png" alt="安装后包含的Binutils工具集"></p>
 <h2 id="交叉编译-需要提前装好交叉编译环境"><a href="#交叉编译-需要提前装好交叉编译环境" class="headerlink" title="交叉编译(需要提前装好交叉编译环境)"></a>交叉编译(需要提前装好交叉编译环境)</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CFLAGS=-O2 CC=arm-linux-gnueabi-gcc ./configure --cache-file=arml_cachefile0 --prefix=/usr/local/</span><br></pre></td></tr></table></figure>
 <p>这里 ./configure 必须放在后面，否则无法识别到交叉编译工具。 </p>
 <h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>编译命令：</p>
@@ -306,7 +306,7 @@
 
 <p>至此安装完成。</p>
 <h2 id="使用-lrzsz-传输文件"><a href="#使用-lrzsz-传输文件" class="headerlink" title="使用 lrzsz 传输文件"></a>使用 lrzsz 传输文件</h2><p><strong>注意</strong>：我用的串口软件是 mobaxterm，其它软件稍有区别。</p>
-<h3 id="执行-lrz-命令将文件从PC机传送到目标版上："><a href="#执行-lrz-命令将文件从PC机传送到目标版上：" class="headerlink" title="执行 lrz 命令将文件从PC机传送到目标版上："></a>执行 lrz 命令将文件从PC机传送到目标版上：</h3><p>进入目标板的文件夹，然后输入<code>lrz</code>，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png"><br>然后在弹出的界面上选中文件，就可以将文件传输到目标版的目标文件夹。</p>
+<h3 id="执行-lrz-命令将文件从PC机传送到目标版上："><a href="#执行-lrz-命令将文件从PC机传送到目标版上：" class="headerlink" title="执行 lrz 命令将文件从PC机传送到目标版上："></a>执行 lrz 命令将文件从PC机传送到目标版上：</h3><p>进入目标板的文件夹，然后输入<code>lrz</code>，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png" alt="传送文件的截图"><br>然后在弹出的界面上选中文件，就可以将文件传输到目标版的目标文件夹。</p>
 <p><strong>注意</strong>：这里右键选择的和输入的命令正好相反。</p>
 <p>下面以“/usr/src”为目标文件夹为例，命令如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/src     # 进入目标文件夹</span><br><span class="line">lrc                 # 输入命令后右键，选择“send file using Z-modem”，然后选择文件</span><br></pre></td></tr></table></figure>
