@@ -56,6 +56,8 @@ comments: true
 
 在终端中输入：`export PATH=$PATH:/home/zxy/Desktop/myPATH`（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）
 
+![添加环境变量](https://gitee.com/babbittry321/blogImages/raw/master/img/PATH.png)
+
 然后执行 `Hello.sh`，就可以看到输出结果。
 
 ![my option](https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png)
