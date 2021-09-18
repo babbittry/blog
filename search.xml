@@ -317,6 +317,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Llinux 执行命令为什么要加 ./（点斜杠） ？</title>
+    <url>/blog/2021/09/17/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/</url>
+    <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p>如下图所示，当前文件夹下有一个名为 <code>Hello.sh</code> 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 <code>./</code> 才可以正确的运行这个脚本。那么这个是为什么呢？</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
+<span id="more"></span>
+
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>虽然我们的终端是在当前目录，而且当前目录中有我们要执行的文件，但是终端就是找不到它。需要我们指定文件的相对或绝对路径来告诉终端我们想运行的文件在哪里。</p>
+<p>在 Linux 中，点字符（<code>.</code>）表示工作目录，斜杠（<code>/</code>） 是 Linux 中的路径分隔符，我们用它来分离工作目录（<code>.</code>）与文件名。</p>
+<p>为什么我们需要 <code>./</code> ？因为我们的工作目录不包含在环境变量（ <code>$PATH</code> ）中。</p>
+<h2 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h2><p><code>$PATH</code>：决定了shell将到哪些目录中寻找命令或程序，<code>$PATH</code>的值是一系列目录，当你运行一个程序时，Linux 在这些目录下进行搜索。</p>
+<p>输入命令 <code>echo $PATH</code> 就可以查看当前的环境变量是多少。</p>
+<p>在我的电脑上输出是（不同电脑输出不一样）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png" alt="echo path"></p>
+<p>我们在 Linux 上使用的命令都可以在这里面找到。如果 <code>ls</code> 命令。如果我们想看命令具体的位置，可以使用 <code>which</code> 命令（感觉有点像套娃标😥）</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png" alt="which ls"></p>
+<h2 id="终端中命令搜索规则"><a href="#终端中命令搜索规则" class="headerlink" title="终端中命令搜索规则"></a>终端中命令搜索规则</h2><ul>
+<li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
+<li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
+</ul>
+<p>所以这就解释了为什么如果在 <code>Hello.sh</code> 前不加 <code>./</code> 就不能正常运行，原因就是在环境变量中没有名为 <code>Hello.sh</code> 的命令！</p>
+<h2 id="把自己的命令添加进环境变量"><a href="#把自己的命令添加进环境变量" class="headerlink" title="把自己的命令添加进环境变量"></a>把自己的命令添加进环境变量</h2><p>如果自己写了几个命令，并且以后在运行的时候不想添加路径，那么可以把自己的命令所在路径添加进环境变量。</p>
+<p>比如我写了两个命令，分别是 <code>my_ls.sh</code> 和 <code>Hello.sh</code>，然后把他们放在了 <code>~/Desktop/myPATH</code> 中。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png" alt="myPATH"></p>
+<p>在终端中输入：<code>export PATH=$PATH:/home/zxy/Desktop/myPATH</code>（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）</p>
+<p>然后执行 <code>Hello.sh</code>，就可以看到输出结果。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png" alt="my option"></p>
+<p>这里提示 <code>my_ls.sh</code> 的权限不够，那么就提升一下权限。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png" alt="提升权限"></p>
+<p>这样就可以，在不输入 <code>./</code> 的情况下直接运行 <code>Hello.sh</code>。</p>
+<h2 id="扩展：Linux中的-、-、-分别代表什么"><a href="#扩展：Linux中的-、-、-分别代表什么" class="headerlink" title="扩展：Linux中的~、/、./分别代表什么"></a>扩展：Linux中的<code>~</code>、<code>/</code>、<code>./</code>分别代表什么</h2><p><code>~</code>表示主目录，也就是当前登录用户的用户目录。</p>
+<p>比如：我登录用户是chen,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
+<p><code>/</code>是指根目录：就是所有目录最顶层的目录。</p>
+<p><code>./</code>表示当前目录，<code>./</code> 一般需要和其他文件夹或者文件结合使用，指代当前目录下的东西。</p>
+<p><code>..</code>表示上级目录，<code>../</code> 指代上级目录下的东西。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Weekly2</title>
     <url>/blog/2020/09/06/Weekly2/</url>
     <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>有机会一定要试一试，其实试错的成本并不高，而错过的成本却非常高。</p>

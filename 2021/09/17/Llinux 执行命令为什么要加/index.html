@@ -21,29 +21,35 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"babbittry.github.io","root":"/blog/","images":"/blog/images","scheme":"Mist","version":"8.7.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"Gitalk","storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
-<meta name="description" content="表达式i &lt; j &lt; k在C语言中是合法的，但是它不是你所期望的意思。因为＜运算符是左结合的， 所以这个表达式等价于(i &lt; j) &lt; k. 换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是i &lt; j &amp;&amp; j &lt; k.">
+<meta name="description" content="问题引入如下图所示，当前文件夹下有一个名为 Hello.sh 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 .&#x2F; 才可以正确的运行这个脚本。那么这个是为什么呢？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="i&amp;ltj&amp;ltk的C语言表达">
-<meta property="og:url" content="https://babbittry.github.io/blog/2020/11/03/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/index.html">
+<meta property="og:title" content="Llinux 执行命令为什么要加 .&#x2F;（点斜杠） ？">
+<meta property="og:url" content="https://babbittry.github.io/blog/2021/09/17/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/index.html">
 <meta property="og:site_name" content="观心塾">
-<meta property="og:description" content="表达式i &lt; j &lt; k在C语言中是合法的，但是它不是你所期望的意思。因为＜运算符是左结合的， 所以这个表达式等价于(i &lt; j) &lt; k. 换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是i &lt; j &amp;&amp; j &lt; k.">
+<meta property="og:description" content="问题引入如下图所示，当前文件夹下有一个名为 Hello.sh 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 .&#x2F; 才可以正确的运行这个脚本。那么这个是为什么呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-03T12:01:20.000Z">
-<meta property="article:modified_time" content="2020-11-03T12:01:20.000Z">
+<meta property="og:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png">
+<meta property="og:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png">
+<meta property="og:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png">
+<meta property="og:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png">
+<meta property="og:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png">
+<meta property="og:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png">
+<meta property="article:published_time" content="2021-09-17T13:25:18.000Z">
+<meta property="article:modified_time" content="2021-09-17T13:25:18.000Z">
 <meta property="article:author" content="海湾彭于晏">
-<meta property="article:tag" content="C语言">
-<meta property="article:tag" content="语言学习">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png">
 
 
-<link rel="canonical" href="https://babbittry.github.io/blog/2020/11/03/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/">
+<link rel="canonical" href="https://babbittry.github.io/blog/2021/09/17/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/2020/11/03/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/","path":"2020/11/03/C语言学习笔记-i-j-k的C语言表达/","title":"i&ltj&ltk的C语言表达"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/2021/09/17/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/","path":"2021/09/17/Llinux 执行命令为什么要加/","title":"Llinux 执行命令为什么要加 ./（点斜杠） ？"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>i&ltj&ltk的C语言表达 | 观心塾</title>
+<title>Llinux 执行命令为什么要加 ./（点斜杠） ？ | 观心塾</title>
   
 
   <script src="/blog/js/third-party/analytics/baidu-analytics.js"></script>
@@ -139,7 +145,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -152,6 +158,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%BC%95%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">问题引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">原因分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">什么是环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF%E4%B8%AD%E5%91%BD%E4%BB%A4%E6%90%9C%E7%B4%A2%E8%A7%84%E5%88%99"><span class="nav-number">4.</span> <span class="nav-text">终端中命令搜索规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%8A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%91%BD%E4%BB%A4%E6%B7%BB%E5%8A%A0%E8%BF%9B%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">5.</span> <span class="nav-text">把自己的命令添加进环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%EF%BC%9ALinux%E4%B8%AD%E7%9A%84-%E3%80%81-%E3%80%81-%E5%88%86%E5%88%AB%E4%BB%A3%E8%A1%A8%E4%BB%80%E4%B9%88"><span class="nav-number">6.</span> <span class="nav-text">扩展：Linux中的~、&#x2F;、.&#x2F;分别代表什么</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,7 +228,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/2020/11/03/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/2021/09/17/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/head.png">
@@ -234,7 +241,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          i&ltj&ltk的C语言表达
+          Llinux 执行命令为什么要加 ./（点斜杠） ？
         </h1>
 
         <div class="post-meta-container">
@@ -245,7 +252,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-11-03 20:01:20" itemprop="dateCreated datePublished" datetime="2020-11-03T20:01:20+08:00">2020-11-03</time>
+      <time title="创建时间：2021-09-17 21:25:18" itemprop="dateCreated datePublished" datetime="2021-09-17T21:25:18+08:00">2021-09-17</time>
     </span>
 
   
@@ -258,17 +265,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>表达式<code>i &lt; j &lt; k</code>在C语言中是合法的，但是它不是你所期望的意思。因为<code>＜</code>运算符是左结合的， 所以这个表达式等价于<code>(i &lt; j) &lt; k</code>.</p>
-<p>换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是<code>i &lt; j &amp;&amp; j &lt; k</code>.</p>
+        <h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p>如下图所示，当前文件夹下有一个名为 <code>Hello.sh</code> 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 <code>./</code> 才可以正确的运行这个脚本。那么这个是为什么呢？</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
 <span id="more"></span>
 
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &lt; k)&#123;      <span class="comment">// 这里输出第一行，但是这是错的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &amp;&amp; j &lt; k)&#123;      <span class="comment">// 这里输出第二行，这样处理是对的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>虽然我们的终端是在当前目录，而且当前目录中有我们要执行的文件，但是终端就是找不到它。需要我们指定文件的相对或绝对路径来告诉终端我们想运行的文件在哪里。</p>
+<p>在 Linux 中，点字符（<code>.</code>）表示工作目录，斜杠（<code>/</code>） 是 Linux 中的路径分隔符，我们用它来分离工作目录（<code>.</code>）与文件名。</p>
+<p>为什么我们需要 <code>./</code> ？因为我们的工作目录不包含在环境变量（ <code>$PATH</code> ）中。</p>
+<h2 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h2><p><code>$PATH</code>：决定了shell将到哪些目录中寻找命令或程序，<code>$PATH</code>的值是一系列目录，当你运行一个程序时，Linux 在这些目录下进行搜索。</p>
+<p>输入命令 <code>echo $PATH</code> 就可以查看当前的环境变量是多少。</p>
+<p>在我的电脑上输出是（不同电脑输出不一样）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
 
-<p>在<code>Python</code>中没有这样的问题，如下面程序：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line">i = <span class="number">2</span>;</span><br><span class="line">j = <span class="number">1</span>;</span><br><span class="line">k = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> i &lt; j &lt; k:      <span class="comment"># 这里输出第二行，可见Python进行了特殊处理</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> i &lt; j <span class="keyword">and</span> j &lt; k:      <span class="comment"># 这里输出第二行，这样处理是对的</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png" alt="echo path"></p>
+<p>我们在 Linux 上使用的命令都可以在这里面找到。如果 <code>ls</code> 命令。如果我们想看命令具体的位置，可以使用 <code>which</code> 命令（感觉有点像套娃标😥）</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png" alt="which ls"></p>
+<h2 id="终端中命令搜索规则"><a href="#终端中命令搜索规则" class="headerlink" title="终端中命令搜索规则"></a>终端中命令搜索规则</h2><ul>
+<li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
+<li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
+</ul>
+<p>所以这就解释了为什么如果在 <code>Hello.sh</code> 前不加 <code>./</code> 就不能正常运行，原因就是在环境变量中没有名为 <code>Hello.sh</code> 的命令！</p>
+<h2 id="把自己的命令添加进环境变量"><a href="#把自己的命令添加进环境变量" class="headerlink" title="把自己的命令添加进环境变量"></a>把自己的命令添加进环境变量</h2><p>如果自己写了几个命令，并且以后在运行的时候不想添加路径，那么可以把自己的命令所在路径添加进环境变量。</p>
+<p>比如我写了两个命令，分别是 <code>my_ls.sh</code> 和 <code>Hello.sh</code>，然后把他们放在了 <code>~/Desktop/myPATH</code> 中。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png" alt="myPATH"></p>
+<p>在终端中输入：<code>export PATH=$PATH:/home/zxy/Desktop/myPATH</code>（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）</p>
+<p>然后执行 <code>Hello.sh</code>，就可以看到输出结果。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png" alt="my option"></p>
+<p>这里提示 <code>my_ls.sh</code> 的权限不够，那么就提升一下权限。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png" alt="提升权限"></p>
+<p>这样就可以，在不输入 <code>./</code> 的情况下直接运行 <code>Hello.sh</code>。</p>
+<h2 id="扩展：Linux中的-、-、-分别代表什么"><a href="#扩展：Linux中的-、-、-分别代表什么" class="headerlink" title="扩展：Linux中的~、/、./分别代表什么"></a>扩展：Linux中的<code>~</code>、<code>/</code>、<code>./</code>分别代表什么</h2><p><code>~</code>表示主目录，也就是当前登录用户的用户目录。</p>
+<p>比如：我登录用户是chen,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
+<p><code>/</code>是指根目录：就是所有目录最顶层的目录。</p>
+<p><code>./</code>表示当前目录，<code>./</code> 一般需要和其他文件夹或者文件结合使用，指代当前目录下的东西。</p>
+<p><code>..</code>表示上级目录，<code>../</code> 指代上级目录下的东西。</p>
 
-<p>输出的结果为：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">j不在i和k中间</span><br><span class="line">j不在i和k中间</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -294,22 +325,18 @@
 </div>
 
           <div class="post-tags">
-              <a href="/blog/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
-              <a href="/blog/tags/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" rel="tag"># 语言学习</a>
+              <a href="/blog/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2020/10/31/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-break%E5%92%8Ccontinue/" rel="prev" title="C语言学习笔记-break和continue">
-                  <i class="fa fa-chevron-left"></i> C语言学习笔记-break和continue
+                <a href="/blog/2021/09/11/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BB%93%E6%9E%84%E4%BD%93%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E8%AE%A1%E7%AE%97/" rel="prev" title="C语言学习笔记-结构体占用内存大小的计算">
+                  <i class="fa fa-chevron-left"></i> C语言学习笔记-结构体占用内存大小的计算
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/2021/03/21/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/" rel="next" title="ARM-linux 嵌入式板子移植 lrzsz">
-                  ARM-linux 嵌入式板子移植 lrzsz <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -360,7 +387,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"babbittry","repo":"blog-common","client_id":"4e70a0f1d368b7e460a6","client_secret":"da6186ca78bf89639c2cc1968d5997d2665c81d6","admin_user":"babbittry","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"444725011831aec18d1e01544561795b"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"babbittry","repo":"blog-common","client_id":"4e70a0f1d368b7e460a6","client_secret":"da6186ca78bf89639c2cc1968d5997d2665c81d6","admin_user":"babbittry","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"707044d1265f9963240d9e2a28adecab"}</script>
 <script src="/blog/js/third-party/comments/gitalk.js"></script>
 
 </body>
