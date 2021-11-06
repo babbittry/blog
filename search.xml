@@ -474,6 +474,28 @@
       </tags>
   </entry>
   <entry>
+    <title>函数的输入输出设计</title>
+    <url>/blog/%E5%87%BD%E6%95%B0%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="函数的输入输出设计"><a href="#函数的输入输出设计" class="headerlink" title="函数的输入输出设计"></a>函数的输入输出设计</h2><p>输入要保持开放，输出要保持保守。（Be liberal in what you accept, and conservative in what you send.）</p>
+<p align="right">-- Jon Postel 谈如何设计接口</p>
+
+<span id="more"></span>
+
+<p>我经常看到这样的程序：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FuncName</span><span class="params">(<span class="keyword">char</span>* str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = <span class="built_in">strlen</span>(str);</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">char</span>* <span class="title">GetUserName</span><span class="params">(struct user* pUser)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> pUser-&gt;name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>不！请不要这样做。</p>
+<p>你应该先判断一下传进来的那个指针是不是为空。如果传进来的指针为空的话，那么，你的一个大的系统就会因为这一个小的函数而崩溃。一种更好的技术是使用断言（assert），这里我就不多说这些技术细节了。当然，如果是在C++中，引用要比指针好得多，但你也需要对各个参数进行检查。</p>
+<p>写有参数的函数时，首要工作，就是要对传进来的所有参数进行合法性检查。而对于传出的参数也应该进行检查，这个动作当然应该在函数的外部，也就是说，调用完一个函数后，应该对其传出的值进行检查。</p>
+<p>当然，检查会浪费一点时间，但为了整个系统不至于出现“非法操作”或是“Core Dump”的系统级的错误，多花这点时间还是很值得的。</p>
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+        <tag>程序设计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我不想让你记住我的脸</title>
     <url>/blog/%E6%88%91%E4%B8%8D%E6%83%B3%E8%AE%A9%E4%BD%A0%E8%AE%B0%E4%BD%8F%E6%88%91%E7%9A%84%E8%84%B8/</url>
     <content><![CDATA[<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p>上海电视台最近报道：“本市徐汇区漕河泾街道的薛家宅小区，正在推行门禁系统的人脸识别。小区居民必须在指定时间，到社区办公区录入自己的脸。”</p>
