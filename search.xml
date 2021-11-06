@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>ARM-linux 嵌入式板子移植 lrzsz</title>
-    <url>/blog/2021/03/21/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/</url>
+    <url>/blog/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/</url>
     <content><![CDATA[<p>因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。</p>
 <span id="more"></span>
 
@@ -60,7 +60,7 @@
   </entry>
   <entry>
     <title>C语言学习笔记-break和continue</title>
-    <url>/blog/2020/10/31/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-break%E5%92%8Ccontinue/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-break%E5%92%8Ccontinue/</url>
     <content><![CDATA[<p>在循环体中，C 提供了下列的循环控制语句。</p>
 <ul>
 <li>break</li>
@@ -93,7 +93,7 @@
   </entry>
   <entry>
     <title>i&amp;ltj&amp;ltk的C语言表达</title>
-    <url>/blog/2020/11/03/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/</url>
     <content><![CDATA[<p>表达式<code>i &lt; j &lt; k</code>在C语言中是合法的，但是它不是你所期望的意思。因为<code>＜</code>运算符是左结合的， 所以这个表达式等价于<code>(i &lt; j) &lt; k</code>.</p>
 <p>换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是<code>i &lt; j &amp;&amp; j &lt; k</code>.</p>
 <span id="more"></span>
@@ -112,7 +112,7 @@
   </entry>
   <entry>
     <title>C语言学习笔记-与运算符和或运算符的语句执行顺序</title>
-    <url>/blog/2021/11/05/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="与运算符和或运算符的语句执行顺序"><a href="#与运算符和或运算符的语句执行顺序" class="headerlink" title="与运算符和或运算符的语句执行顺序"></a>与运算符和或运算符的语句执行顺序</h2><p>有一个老生常谈的问题，那就是与运算符和或运算符的语句执行顺序。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">express1 || express2</span><br></pre></td></tr></table></figure>
 
@@ -136,7 +136,7 @@
   </entry>
   <entry>
     <title>C语言学习笔记-宏定义的使用注意事项</title>
-    <url>/blog/2021/08/30/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h2 id="在使用宏定义的时候有一些注意事项"><a href="#在使用宏定义的时候有一些注意事项" class="headerlink" title="在使用宏定义的时候有一些注意事项"></a>在使用宏定义的时候有一些注意事项</h2><p>必须注意，要适当的使用圆括号以保证计算次序的正确性。</p>
 <p>比如：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> square(x) x * x</span></span><br></pre></td></tr></table></figure>
@@ -167,7 +167,7 @@
   </entry>
   <entry>
     <title>C语言学习笔记-数组</title>
-    <url>/blog/2020/10/31/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E7%BB%84/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%95%B0%E7%BB%84/</url>
     <content><![CDATA[<p>数组：</p>
 <ol>
 <li><p>所有元素得存储空间是连续的</p>
@@ -192,7 +192,7 @@
   </entry>
   <entry>
     <title>C语言学习笔记-有符号数和无符号数相加的问题</title>
-    <url>/blog/2021/09/01/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9B%B8%E5%8A%A0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9B%B8%E5%8A%A0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="Q-下面的代码输出是什么，为什么？"><a href="#Q-下面的代码输出是什么，为什么？" class="headerlink" title="Q: 下面的代码输出是什么，为什么？"></a>Q: 下面的代码输出是什么，为什么？</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> a = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">-10</span>;</span><br><span class="line">    ((a + b) &gt; <span class="number">0</span>) ? <span class="built_in">printf</span>(<span class="string">&quot;a + b &gt; 0\r\n&quot;</span>) : <span class="built_in">printf</span>(<span class="string">&quot;a + b &lt; 0\r\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a + b = %d\r\n&quot;</span>, a + b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="A"><a href="#A" class="headerlink" title="A:"></a>A:</h3><p>废话，输出是：</p>
@@ -224,7 +224,7 @@
   </entry>
   <entry>
     <title>C语言学习笔记-浮点数的使用注意事项</title>
-    <url>/blog/2021/08/20/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h2 id="浮点数都是有符号的，没有-unsigned-浮点数"><a href="#浮点数都是有符号的，没有-unsigned-浮点数" class="headerlink" title="浮点数都是有符号的，没有 unsigned 浮点数"></a>浮点数都是有符号的，没有 <code>unsigned</code> 浮点数</h2><h3 id="Q"><a href="#Q" class="headerlink" title="Q:"></a>Q:</h3><p>为什么没有无符号的浮点型，比如 <code>unsigned float</code> 或 <code>unsigned double</code>？</p>
 <h3 id="A"><a href="#A" class="headerlink" title="A:"></a>A:</h3><p>为什么 <code>C/C++</code> 不支持无符号浮点数是因为CPU没有等效的机器代码操作来执行。因此支持它是非常低效的。</p>
 <span id="more"></span>
@@ -245,7 +245,7 @@
   </entry>
   <entry>
     <title>C语言学习笔记-结构体占用内存大小的计算</title>
-    <url>/blog/2021/09/11/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BB%93%E6%9E%84%E4%BD%93%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E8%AE%A1%E7%AE%97/</url>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E7%BB%93%E6%9E%84%E4%BD%93%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E8%AE%A1%E7%AE%97/</url>
     <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>结构体在C语言中虽然经常使用，但是怎么计算一个结构体占用多大的内存，很多C语言的新手都没注意过，其实C语言的语法简单，难就难在它更偏向于与底层，与内存打交道。对于嵌入式方面来说，对C语言的要求更高，因为有些硬件的内存并不像我们使用的电脑的内存那么充裕，所以需要节约内存。</p>
 <p>结构体中同样的变量个数，却可能导致占用内存的大小不同。</p>
 <span id="more"></span>
@@ -342,7 +342,7 @@
   </entry>
   <entry>
     <title>Llinux 执行命令为什么要加 ./（点斜杠） ？</title>
-    <url>/blog/2021/09/17/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/</url>
+    <url>/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/</url>
     <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p>如下图所示，当前文件夹下有一个名为 <code>Hello.sh</code> 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 <code>./</code> 才可以正确的运行这个脚本。那么这个是为什么呢？</p>
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
 <span id="more"></span>
@@ -350,19 +350,23 @@
 <h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>虽然我们的终端是在当前目录，而且当前目录中有我们要执行的文件，但是终端就是找不到它。需要我们指定文件的相对或绝对路径来告诉终端我们想运行的文件在哪里。</p>
 <p>在 Linux 中，点字符（<code>.</code>）表示工作目录，斜杠（<code>/</code>） 是 Linux 中的路径分隔符，我们用它来分离工作目录（<code>.</code>）与文件名。</p>
 <p>为什么我们需要 <code>./</code> ？因为我们的工作目录不包含在环境变量（ <code>$PATH</code> ）中。</p>
+<ul>
+<li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
+<li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
+</ul>
+<p>所以这就解释了为什么如果在 <code>Hello.sh</code> 前不加 <code>./</code> 就不能正常运行，原因就是在环境变量中没有名为 <code>Hello.sh</code> 的命令！</p>
 <h2 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h2><p><code>$PATH</code>：决定了shell将到哪些目录中寻找命令或程序，<code>$PATH</code>的值是一系列目录，当你运行一个程序时，Linux 在这些目录下进行搜索。</p>
 <p>输入命令 <code>echo $PATH</code> 就可以查看当前的环境变量是多少。</p>
-<p>在我的电脑上输出是（不同电脑输出不一样）：</p>
+<p>在我的电脑上输出是（不同电脑输出可能不一样）：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png" alt="echo path"></p>
-<p>我们在 Linux 上使用的命令都可以在这里面找到。如果 <code>ls</code> 命令。如果我们想看命令具体的位置，可以使用 <code>which</code> 命令（感觉有点像套娃标😥）</p>
+<p>我们在 Linux 上使用的命令都可以在这里面找到，例如<code>ls</code> 命令。但是如果我们想看命令具体的位置，可以使用 <code>which</code> 命令。</p>
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png" alt="which ls"></p>
 <h2 id="终端中命令搜索规则"><a href="#终端中命令搜索规则" class="headerlink" title="终端中命令搜索规则"></a>终端中命令搜索规则</h2><ul>
 <li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
 <li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
 </ul>
-<p>所以这就解释了为什么如果在 <code>Hello.sh</code> 前不加 <code>./</code> 就不能正常运行，原因就是在环境变量中没有名为 <code>Hello.sh</code> 的命令！</p>
 <h2 id="把自己的命令添加进环境变量"><a href="#把自己的命令添加进环境变量" class="headerlink" title="把自己的命令添加进环境变量"></a>把自己的命令添加进环境变量</h2><p>如果自己写了几个命令，并且以后在运行的时候不想添加路径，那么可以把自己的命令所在路径添加进环境变量。</p>
 <p>比如我写了两个命令，分别是 <code>my_ls.sh</code> 和 <code>Hello.sh</code>，然后把他们放在了 <code>~/Desktop/myPATH</code> 中。</p>
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png" alt="myPATH"></p>
@@ -374,7 +378,7 @@
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png" alt="提升权限"></p>
 <p>这样就可以，在不输入 <code>./</code> 的情况下直接运行 <code>Hello.sh</code>。</p>
 <h2 id="扩展：Linux中的-、-、-分别代表什么"><a href="#扩展：Linux中的-、-、-分别代表什么" class="headerlink" title="扩展：Linux中的~、/、./分别代表什么"></a>扩展：Linux中的<code>~</code>、<code>/</code>、<code>./</code>分别代表什么</h2><p><code>~</code>表示主目录，也就是当前登录用户的用户目录。</p>
-<p>比如：我登录用户是chen,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
+<p>比如：我登录用户是<code>chen</code>,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
 <p><code>/</code>是指根目录：就是所有目录最顶层的目录。</p>
 <p><code>./</code>表示当前目录，<code>./</code> 一般需要和其他文件夹或者文件结合使用，指代当前目录下的东西。</p>
 <p><code>..</code>表示上级目录，<code>../</code> 指代上级目录下的东西。</p>
@@ -385,7 +389,7 @@
   </entry>
   <entry>
     <title>Weekly2</title>
-    <url>/blog/2020/09/06/Weekly2/</url>
+    <url>/blog/Weekly2/</url>
     <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>有机会一定要试一试，其实试错的成本并不高，而错过的成本却非常高。</p>
 <p align="right"> --- 雷军</p>
 
@@ -407,7 +411,7 @@
   </entry>
   <entry>
     <title>Weekly3</title>
-    <url>/blog/2020/09/20/Weekly3/</url>
+    <url>/blog/Weekly3/</url>
     <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>do one thing，and do it well.</p>
 <p align="right"> --- 《Unix编程艺术》</p>
 
@@ -427,7 +431,7 @@
   </entry>
   <entry>
     <title>Weekly5</title>
-    <url>/blog/2020/10/10/Weekly5/</url>
+    <url>/blog/Weekly5/</url>
     <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>看到抽象的东西，应该尽量使它变得具体；看到具体的东西，应该尽量使它变得抽象。</p>
 <p align="right"> --- 李敖</p>
 
@@ -449,7 +453,7 @@
   </entry>
   <entry>
     <title>Weekly4</title>
-    <url>/blog/2020/10/10/weekly4/</url>
+    <url>/blog/weekly4/</url>
     <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>逝者已经逝去，活着的还要前行。</p>
 <p align="right"> --- 任正非 《我的父亲母亲》</p>
 
@@ -471,7 +475,7 @@
   </entry>
   <entry>
     <title>我不想让你记住我的脸</title>
-    <url>/blog/2020/07/26/%E6%88%91%E4%B8%8D%E6%83%B3%E8%AE%A9%E4%BD%A0%E8%AE%B0%E4%BD%8F%E6%88%91%E7%9A%84%E8%84%B8/</url>
+    <url>/blog/%E6%88%91%E4%B8%8D%E6%83%B3%E8%AE%A9%E4%BD%A0%E8%AE%B0%E4%BD%8F%E6%88%91%E7%9A%84%E8%84%B8/</url>
     <content><![CDATA[<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p>上海电视台最近报道：“本市徐汇区漕河泾街道的薛家宅小区，正在推行门禁系统的人脸识别。小区居民必须在指定时间，到社区办公区录入自己的脸。”</p>
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E9%97%A8%E7%A6%81.jpg" alt="门禁"></p>
 <p>人脸识别系统将来就安装在每栋楼的门口，居民进出的时候，就识别一下。</p>
@@ -493,7 +497,7 @@
   </entry>
   <entry>
     <title>栈为什么要由高地址向低地址扩展？</title>
-    <url>/blog/2021/08/21/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/</url>
+    <url>/blog/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/</url>
     <content><![CDATA[<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>计算机内存分了代码段（<code>.text</code>段）、初始化的数据段（<code>.data</code>段）、未初始化的数据段（<code>.bss</code>段）、堆空间（<code>heap</code>）、栈空间（<code>stack</code>）和命令行参数和环境变量区域。</p>
 <p>程序计数器(<code>Program Counter</code>，简称<code> PC</code>)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。</p>
 <p>因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展；</p>
@@ -522,7 +526,7 @@
   </entry>
   <entry>
     <title>横河电机面试经历</title>
-    <url>/blog/2021/08/30/%E6%A8%AA%E6%B2%B3%E7%94%B5%E6%9C%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/</url>
+    <url>/blog/%E6%A8%AA%E6%B2%B3%E7%94%B5%E6%9C%BA%E9%9D%A2%E8%AF%95%E7%BB%8F%E5%8E%86/</url>
     <content><![CDATA[<p>上周进行了横河电机的面试，面试总共分两轮，第一轮是部门经理面，第二轮是总监面。总体面试过程很愉快，我在不侵犯隐私的情况下记录一下。</p>
 <p>两次面试下来，都可以感觉到管理人员对于公司流程的思考和对于质量管理的严格要求。</p>
 <p>尤其是对于公司流程方面的问题，详细到我以为他是对手公司派过来的商业间谍。</p>
@@ -555,7 +559,7 @@
   </entry>
   <entry>
     <title>记一次 C# StackOverflowException 异常</title>
-    <url>/blog/2021/07/18/%E8%AE%B0%E4%B8%80%E6%AC%A1-C-StackOverflowException-%E5%BC%82%E5%B8%B8/</url>
+    <url>/blog/%E8%AE%B0%E4%B8%80%E6%AC%A1-C-StackOverflowException-%E5%BC%82%E5%B8%B8/</url>
     <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在看<a href="https://www.bilibili.com/video/BV13b411b7Ht?p=17">刘铁猛老师的《C# 语言入门详解》的第17讲</a>的时候，在 45:00 处，学习属性的 <code>Get/Set</code> 函数，和老师一样的代码，但是老师的没有出错，我的程序在运行的时候却报出了</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">System.StackOverflowException:“Exception_WasThrown”</span><br></pre></td></tr></table></figure>
 
