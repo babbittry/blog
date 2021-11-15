@@ -21,13 +21,18 @@ comments: true
 
 为什么我们需要 `./` ？因为我们的工作目录不包含在环境变量（ `$PATH` ）中。
 
+- 如果在路径名中存在 `./` 字符，那么就不搜索 `$PATH`。
+- 如果 `./` 不在路径名中，那么只在 `$PATH` 中搜索。
+
+所以这就解释了为什么如果在 `Hello.sh` 前不加 `./` 就不能正常运行，原因就是在环境变量中没有名为 `Hello.sh` 的命令！
+
 ## 什么是环境变量
 
 `$PATH`：决定了shell将到哪些目录中寻找命令或程序，`$PATH`的值是一系列目录，当你运行一个程序时，Linux 在这些目录下进行搜索。
 
 输入命令 `echo $PATH` 就可以查看当前的环境变量是多少。
 
-在我的电脑上输出是（不同电脑输出不一样）：
+在我的电脑上输出是（不同电脑输出可能不一样）：
 
 ```
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -35,7 +40,7 @@ comments: true
 
 ![echo path](https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png)
 
-我们在 Linux 上使用的命令都可以在这里面找到。如果 `ls` 命令。如果我们想看命令具体的位置，可以使用 `which` 命令（感觉有点像套娃标😥）
+我们在 Linux 上使用的命令都可以在这里面找到，例如`ls` 命令。但是如果我们想看命令具体的位置，可以使用 `which` 命令。
 
 ![which ls](https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png)
 
@@ -43,8 +48,6 @@ comments: true
 
 - 如果在路径名中存在 `./` 字符，那么就不搜索 `$PATH`。
 - 如果 `./` 不在路径名中，那么只在 `$PATH` 中搜索。
-
-所以这就解释了为什么如果在 `Hello.sh` 前不加 `./` 就不能正常运行，原因就是在环境变量中没有名为 `Hello.sh` 的命令！
 
 ## 把自己的命令添加进环境变量
 
@@ -72,7 +75,7 @@ comments: true
 
 `~`表示主目录，也就是当前登录用户的用户目录。
 
-比如：我登录用户是chen,`~` 代表的就是`/home/chen`。
+比如：我登录用户是`chen`,`~` 代表的就是`/home/chen`。
 
 `/`是指根目录：就是所有目录最顶层的目录。
 
