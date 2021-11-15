@@ -32,7 +32,7 @@ int main(void)
 		char b[10];
 	}test1;
     test1 e1;
-	printf("结构体 test1 占用空间大小为：%I64d\r\n", sizeof(test1));
+    printf("结构体 test1 占用空间大小为：%I64d\r\n", sizeof(test1));
     printf("e1 的 c 的起始地址为：%p\r\n", &e1.c);
     printf("e1 的 d 的起始地址为：%p\r\n", &e1.d);
     printf("e1 的 b 的起始地址为：%p\r\n", &e1.b);
@@ -44,15 +44,13 @@ int main(void)
 		char b[10];
 	}test2;
     test2 e2;
-	printf("结构体 test2 占用空间大小为：%I64d\r\n", sizeof(test2));
+    printf("结构体 test2 占用空间大小为：%I64d\r\n", sizeof(test2));
     printf("e2 的 c 的起始地址为：%p\r\n", &e2.c);
     printf("e2 的 d 的起始地址为：%p\r\n", &e2.d);
     printf("e2 的 b 的起始地址为：%p\r\n", &e2.b);
     system("pause");
     return 0;
 }
-
-
 ```
 
 输出的结果为：
@@ -102,8 +100,6 @@ e2 的 c 的起始地址为：000000000061FDE8
 e2 的 d 的起始地址为：000000000061FDE0
 e2 的 b 的起始地址为：000000000061FDEC
 ```
-
-
 
 ## 补充：C语言数据类型占内存大小
 
