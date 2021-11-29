@@ -1,5 +1,5 @@
 ---
-title: Llinux 执行命令为什么要加 ./（点斜杠） ？
+title: Linux 执行命令为什么要加 ./（点斜杠） ？
 date: 2021-09-17 21:25:18
 tags: Linux
 comments: true
