@@ -392,7 +392,9 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">System.Diagnostics.Process.Start(&quot;www.bing.com&quot;);</span><br></pre></td></tr></table></figure>
 
 <p>但是在程序中这样写的时候，会发生如下错误：</p>
-<p>![WPF open URL error](<a href="https://gitee.com/babbittry321/blogImages/raw/master/img/WPF">https://gitee.com/babbittry321/blogImages/raw/master/img/WPF</a> open URL error.png)</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/WPF_open_URL_error.png" alt="WPF open URL error"></p>
+<span id="more"></span>
+
 <p>（我当前的运行环境是 VS2022 + .Net6.0）</p>
 <p>我在中文的搜索引擎上找了半天都没找到解决方法，最后在 <a href="https://stackoverflow.com/">Stack Overflow</a>上找到了解决方案（源网址见下面的<a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a>）。所以在这里记录下来，希望能帮到更多的人。</p>
 <p>出现这样的原因是在 .Net Core 中，为了保证跨平台性，需要委托 <code>Windows Shell</code> 来实现的一些事情需要使用 <code>Process.StartUseShellExecute=true</code> 来显式的声明。</p>
