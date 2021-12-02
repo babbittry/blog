@@ -430,6 +430,7 @@
 ]]></content>
       <tags>
         <tag>周刊</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -450,6 +451,7 @@
 ]]></content>
       <tags>
         <tag>周刊</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -472,6 +474,7 @@
 ]]></content>
       <tags>
         <tag>周刊</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -494,6 +497,20 @@
 ]]></content>
       <tags>
         <tag>周刊</tag>
+        <tag>感悟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>写测试用例的痛苦</title>
+    <url>/blog/%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E7%97%9B%E8%8B%A6/</url>
+    <content><![CDATA[<p>近在写代码的测试用例，写的非常痛苦，完全无从下笔，在对整个工程没有全面的认知之前，不清除这个函数究竟从何而起、为何而生、最终又被谁调用、如何调用。</p>
+<p>让我想起一句话：“写作时感到的痛苦，是理清思想的痛苦。– David Perell”</p>
+<p>引申出来就是“写测试 sheet 时感到的痛苦，是理清代码的痛苦。”</p>
+<p>只有在理清楚代码整体架构和数据流、控制流的走向之后，才可以写出凝练、全面的测试用例。所以当务之急就是尽快熟悉项目，熟悉整体架构。</p>
+]]></content>
+      <tags>
+        <tag>周刊</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -540,6 +557,10 @@
 <p>纪录片《徒手攀岩》中，Alex 徒手没有任何保护，爬上了酋长岩。即使是在专业的攀岩运动员看来，这也是一个不可能完成的任务。说白了，就等于送死。</p>
 <p>他说了一句话，非常地奇怪，他说：“风险和后果是两回事。徒手攀岩的风险很低，只是后果很严重。”</p>
 ]]></content>
+      <tags>
+        <tag>周刊</tag>
+        <tag>感悟</tag>
+      </tags>
   </entry>
   <entry>
     <title>栈为什么要由高地址向低地址扩展？</title>
@@ -600,6 +621,7 @@
 <p>感觉在这样的团队工作会很开心，也会在一定程度上改正我粗心的坏毛病。</p>
 ]]></content>
       <tags>
+        <tag>感悟</tag>
         <tag>面试经历</tag>
       </tags>
   </entry>
