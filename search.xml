@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>i&amp;ltj&amp;ltk的C语言表达</title>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/</url>
+    <content><![CDATA[<p>表达式<code>i &lt; j &lt; k</code>在C语言中是合法的，但是它不是你所期望的意思。因为<code>＜</code>运算符是左结合的， 所以这个表达式等价于<code>(i &lt; j) &lt; k</code>.</p>
+<p>换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是<code>i &lt; j &amp;&amp; j &lt; k</code>.</p>
+<span id="more"></span>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &lt; k)&#123;      <span class="comment">// 这里输出第一行，但是这是错的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &amp;&amp; j &lt; k)&#123;      <span class="comment">// 这里输出第二行，这样处理是对的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>Python</code>中没有这样的问题，如下面程序：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line">i = <span class="number">2</span>;</span><br><span class="line">j = <span class="number">1</span>;</span><br><span class="line">k = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> i &lt; j &lt; k:      <span class="comment"># 这里输出第二行，可见Python进行了特殊处理</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> i &lt; j <span class="keyword">and</span> j &lt; k:      <span class="comment"># 这里输出第二行，这样处理是对的</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>输出的结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">j不在i和k中间</span><br><span class="line">j不在i和k中间</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言学习笔记-break和continue</title>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-break%E5%92%8Ccontinue/</url>
+    <content><![CDATA[<p>在循环体中，C 提供了下列的循环控制语句。</p>
+<ul>
+<li>break</li>
+<li>continue</li>
+<li>goto</li>
+</ul>
+<p>但是 <code>goto</code> 尽量不要使用。它会导致代码结构混乱。</p>
+<span id="more"></span>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (x &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x为：%d\r\n&quot;</span>, x);</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        x--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (y &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;y为：%d\r\n&quot;</span>, y);</span><br><span class="line">        y--;</span><br><span class="line">        <span class="keyword">if</span> (y &lt;= <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;y为：%d\r\n&quot;</span>, y + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面代码执行的结果为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x为：5</span><br><span class="line">x为：4</span><br><span class="line">x为：3</span><br><span class="line">y为：5</span><br><span class="line">y为：5</span><br><span class="line">y为：4</span><br><span class="line">y为：4</span><br><span class="line">y为：3</span><br><span class="line">y为：2</span><br><span class="line">y为：1</span><br></pre></td></tr></table></figure>
+
+<p>从结果可以看出来：</p>
+<p>当<code>break</code>语句出现在一个循环内时，循环会立即终止，且程序流将继续执行紧接着循环的下一条语句。</p>
+<p>而<code>continue</code>会跳过当前循环中的代码，强迫开始下一次循环。</p>
+<p>在多层循环中，<code>break</code>只能终止距离它最近的循环。 </p>
+<p>在多层<code>seitch</code>嵌套中，<code>break</code>只能终止距离它最近的<code>switch</code>。 </p>
+<p>函数中的<code>return</code>与<code>break</code>比较像，<code>return</code>的含义是：</p>
+<ol>
+<li>终止被调函数，并像主调函数返回表达式的值</li>
+<li><code>break</code>是用来终止循环和<code>switch</code>的，<code>return</code>是用来终止函数的。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>C语言学习笔记-宏定义的使用注意事项</title>
+    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h2 id="在使用宏定义的时候有一些注意事项"><a href="#在使用宏定义的时候有一些注意事项" class="headerlink" title="在使用宏定义的时候有一些注意事项"></a>在使用宏定义的时候有一些注意事项</h2><p>必须注意，要适当的使用圆括号以保证计算次序的正确性。</p>
+<p>比如：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> square(x) x * x</span></span><br></pre></td></tr></table></figure>
+
+<p>当使用 <code>square(x + 1)</code> 调用该宏定义的时候会出现什么情况呢？</p>
+<span id="more"></span>
+
+<p>请见下面例子：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> square(x) (x * x)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i, i, square(i));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, square(i + <span class="number">1</span>));</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行这段函数得到的输出为：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2 * 2 = 4</span><br><span class="line">3 * 3 = 5</span><br></pre></td></tr></table></figure>
+
+<p>究其原因，就是在执行 </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, square(i + <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>的时候，系统在预编译之后，把这行代码替换成了：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, i + <span class="number">1</span> * i + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>所以才导致的错误。</p>
+<p>所以用宏定义时，含参数时，参数本身要加<code>()</code>，此外，对参数的操作整体也要加<code>()</code>。</p>
+<p>同时在使用宏的时候，要充分考虑前后的语境，必要的时候亲自做一下代换试试，防止出现不必要的错误。</p>
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ARM-linux 嵌入式板子移植 lrzsz</title>
     <url>/blog/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/</url>
     <content><![CDATA[<p>因为无法在公司内部搭建局域网，或者开发板没有网口，并且需要在windows和ARM板之间传输文件，这时就可以选择使用lrzsz，它可以将windows的文件通过串口传输到ARM板上。将lrzsz 安装到 ARM-linux 嵌入式板子上需要移植，但网上查到的资料很乱，有的讲述不清楚、甚至还有错误，所以自己写一个详细的记录，便于自己以后查看，也希望能帮助其他人。</p>
@@ -59,58 +142,6 @@
       </tags>
   </entry>
   <entry>
-    <title>C语言学习笔记-break和continue</title>
-    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-break%E5%92%8Ccontinue/</url>
-    <content><![CDATA[<p>在循环体中，C 提供了下列的循环控制语句。</p>
-<ul>
-<li>break</li>
-<li>continue</li>
-<li>goto</li>
-</ul>
-<p>但是 <code>goto</code> 尽量不要使用。它会导致代码结构混乱。</p>
-<span id="more"></span>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">int</span> y = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (x &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;x为：%d\r\n&quot;</span>, x);</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= <span class="number">3</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        x--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (y &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;y为：%d\r\n&quot;</span>, y);</span><br><span class="line">        y--;</span><br><span class="line">        <span class="keyword">if</span> (y &lt;= <span class="number">2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;y为：%d\r\n&quot;</span>, y + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上面代码执行的结果为：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">x为：5</span><br><span class="line">x为：4</span><br><span class="line">x为：3</span><br><span class="line">y为：5</span><br><span class="line">y为：5</span><br><span class="line">y为：4</span><br><span class="line">y为：4</span><br><span class="line">y为：3</span><br><span class="line">y为：2</span><br><span class="line">y为：1</span><br></pre></td></tr></table></figure>
-
-<p>从结果可以看出来：</p>
-<p>当<code>break</code>语句出现在一个循环内时，循环会立即终止，且程序流将继续执行紧接着循环的下一条语句。</p>
-<p>而<code>continue</code>会跳过当前循环中的代码，强迫开始下一次循环。</p>
-<p>在多层循环中，<code>break</code>只能终止距离它最近的循环。 </p>
-<p>在多层<code>seitch</code>嵌套中，<code>break</code>只能终止距离它最近的<code>switch</code>。 </p>
-<p>函数中的<code>return</code>与<code>break</code>比较像，<code>return</code>的含义是：</p>
-<ol>
-<li>终止被调函数，并像主调函数返回表达式的值</li>
-<li><code>break</code>是用来终止循环和<code>switch</code>的，<code>return</code>是用来终止函数的。</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>C语言</tag>
-        <tag>语言学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>i&amp;ltj&amp;ltk的C语言表达</title>
-    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-i-j-k%E7%9A%84C%E8%AF%AD%E8%A8%80%E8%A1%A8%E8%BE%BE/</url>
-    <content><![CDATA[<p>表达式<code>i &lt; j &lt; k</code>在C语言中是合法的，但是它不是你所期望的意思。因为<code>＜</code>运算符是左结合的， 所以这个表达式等价于<code>(i &lt; j) &lt; k</code>.</p>
-<p>换句话说， 表达式首先检测l.是否小于j, 然后用比较后产生的结果1或0来和K进行比较。 表达式不测试j是否位于i和K之间,正确的表达式应该是<code>i &lt; j &amp;&amp; j &lt; k</code>.</p>
-<span id="more"></span>
-
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &lt; k)&#123;      <span class="comment">// 这里输出第一行，但是这是错的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; j &amp;&amp; j &lt; k)&#123;      <span class="comment">// 这里输出第二行，这样处理是对的</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在<code>Python</code>中没有这样的问题，如下面程序：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"></span><br><span class="line">i = <span class="number">2</span>;</span><br><span class="line">j = <span class="number">1</span>;</span><br><span class="line">k = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> i &lt; j &lt; k:      <span class="comment"># 这里输出第二行，可见Python进行了特殊处理</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> i &lt; j <span class="keyword">and</span> j &lt; k:      <span class="comment"># 这里输出第二行，这样处理是对的</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;i小于j，j小于k，j在i和k中间\r\n&quot;</span>);</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;j不在i和k中间\r\n&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>输出的结果为：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">j不在i和k中间</span><br><span class="line">j不在i和k中间</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>C语言</tag>
-        <tag>语言学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>C语言学习笔记-与运算符和或运算符的语句执行顺序</title>
     <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
     <content><![CDATA[<h2 id="与运算符和或运算符的语句执行顺序"><a href="#与运算符和或运算符的语句执行顺序" class="headerlink" title="与运算符和或运算符的语句执行顺序"></a>与运算符和或运算符的语句执行顺序</h2><p>有一个老生常谈的问题，那就是与运算符和或运算符的语句执行顺序。</p>
@@ -132,37 +163,6 @@
         <tag>C语言</tag>
         <tag>语言学习</tag>
         <tag>BUG</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C语言学习笔记-宏定义的使用注意事项</title>
-    <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%AE%8F%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%BF%E7%94%A8%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<h2 id="在使用宏定义的时候有一些注意事项"><a href="#在使用宏定义的时候有一些注意事项" class="headerlink" title="在使用宏定义的时候有一些注意事项"></a>在使用宏定义的时候有一些注意事项</h2><p>必须注意，要适当的使用圆括号以保证计算次序的正确性。</p>
-<p>比如：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">define</span> square(x) x * x</span></span><br></pre></td></tr></table></figure>
-
-<p>当使用 <code>square(x + 1)</code> 调用该宏定义的时候会出现什么情况呢？</p>
-<span id="more"></span>
-
-<p>请见下面例子：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> square(x) (x * x)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i, i, square(i));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, square(i + <span class="number">1</span>));</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>运行这段函数得到的输出为：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2 * 2 = 4</span><br><span class="line">3 * 3 = 5</span><br></pre></td></tr></table></figure>
-
-<p>究其原因，就是在执行 </p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, square(i + <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
-
-<p>的时候，系统在预编译之后，把这行代码替换成了：</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d * %d = %d\r\n&quot;</span>, i + <span class="number">1</span>, i + <span class="number">1</span>, i + <span class="number">1</span> * i + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-<p>所以才导致的错误。</p>
-<p>所以用宏定义时，含参数时，参数本身要加<code>()</code>，此外，对参数的操作整体也要加<code>()</code>。</p>
-<p>同时在使用宏的时候，要充分考虑前后的语境，必要的时候亲自做一下代换试试，防止出现不必要的错误。</p>
-]]></content>
-      <tags>
-        <tag>C语言</tag>
-        <tag>语言学习</tag>
       </tags>
   </entry>
   <entry>
@@ -241,6 +241,53 @@
       <tags>
         <tag>C语言</tag>
         <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 执行命令为什么要加 ./（点斜杠） ？</title>
+    <url>/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/</url>
+    <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p>如下图所示，当前文件夹下有一个名为 <code>Hello.sh</code> 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 <code>./</code> 才可以正确的运行这个脚本。那么这个是为什么呢？</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
+<span id="more"></span>
+
+<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>虽然我们的终端是在当前目录，而且当前目录中有我们要执行的文件，但是终端就是找不到它。需要我们指定文件的相对或绝对路径来告诉终端我们想运行的文件在哪里。</p>
+<p>在 Linux 中，点字符（<code>.</code>）表示工作目录，斜杠（<code>/</code>） 是 Linux 中的路径分隔符，我们用它来分离工作目录（<code>.</code>）与文件名。</p>
+<p>为什么我们需要 <code>./</code> ？因为我们的工作目录不包含在环境变量（ <code>$PATH</code> ）中。</p>
+<ul>
+<li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
+<li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
+</ul>
+<p>所以这就解释了为什么如果在 <code>Hello.sh</code> 前不加 <code>./</code> 就不能正常运行，原因就是在环境变量中没有名为 <code>Hello.sh</code> 的命令！</p>
+<h2 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h2><p><code>$PATH</code>：决定了shell将到哪些目录中寻找命令或程序，<code>$PATH</code>的值是一系列目录，当你运行一个程序时，Linux 在这些目录下进行搜索。</p>
+<p>输入命令 <code>echo $PATH</code> 就可以查看当前的环境变量是多少。</p>
+<p>在我的电脑上输出是（不同电脑输出可能不一样）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png" alt="echo path"></p>
+<p>我们在 Linux 上使用的命令都可以在这里面找到，例如<code>ls</code> 命令。但是如果我们想看命令具体的位置，可以使用 <code>which</code> 命令。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png" alt="which ls"></p>
+<h2 id="终端中命令搜索规则"><a href="#终端中命令搜索规则" class="headerlink" title="终端中命令搜索规则"></a>终端中命令搜索规则</h2><ul>
+<li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
+<li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
+</ul>
+<h2 id="把自己的命令添加进环境变量"><a href="#把自己的命令添加进环境变量" class="headerlink" title="把自己的命令添加进环境变量"></a>把自己的命令添加进环境变量</h2><p>如果自己写了几个命令，并且以后在运行的时候不想添加路径，那么可以把自己的命令所在路径添加进环境变量。</p>
+<p>比如我写了两个命令，分别是 <code>my_ls.sh</code> 和 <code>Hello.sh</code>，然后把他们放在了 <code>~/Desktop/myPATH</code> 中。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png" alt="myPATH"></p>
+<p>在终端中输入：<code>export PATH=$PATH:/home/zxy/Desktop/myPATH</code>（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/PATH.png" alt="添加环境变量"></p>
+<p>然后执行 <code>Hello.sh</code>，就可以看到输出结果。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png" alt="my option"></p>
+<p>这里提示 <code>my_ls.sh</code> 的权限不够，那么就提升一下权限。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png" alt="提升权限"></p>
+<p>这样就可以，在不输入 <code>./</code> 的情况下直接运行 <code>Hello.sh</code>。</p>
+<h2 id="扩展：Linux中的-、-、-分别代表什么"><a href="#扩展：Linux中的-、-、-分别代表什么" class="headerlink" title="扩展：Linux中的~、/、./分别代表什么"></a>扩展：Linux中的<code>~</code>、<code>/</code>、<code>./</code>分别代表什么</h2><p><code>~</code>表示主目录，也就是当前登录用户的用户目录。</p>
+<p>比如：我登录用户是<code>chen</code>,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
+<p><code>/</code>是指根目录：就是所有目录最顶层的目录。</p>
+<p><code>./</code>表示当前目录，<code>./</code> 一般需要和其他文件夹或者文件结合使用，指代当前目录下的东西。</p>
+<p><code>..</code>表示上级目录，<code>../</code> 指代上级目录下的东西。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -339,78 +386,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 执行命令为什么要加 ./（点斜杠） ？</title>
-    <url>/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/</url>
-    <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p>如下图所示，当前文件夹下有一个名为 <code>Hello.sh</code> 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 <code>./</code> 才可以正确的运行这个脚本。那么这个是为什么呢？</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
-<span id="more"></span>
-
-<h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>虽然我们的终端是在当前目录，而且当前目录中有我们要执行的文件，但是终端就是找不到它。需要我们指定文件的相对或绝对路径来告诉终端我们想运行的文件在哪里。</p>
-<p>在 Linux 中，点字符（<code>.</code>）表示工作目录，斜杠（<code>/</code>） 是 Linux 中的路径分隔符，我们用它来分离工作目录（<code>.</code>）与文件名。</p>
-<p>为什么我们需要 <code>./</code> ？因为我们的工作目录不包含在环境变量（ <code>$PATH</code> ）中。</p>
-<ul>
-<li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
-<li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
-</ul>
-<p>所以这就解释了为什么如果在 <code>Hello.sh</code> 前不加 <code>./</code> 就不能正常运行，原因就是在环境变量中没有名为 <code>Hello.sh</code> 的命令！</p>
-<h2 id="什么是环境变量"><a href="#什么是环境变量" class="headerlink" title="什么是环境变量"></a>什么是环境变量</h2><p><code>$PATH</code>：决定了shell将到哪些目录中寻找命令或程序，<code>$PATH</code>的值是一系列目录，当你运行一个程序时，Linux 在这些目录下进行搜索。</p>
-<p>输入命令 <code>echo $PATH</code> 就可以查看当前的环境变量是多少。</p>
-<p>在我的电脑上输出是（不同电脑输出可能不一样）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png" alt="echo path"></p>
-<p>我们在 Linux 上使用的命令都可以在这里面找到，例如<code>ls</code> 命令。但是如果我们想看命令具体的位置，可以使用 <code>which</code> 命令。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png" alt="which ls"></p>
-<h2 id="终端中命令搜索规则"><a href="#终端中命令搜索规则" class="headerlink" title="终端中命令搜索规则"></a>终端中命令搜索规则</h2><ul>
-<li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
-<li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
-</ul>
-<h2 id="把自己的命令添加进环境变量"><a href="#把自己的命令添加进环境变量" class="headerlink" title="把自己的命令添加进环境变量"></a>把自己的命令添加进环境变量</h2><p>如果自己写了几个命令，并且以后在运行的时候不想添加路径，那么可以把自己的命令所在路径添加进环境变量。</p>
-<p>比如我写了两个命令，分别是 <code>my_ls.sh</code> 和 <code>Hello.sh</code>，然后把他们放在了 <code>~/Desktop/myPATH</code> 中。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png" alt="myPATH"></p>
-<p>在终端中输入：<code>export PATH=$PATH:/home/zxy/Desktop/myPATH</code>（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/PATH.png" alt="添加环境变量"></p>
-<p>然后执行 <code>Hello.sh</code>，就可以看到输出结果。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png" alt="my option"></p>
-<p>这里提示 <code>my_ls.sh</code> 的权限不够，那么就提升一下权限。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png" alt="提升权限"></p>
-<p>这样就可以，在不输入 <code>./</code> 的情况下直接运行 <code>Hello.sh</code>。</p>
-<h2 id="扩展：Linux中的-、-、-分别代表什么"><a href="#扩展：Linux中的-、-、-分别代表什么" class="headerlink" title="扩展：Linux中的~、/、./分别代表什么"></a>扩展：Linux中的<code>~</code>、<code>/</code>、<code>./</code>分别代表什么</h2><p><code>~</code>表示主目录，也就是当前登录用户的用户目录。</p>
-<p>比如：我登录用户是<code>chen</code>,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
-<p><code>/</code>是指根目录：就是所有目录最顶层的目录。</p>
-<p><code>./</code>表示当前目录，<code>./</code> 一般需要和其他文件夹或者文件结合使用，指代当前目录下的东西。</p>
-<p><code>..</code>表示上级目录，<code>../</code> 指代上级目录下的东西。</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>WPF 学习笔记-使用默认浏览器打开网页出现用户未处理的异常</title>
-    <url>/blog/WPF%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5%E5%87%BA%E7%8E%B0%E7%94%A8%E6%88%B7%E6%9C%AA%E5%A4%84%E7%90%86%E7%9A%84%E5%BC%82%E5%B8%B8/</url>
-    <content><![CDATA[<p>在用 WPF 做扫雷小游戏的时候，需要使用默认浏览器打开网页，但是从网上搜索来的答案都是下面这样的。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">System.Diagnostics.Process.Start(&quot;www.bing.com&quot;);</span><br></pre></td></tr></table></figure>
-
-<p>但是在程序中这样写的时候，会发生如下错误：</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/WPF_open_URL_error.png" alt="WPF open URL error"></p>
-<span id="more"></span>
-
-<p>（我当前的运行环境是 VS2022 + .Net6.0）</p>
-<p>我在中文的搜索引擎上找了半天都没找到解决方法，最后在 <a href="https://stackoverflow.com/">Stack Overflow</a>上找到了解决方案（源网址见下面的<a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a>）。所以在这里记录下来，希望能帮到更多的人。</p>
-<p>出现这样的原因是在 .Net Core 中，为了保证跨平台性，需要委托 <code>Windows Shell</code> 来实现的一些事情需要使用 <code>Process.StartUseShellExecute=true</code> 来显式的声明。</p>
-<p>所以在 .Net Core 和 .Net 5、.Net 6 中应该使用如下方法：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var destinationurl = &quot;www.bing.com&quot;;</span><br><span class="line">var sInfo = new ProcessStartInfo(destinationurl)</span><br><span class="line">&#123;</span><br><span class="line">    UseShellExecute = true,</span><br><span class="line">&#125;;</span><br><span class="line">Process.Start(sInfo);</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/dotnet/wpf/issues/2566">System.Diagnostics.Process.Start · Issue #2566 · dotnet/wpf (github.com)</a></p>
-<p><a href="https://stackoverflow.com/questions/60181640/open-browser-with-url-wpf/60221582#60221582">c# - Open Browser with URL WPF - Stack Overflow</a></p>
-]]></content>
-      <tags>
-        <tag>语言学习</tag>
-        <tag>C#</tag>
-        <tag>WPF</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Weekly2</title>
     <url>/blog/Weekly2/</url>
     <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>有机会一定要试一试，其实试错的成本并不高，而错过的成本却非常高。</p>
@@ -455,6 +430,44 @@
       </tags>
   </entry>
   <entry>
+    <title>WPF 学习笔记-使用默认浏览器打开网页出现用户未处理的异常</title>
+    <url>/blog/WPF%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%BD%BF%E7%94%A8%E9%BB%98%E8%AE%A4%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80%E7%BD%91%E9%A1%B5%E5%87%BA%E7%8E%B0%E7%94%A8%E6%88%B7%E6%9C%AA%E5%A4%84%E7%90%86%E7%9A%84%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<p>在用 WPF 做扫雷小游戏的时候，需要使用默认浏览器打开网页，但是从网上搜索来的答案都是下面这样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">System.Diagnostics.Process.Start(&quot;www.bing.com&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>但是在程序中这样写的时候，会发生如下错误：</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/WPF_open_URL_error.png" alt="WPF open URL error"></p>
+<span id="more"></span>
+
+<p>（我当前的运行环境是 VS2022 + .Net6.0）</p>
+<p>我在中文的搜索引擎上找了半天都没找到解决方法，最后在 <a href="https://stackoverflow.com/">Stack Overflow</a>上找到了解决方案（源网址见下面的<a href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99">参考资料</a>）。所以在这里记录下来，希望能帮到更多的人。</p>
+<p>出现这样的原因是在 .Net Core 中，为了保证跨平台性，需要委托 <code>Windows Shell</code> 来实现的一些事情需要使用 <code>Process.StartUseShellExecute=true</code> 来显式的声明。</p>
+<p>所以在 .Net Core 和 .Net 5、.Net 6 中应该使用如下方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">var destinationurl = &quot;www.bing.com&quot;;</span><br><span class="line">var sInfo = new ProcessStartInfo(destinationurl)</span><br><span class="line">&#123;</span><br><span class="line">    UseShellExecute = true,</span><br><span class="line">&#125;;</span><br><span class="line">Process.Start(sInfo);</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/dotnet/wpf/issues/2566">System.Diagnostics.Process.Start · Issue #2566 · dotnet/wpf (github.com)</a></p>
+<p><a href="https://stackoverflow.com/questions/60181640/open-browser-with-url-wpf/60221582#60221582">c# - Open Browser with URL WPF - Stack Overflow</a></p>
+]]></content>
+      <tags>
+        <tag>语言学习</tag>
+        <tag>C#</tag>
+        <tag>WPF</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>写测试用例的痛苦</title>
+    <url>/blog/%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E7%97%9B%E8%8B%A6/</url>
+    <content><![CDATA[<p>近在写代码的测试用例，写的非常痛苦，完全无从下笔，在对整个工程没有全面的认知之前，不清除这个函数究竟从何而起、为何而生、最终又被谁调用、如何调用。</p>
+<p>让我想起一句话：“写作时感到的痛苦，是理清思想的痛苦。– David Perell”</p>
+<p>引申出来就是“写测试 sheet 时感到的痛苦，是理清代码的痛苦。”</p>
+<p>只有在理清楚代码整体架构和数据流、控制流的走向之后，才可以写出凝练、全面的测试用例。所以当务之急就是尽快熟悉项目，熟悉整体架构。</p>
+]]></content>
+      <tags>
+        <tag>周刊</tag>
+        <tag>感悟</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Weekly5</title>
     <url>/blog/Weekly5/</url>
     <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>看到抽象的东西，应该尽量使它变得具体；看到具体的东西，应该尽量使它变得抽象。</p>
@@ -471,42 +484,6 @@
 <p>但是，大多数人没有意识到，有时候情况会改变。二十年前不可能的事情今天也许并非不可能。比如，电动汽车以前是不可能的，现在随着电池技术的进步，才有可能。</p>
 <p>年轻人不知道为什么某事不能做，如果他们不怕阻力，就会去尝试那些不能做的事情。这就是为什么重大创新往往是年轻人做出来的原因。</p>
 <p>老年人通常看不到新的机会，因为他们相信有些事情是不可能的。年轻人在无知和热情推动下，愿意尝试那些不可能的事情。大多数年轻人会失败，但少数会成功。</p>
-]]></content>
-      <tags>
-        <tag>周刊</tag>
-        <tag>感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Weekly4</title>
-    <url>/blog/weekly4/</url>
-    <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>逝者已经逝去，活着的还要前行。</p>
-<p align="right"> --- 任正非 《我的父亲母亲》</p>
-
-<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>美国海军取消触摸屏</strong></p>
-<p>触控屏已经成为电子产品主流的交互模式，伴随触屏设备长大的年轻人被称为「触屏一代」。</p>
-<p>除了智能手机，触控屏还应用到了汽车、军舰等大型交通工具中，在科幻电影里，经常会将所有平面变成触控屏来呈现，似乎触控屏就是交互的未来。然而不是所有人都喜欢触控交互。</p>
-<span id="more"></span>
-
-<p>马自达和本田是我最喜欢的两个车企。日前，本田对外宣布，海外版全新飞度将回归物理按键，取消空调等功能的触屏操作。据悉，国内2020款飞度也已经取消了触控空调按键。按照本田项目负责人的说法，此举主要是为了尽可能避免车辆行驶期间车载功能干扰到驾驶员。</p>
-<p>该负责人表示：“根据用户反馈，空调或座椅加热功能如果使用触屏，必须要分神看着屏幕才能完成操作，不利于行车安全；而物理按键可以唤醒人脑的动作记忆，用户只需记住刻度盘的位置即可完成操作，双眼能够始终关注道路情况。因此，本田回归了物理按键，以便用户操作时减少分神。”</p>
-<p>事实上本田并不是第一家取消触控大屏的车企，早在去年7月初，马自达官方发布消息称：将在未来所有新车型上取消大尺寸中控屏幕，仅保留一小块的显示屏，而即将海外上市的马自达3将不再配备触摸屏。</p>
-<p>前几日，英国一项道路安全研究报告指出触控大屏比酒驾、毒驾更危险。当使用触摸屏操作 CarPlay 和 Android Auto 等互联系统时，驾驶员对路面情况的反应时间，会增加多达57%和 53%。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E7%BE%8E%E5%9B%BD%E6%B5%B7%E5%86%9B%E5%8F%96%E6%B6%88%E8%A7%A6%E6%91%B8%E5%B1%8F.jpg" alt="美国海军取消触摸屏"><br>这让我想到去年的新闻，2017年8月21日，美国麦凯恩号航空母舰在新加坡与一艘油轮相撞，造成油轮的10名船员死亡，麦凯恩号48人受伤。美国军方最近公布了调查报告，事故原因之一是航母操作人员对复杂的触摸屏界面不熟悉，有人将操作系统置于手动模式，但是其他人没有发现。</p>
-<p>事发后，海军进行了舰队范围内的调查，问卷调查中，大部分人表示，更喜欢机械控制，而不是触摸屏操作。因为机械装置“提供了即时的触觉反馈”。报告指出，如果存在机械控制，舵手可能会提前发现问题。军方因此决定，2020年开始在驱逐舰上，用机械装置取代触摸屏，控制油门和舵。</p>
-]]></content>
-      <tags>
-        <tag>周刊</tag>
-        <tag>感悟</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>写测试用例的痛苦</title>
-    <url>/blog/%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E7%97%9B%E8%8B%A6/</url>
-    <content><![CDATA[<p>近在写代码的测试用例，写的非常痛苦，完全无从下笔，在对整个工程没有全面的认知之前，不清除这个函数究竟从何而起、为何而生、最终又被谁调用、如何调用。</p>
-<p>让我想起一句话：“写作时感到的痛苦，是理清思想的痛苦。– David Perell”</p>
-<p>引申出来就是“写测试 sheet 时感到的痛苦，是理清代码的痛苦。”</p>
-<p>只有在理清楚代码整体架构和数据流、控制流的走向之后，才可以写出凝练、全面的测试用例。所以当务之急就是尽快熟悉项目，熟悉整体架构。</p>
 ]]></content>
       <tags>
         <tag>周刊</tag>
@@ -563,32 +540,26 @@
       </tags>
   </entry>
   <entry>
-    <title>栈为什么要由高地址向低地址扩展？</title>
-    <url>/blog/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/</url>
-    <content><![CDATA[<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>计算机内存分了代码段（<code>.text</code>段）、初始化的数据段（<code>.data</code>段）、未初始化的数据段（<code>.bss</code>段）、堆空间（<code>heap</code>）、栈空间（<code>stack</code>）和命令行参数和环境变量区域。</p>
-<p>程序计数器(<code>Program Counter</code>，简称<code> PC</code>)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。</p>
-<p>因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展；</p>
-<p>heap从低地址向高地址扩展，做内存管理相对要简单些，为了避免栈空间和代码段冲突，最大利用地址空间，很自然的，我们会选择把栈底设置在高地址区间，然后让栈向下增长。</p>
+    <title>Weekly4</title>
+    <url>/blog/weekly4/</url>
+    <content><![CDATA[<h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>逝者已经逝去，活着的还要前行。</p>
+<p align="right"> --- 任正非 《我的父亲母亲》</p>
+
+<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>美国海军取消触摸屏</strong></p>
+<p>触控屏已经成为电子产品主流的交互模式，伴随触屏设备长大的年轻人被称为「触屏一代」。</p>
+<p>除了智能手机，触控屏还应用到了汽车、军舰等大型交通工具中，在科幻电影里，经常会将所有平面变成触控屏来呈现，似乎触控屏就是交互的未来。然而不是所有人都喜欢触控交互。</p>
 <span id="more"></span>
 
-<p>这是来自apue里一张经典的ｃ程序内存分布图，着重看一下heap和stack的内存分布。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg" alt="typical memory arrangement"></p>
-<h2 id="栈由高地址向低地址扩展的优点"><a href="#栈由高地址向低地址扩展的优点" class="headerlink" title="栈由高地址向低地址扩展的优点"></a>栈由高地址向低地址扩展的优点</h2><p><code>stack</code>从高地址向低地址扩展，这样栈空间的起始位置就能确定下来。动态的调整栈空间大小也不需要移动栈内的数据，如果是从低地址到高地址的扩展，结尾的地址是固定的，如果要扩大或缩小，则需要移动整个栈的数据。</p>
-<p>并且<strong>这样设计可以使得堆和栈能够充分利用空闲的地址空间。</strong>如果栈向上涨的话，我们就必须得指定栈和堆的一个严格分界线，但这个分界线怎么确定呢？平均分？但是有的程序使用的堆空间比较多，而有的程序使用的栈空间比较多。</p>
-<p>所以就可能出现这种情况：一个程序因为栈溢出而崩溃的时候，其实它还有大量闲置的堆空间呢，但是我们却无法使用这些闲置的堆空间。所以呢，最好的办法就是让堆和栈一个向上涨，一个向下涨，这样它们就可以最大程度地共用这块剩余的地址空间，达到利用率的最大化！</p>
-<h2 id="现在-CPU-指令集的设计"><a href="#现在-CPU-指令集的设计" class="headerlink" title="现在 CPU 指令集的设计"></a>现在 CPU 指令集的设计</h2><p>大部分CPU指令集设计了函数调用架构，定义了专用的调用/返回指令，并在指令中隐含规定栈的方向。</p>
-<ul>
-<li>主流1：向低地址扩展：x86，MIPS</li>
-<li>主流2：自由选择：Arm（但个别指令仅支持向低）</li>
-<li>罕见：向高地址扩展：PA-RISC，操作系统Multics</li>
-<li>非主流：System z，栈是个链表[2]</li>
-</ul>
-<p>如果CPU同时支持向上和向下，例如arm，那么编译器需要指定程序的调用方向，一般还是选择向下。比较罕见的极端的案例是Multics操作系统，这是Unix的巨无霸前身，设计者刻意选用向高地址扩展，因为该架构有助于防御缓冲区溢出攻击[3]。</p>
-<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>[1] <a href="https://www.quora.com/What-is-the-logical-explanation-for-stacks-typically-growing-downward-and-heaps-growing-upward">What is the logical explanation for stacks typically growing downward and heaps growing upward?</a><br>[2] 列出了8种架构的栈增长方向 <a href="https://stackoverflow.com/questions/664744/what-is-the-direction-of-stack-growth-in-most-modern-systems">What is the direction of stack growth in most modern systems?</a><br>[3] 罕见的栈增长方向 <a href="https://softwareengineering.stackexchange.com/questions/137640/why-does-the-stack-grow-downward/137668">Why does the stack grow downward?</a></p>
+<p>马自达和本田是我最喜欢的两个车企。日前，本田对外宣布，海外版全新飞度将回归物理按键，取消空调等功能的触屏操作。据悉，国内2020款飞度也已经取消了触控空调按键。按照本田项目负责人的说法，此举主要是为了尽可能避免车辆行驶期间车载功能干扰到驾驶员。</p>
+<p>该负责人表示：“根据用户反馈，空调或座椅加热功能如果使用触屏，必须要分神看着屏幕才能完成操作，不利于行车安全；而物理按键可以唤醒人脑的动作记忆，用户只需记住刻度盘的位置即可完成操作，双眼能够始终关注道路情况。因此，本田回归了物理按键，以便用户操作时减少分神。”</p>
+<p>事实上本田并不是第一家取消触控大屏的车企，早在去年7月初，马自达官方发布消息称：将在未来所有新车型上取消大尺寸中控屏幕，仅保留一小块的显示屏，而即将海外上市的马自达3将不再配备触摸屏。</p>
+<p>前几日，英国一项道路安全研究报告指出触控大屏比酒驾、毒驾更危险。当使用触摸屏操作 CarPlay 和 Android Auto 等互联系统时，驾驶员对路面情况的反应时间，会增加多达57%和 53%。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E7%BE%8E%E5%9B%BD%E6%B5%B7%E5%86%9B%E5%8F%96%E6%B6%88%E8%A7%A6%E6%91%B8%E5%B1%8F.jpg" alt="美国海军取消触摸屏"><br>这让我想到去年的新闻，2017年8月21日，美国麦凯恩号航空母舰在新加坡与一艘油轮相撞，造成油轮的10名船员死亡，麦凯恩号48人受伤。美国军方最近公布了调查报告，事故原因之一是航母操作人员对复杂的触摸屏界面不熟悉，有人将操作系统置于手动模式，但是其他人没有发现。</p>
+<p>事发后，海军进行了舰队范围内的调查，问卷调查中，大部分人表示，更喜欢机械控制，而不是触摸屏操作。因为机械装置“提供了即时的触觉反馈”。报告指出，如果存在机械控制，舵手可能会提前发现问题。军方因此决定，2020年开始在驱逐舰上，用机械装置取代触摸屏，控制油门和舵。</p>
 ]]></content>
       <tags>
-        <tag>C语言</tag>
-        <tag>计算机组成原理</tag>
+        <tag>周刊</tag>
+        <tag>感悟</tag>
       </tags>
   </entry>
   <entry>
@@ -623,6 +594,35 @@
       <tags>
         <tag>感悟</tag>
         <tag>面试经历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>栈为什么要由高地址向低地址扩展？</title>
+    <url>/blog/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/</url>
+    <content><![CDATA[<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>计算机内存分了代码段（<code>.text</code>段）、初始化的数据段（<code>.data</code>段）、未初始化的数据段（<code>.bss</code>段）、堆空间（<code>heap</code>）、栈空间（<code>stack</code>）和命令行参数和环境变量区域。</p>
+<p>程序计数器(<code>Program Counter</code>，简称<code> PC</code>)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。</p>
+<p>因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展；</p>
+<p>heap从低地址向高地址扩展，做内存管理相对要简单些，为了避免栈空间和代码段冲突，最大利用地址空间，很自然的，我们会选择把栈底设置在高地址区间，然后让栈向下增长。</p>
+<span id="more"></span>
+
+<p>这是来自apue里一张经典的ｃ程序内存分布图，着重看一下heap和stack的内存分布。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg" alt="typical memory arrangement"></p>
+<h2 id="栈由高地址向低地址扩展的优点"><a href="#栈由高地址向低地址扩展的优点" class="headerlink" title="栈由高地址向低地址扩展的优点"></a>栈由高地址向低地址扩展的优点</h2><p><code>stack</code>从高地址向低地址扩展，这样栈空间的起始位置就能确定下来。动态的调整栈空间大小也不需要移动栈内的数据，如果是从低地址到高地址的扩展，结尾的地址是固定的，如果要扩大或缩小，则需要移动整个栈的数据。</p>
+<p>并且<strong>这样设计可以使得堆和栈能够充分利用空闲的地址空间。</strong>如果栈向上涨的话，我们就必须得指定栈和堆的一个严格分界线，但这个分界线怎么确定呢？平均分？但是有的程序使用的堆空间比较多，而有的程序使用的栈空间比较多。</p>
+<p>所以就可能出现这种情况：一个程序因为栈溢出而崩溃的时候，其实它还有大量闲置的堆空间呢，但是我们却无法使用这些闲置的堆空间。所以呢，最好的办法就是让堆和栈一个向上涨，一个向下涨，这样它们就可以最大程度地共用这块剩余的地址空间，达到利用率的最大化！</p>
+<h2 id="现在-CPU-指令集的设计"><a href="#现在-CPU-指令集的设计" class="headerlink" title="现在 CPU 指令集的设计"></a>现在 CPU 指令集的设计</h2><p>大部分CPU指令集设计了函数调用架构，定义了专用的调用/返回指令，并在指令中隐含规定栈的方向。</p>
+<ul>
+<li>主流1：向低地址扩展：x86，MIPS</li>
+<li>主流2：自由选择：Arm（但个别指令仅支持向低）</li>
+<li>罕见：向高地址扩展：PA-RISC，操作系统Multics</li>
+<li>非主流：System z，栈是个链表[2]</li>
+</ul>
+<p>如果CPU同时支持向上和向下，例如arm，那么编译器需要指定程序的调用方向，一般还是选择向下。比较罕见的极端的案例是Multics操作系统，这是Unix的巨无霸前身，设计者刻意选用向高地址扩展，因为该架构有助于防御缓冲区溢出攻击[3]。</p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>[1] <a href="https://www.quora.com/What-is-the-logical-explanation-for-stacks-typically-growing-downward-and-heaps-growing-upward">What is the logical explanation for stacks typically growing downward and heaps growing upward?</a><br>[2] 列出了8种架构的栈增长方向 <a href="https://stackoverflow.com/questions/664744/what-is-the-direction-of-stack-growth-in-most-modern-systems">What is the direction of stack growth in most modern systems?</a><br>[3] 罕见的栈增长方向 <a href="https://softwareengineering.stackexchange.com/questions/137640/why-does-the-stack-grow-downward/137668">Why does the stack grow downward?</a></p>
+]]></content>
+      <tags>
+        <tag>C语言</tag>
+        <tag>计算机组成原理</tag>
       </tags>
   </entry>
   <entry>
