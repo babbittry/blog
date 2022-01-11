@@ -90,8 +90,8 @@
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/blog/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-about"><a href="/blog/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/blog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">13</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/blog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a></li>
         <li class="menu-item menu-item-sitemap"><a href="/blog/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -163,13 +163,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/blog/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/blog/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -206,6 +206,80 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/blog/images/head.png">
+      <meta itemprop="name" content="海湾彭于晏">
+      <meta itemprop="description" content="Don’t be sorry. Be better.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="观心塾">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/" class="post-title-link" itemprop="url">栈为什么要由高地址向低地址扩展？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-21 10:17:25" itemprop="dateCreated datePublished" datetime="2021-08-21T10:17:25+08:00">2021-08-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>计算机内存分了代码段（<code>.text</code>段）、初始化的数据段（<code>.data</code>段）、未初始化的数据段（<code>.bss</code>段）、堆空间（<code>heap</code>）、栈空间（<code>stack</code>）和命令行参数和环境变量区域。</p>
+<p>程序计数器(<code>Program Counter</code>，简称<code> PC</code>)的缺省指向0地址，计算机开机后从程序计数器指向的地址开始执行程序，每执行完一条指令后， 程序计数器自动加1。</p>
+<p>因此很自然的，代码段从低地址区间开始加载，向高地址区间扩展；</p>
+<p>heap从低地址向高地址扩展，做内存管理相对要简单些，为了避免栈空间和代码段冲突，最大利用地址空间，很自然的，我们会选择把栈底设置在高地址区间，然后让栈向下增长。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -850,85 +924,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/Weekly3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/Weekly2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/blog/images/head.png">
-      <meta itemprop="name" content="海湾彭于晏">
-      <meta itemprop="description" content="Don’t be sorry. Be better.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="观心塾">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/Weekly2/" class="post-title-link" itemprop="url">Weekly2</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-09-06 14:01:12" itemprop="dateCreated datePublished" datetime="2020-09-06T14:01:12+08:00">2020-09-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="言论"><a href="#言论" class="headerlink" title="言论"></a>言论</h2><p>有机会一定要试一试，其实试错的成本并不高，而错过的成本却非常高。</p>
-<p align="right"> --- 雷军</p>
-
-<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>一件事”做得好”比较好，还是”做得快”比较好？</strong></p>
-<p>鱼和熊掌不能得兼，你怎么选择：做得好，付出的代价可能是耗时长、成本高；做得快，意味着完成度低、不是精品。</p>
-<p>我很赞同一篇文章的结论：</p>
-<blockquote>
-<p>做得快更好。做得快不仅可以让你在单位时间内完成更多的工作，而且因为你工作得很快，所以你会觉得成本低，从而倾向于做更多。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/Weekly2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

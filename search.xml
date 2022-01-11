@@ -501,6 +501,37 @@
       </tags>
   </entry>
   <entry>
+    <title>2021年第一周</title>
+    <url>/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912021%E5%B9%B4%E7%AC%AC%E4%B8%80%E5%91%A8/</url>
+    <content><![CDATA[<h2 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h2><ol>
+<li>完成了 Sushi AS 系统测试的 Uplink 部分。</li>
+<li>Sushi AS 系统测试的动作式样部分完成 50%。</li>
+<li>通过 <a href="https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-6.0">微软官方文档</a> 学习了 Blazor、Razor、MVC 后端的差异以及基本的实现方式。</li>
+</ol>
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
+<li>完成 Sushi AS 系统测试部分。—2022年1月10日</li>
+<li>开始 Sushi AS 系统测试的 Uplink 部分。</li>
+<li>学习杨旭老师的 <a href="https://www.bilibili.com/video/BV1c441167KQ">ASP.NET Core 3.x</a> 视频。</li>
+</ol>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>如果发现日报、周报没什么可写的，就看看 project 的计划，如果看完 project 之后还是感觉没什么可写的，那就一定要把 project 的任务颗粒度降下来，精确到每天做什么。<br>project 颗粒度太高的，做计划的人不是蠢就是懒！因为任务颗粒度太高会导致项目不可控，使项目失败概率大大增加。</p>
+<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p><strong>为自己选择了几种办公用的软件，来提升自己的办公效率。</strong></p>
+<ol>
+<li>比较了市面上几种笔记文件，最终选用语雀来作为自己的笔记整理软件。但是我在试用一段时间之后，也发现了一些不足，比如语雀支持的笔记层级只有两层，而印象笔记和 OneNote 都支持三个或更多，这样在笔记管理方面会方便很多。我对笔记软件有以下几点需求：<ol>
+<li>支持 <code>MarkDown</code> 输入，<code>MarkDown</code>真的太好用了，简单的学会之后可以很顺畅的进行书写，再也离不开。</li>
+<li>易用的编辑器，我之前使用《印象笔记》，但是编辑器很难用，Bug 非常多，而且广告很多。</li>
+<li>支持多端同步，家里电脑和公司电脑可以同步使用。</li>
+<li>最好支持脑图。</li>
+</ol>
+</li>
+<li>选择了一个综合办公软件—飞书。主要用于自己的工作日程和工作目标管理，飞书只要定位是团队使用的，自己使用发挥不出全部威力，但是也已经为我带来了很大的便利。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>周报</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>写测试用例的痛苦</title>
     <url>/blog/%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E7%97%9B%E8%8B%A6/</url>
     <content><![CDATA[<p>近在写代码的测试用例，写的非常痛苦，完全无从下笔，在对整个工程没有全面的认知之前，不清除这个函数究竟从何而起、为何而生、最终又被谁调用、如何调用。</p>
