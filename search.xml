@@ -504,10 +504,15 @@
     <title>2021年第一周</title>
     <url>/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912021%E5%B9%B4%E7%AC%AC%E4%B8%80%E5%91%A8/</url>
     <content><![CDATA[<h2 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h2><ol>
-<li>完成了 Sushi AS 系统测试的 Uplink 部分。</li>
-<li>Sushi AS 系统测试的动作式样部分完成 50%。</li>
-<li>通过 <a href="https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-6.0">微软官方文档</a> 学习了 Blazor、Razor、MVC 后端的差异以及基本的实现方式。</li>
+<li><p>完成了 Sushi AS 系统测试的 Uplink 部分。</p>
+</li>
+<li><p>Sushi AS 系统测试的动作式样部分完成 50%。</p>
+</li>
+<li><p>通过 <a href="https://docs.microsoft.com/zh-cn/aspnet/core/?view=aspnetcore-6.0">微软官方文档</a> 学习了 Blazor、Razor、MVC 后端的差异以及基本的实现方式。</p>
+</li>
 </ol>
+<span id="more"></span>
+
 <h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
 <li>完成 Sushi AS 系统测试部分。—2022年1月10日</li>
 <li>开始 Sushi AS 系统测试的 Uplink 部分。</li>
@@ -539,6 +544,8 @@
 <li>开始 Sushi AS 系统测试的 Firm Version 、通信データ一覧、 自発Uplinkデータ部分。</li>
 <li>学习杨旭老师的 <a href="https://www.bilibili.com/video/BV1c441167KQ">ASP.NET Core 3.x</a> 视频前六节（共18节）。</li>
 </ol>
+<span id="more"></span>
+
 <h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
 <li>完成 Sushi EU 系统测试部分。</li>
 <li>完成 LoRa 协议的宣讲 PPT。</li>
@@ -558,6 +565,8 @@
     <url>/blog/%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E7%97%9B%E8%8B%A6/</url>
     <content><![CDATA[<p>近在写代码的测试用例，写的非常痛苦，完全无从下笔，在对整个工程没有全面的认知之前，不清除这个函数究竟从何而起、为何而生、最终又被谁调用、如何调用。</p>
 <p>让我想起一句话：“写作时感到的痛苦，是理清思想的痛苦。– David Perell”</p>
+<span id="more"></span>
+
 <p>引申出来就是“写测试 sheet 时感到的痛苦，是理清代码的痛苦。”</p>
 <p>只有在理清楚代码整体架构和数据流、控制流的走向之后，才可以写出凝练、全面的测试用例。所以当务之急就是尽快熟悉项目，熟悉整体架构。</p>
 ]]></content>
