@@ -532,6 +532,28 @@
       </tags>
   </entry>
   <entry>
+    <title>2021年第二周</title>
+    <url>/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912021%E5%B9%B4%E7%AC%AC%E4%BA%8C%E5%91%A8/</url>
+    <content><![CDATA[<h2 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h2><ol>
+<li>完成了 Sushi AS 系统测试部分。—2022年1月10日</li>
+<li>开始 Sushi AS 系统测试的 Firm Version 、通信データ一覧、 自発Uplinkデータ部分。</li>
+<li>学习杨旭老师的 <a href="https://www.bilibili.com/video/BV1c441167KQ">ASP.NET Core 3.x</a> 视频前六节（共18节）。</li>
+</ol>
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
+<li>完成 Sushi EU 系统测试部分。</li>
+<li>完成 LoRa 协议的宣讲 PPT。</li>
+<li>学习杨旭老师的 <a href="https://www.bilibili.com/video/BV1c441167KQ">ASP.NET Core 3.x</a> 视频（所有都学完）。</li>
+</ol>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>上周新年伊始，打算开始写周报，把每周工作和下周规划、以及本周之内的心得体会和看到的新鲜事物，但是没想到只坚持了一周。</p>
+<p>感觉自己自制力很差，下班之后只想打游戏。即使玩游戏的时候感觉很空虚，但是也不想干别的。开始陷入焦虑的内耗中，所以从今天开始不能这样了，卸载游戏，并且下班之后不回家，直接带到公司吃。</p>
+<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p>无</p>
+]]></content>
+      <tags>
+        <tag>周报</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>写测试用例的痛苦</title>
     <url>/blog/%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E7%97%9B%E8%8B%A6/</url>
     <content><![CDATA[<p>近在写代码的测试用例，写的非常痛苦，完全无从下笔，在对整个工程没有全面的认知之前，不清除这个函数究竟从何而起、为何而生、最终又被谁调用、如何调用。</p>
