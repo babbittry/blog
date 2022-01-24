@@ -208,7 +208,7 @@
 <p>程序运行完成后的输出如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a + b &gt; 0</span><br><span class="line">a + b = -4</span><br><span class="line">b 的整型：-10</span><br><span class="line">b 的无符号整型：4294967286</span><br><span class="line">b 的十六进制表达：fffffff6</span><br><span class="line">INT_MAX:2147483647</span><br><span class="line">INT_MIN:-2147483648</span><br><span class="line">UINT_MAX:4294967295</span><br></pre></td></tr></table></figure>
 
-<h2 id="为什么会有这样的结果？"><a href="#为什么会有这样的结果？" class="headerlink" title="为什么会有这样的结果？"></a>为什么会有这样的结果？</h2><p>这个问题测试你是否懂得 C 语言中的整数自动转换原则，原因是当表达式中存在有符号类型和无符号类型时，所有的操作数都自动转换为无符号类型。因此 <code>-10</code> 变成了一个非常大的正整数，所以程序输出的结果是 <code>a + b &gt; 0</code>。这一点对于应当频繁用到无符号数据类型的嵌入式系统来说是丰常重要的。</p>
+<h2 id="为什么会有这样的结果？"><a href="#为什么会有这样的结果？" class="headerlink" title="为什么会有这样的结果？"></a>为什么会有这样的结果？</h2><p>这个问题测试你是否懂得 C 语言中的整数自动转换原则，原因是当表达式中存在有符号类型和无符号类型时，所有的操作数都自动转换为无符号类型。因此 <code>-10</code> 变成了一个非常大的正整数，所以程序输出的结果是 <code>a + b &gt; 0</code>。这一点对于应当频繁用到无符号数据类型的嵌入式系统来说是非常重要的。</p>
 <p>那么 <code>-10</code> 究竟被转换为了几呢？</p>
 <p>如下图所示，在程序中打断点，在左侧的监视区可以看到，此时 <code>a</code> 的值为 <code>6</code> ，<code>b</code> 的值为 <code>-10 </code>，但是 <code>a + b</code> 的值为 <code>4294967292</code>。</p>
 <p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/uint%20add%20int.png" alt="变量监控"></p>
