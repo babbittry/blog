@@ -21,30 +21,29 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"babbittry.github.io","root":"/blog/","images":"/blog/images","scheme":"Mist","darkmode":false,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/blog/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/blog/js/config.js"></script>
-<meta name="description" content="与运算符和或运算符的语句执行顺序有一个老生常谈的问题，那就是与运算符和或运算符的语句执行顺序。 1express1 || express2  先执行表达式express1如果为“真”，express2将不被执行，express2仅在express1为“假”时才被执行。因为第一个表达式为真了，整个表达式都为真，所以没有必要再去执行第二个表达式了。 1express1 &amp;&amp; expre">
+<meta name="description" content="本周工作 完成 Sushi US 系统测试的部分。 完成 LoRaWAN 协议的宣讲。 51talk 学习了两节课。 学习韦东山老师的 韦东山freeRTOS系列教程：FreeRTOS的内部机制 视频（学到了P14，总共29节。）。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言学习笔记-与运算符和或运算符的语句执行顺序">
-<meta property="og:url" content="https://babbittry.github.io/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/index.html">
+<meta property="og:title" content="2021年第四周">
+<meta property="og:url" content="https://babbittry.github.io/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E5%9B%9B%E5%91%A8/index.html">
 <meta property="og:site_name" content="观心塾">
-<meta property="og:description" content="与运算符和或运算符的语句执行顺序有一个老生常谈的问题，那就是与运算符和或运算符的语句执行顺序。 1express1 || express2  先执行表达式express1如果为“真”，express2将不被执行，express2仅在express1为“假”时才被执行。因为第一个表达式为真了，整个表达式都为真，所以没有必要再去执行第二个表达式了。 1express1 &amp;&amp; expre">
+<meta property="og:description" content="本周工作 完成 Sushi US 系统测试的部分。 完成 LoRaWAN 协议的宣讲。 51talk 学习了两节课。 学习韦东山老师的 韦东山freeRTOS系列教程：FreeRTOS的内部机制 视频（学到了P14，总共29节。）。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-05T02:11:38.000Z">
-<meta property="article:modified_time" content="2021-11-05T02:11:38.000Z">
+<meta property="article:published_time" content="2022-01-30T01:51:25.000Z">
+<meta property="article:modified_time" content="2022-01-30T01:51:25.000Z">
 <meta property="article:author" content="海湾彭于晏">
-<meta property="article:tag" content="C语言">
-<meta property="article:tag" content="语言学习">
-<meta property="article:tag" content="BUG">
+<meta property="article:tag" content="周报">
+<meta property="article:tag" content="管理">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://babbittry.github.io/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">
+<link rel="canonical" href="https://babbittry.github.io/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E5%9B%9B%E5%91%A8/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/","path":"C语言学习笔记-与运算符和或运算符的语句执行顺序/","title":"C语言学习笔记-与运算符和或运算符的语句执行顺序"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E5%9B%9B%E5%91%A8/","path":"【周报】2022年第四周/","title":"2021年第四周"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>C语言学习笔记-与运算符和或运算符的语句执行顺序 | 观心塾</title>
+<title>2021年第四周 | 观心塾</title>
   
 
   <script src="/blog/js/third-party/analytics/baidu-analytics.js"></script>
@@ -153,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">与运算符和或运算符的语句执行顺序</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%91%A8%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">本周工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E5%91%A8%E8%AE%A1%E5%88%92"><span class="nav-number">2.</span> <span class="nav-text">下周计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">心得体会</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%86%E9%87%8E%E3%80%81%E6%83%85%E6%8A%A5"><span class="nav-number">4.</span> <span class="nav-text">视野、情报</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -221,7 +220,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E5%92%8C%E6%88%96%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E5%9B%9B%E5%91%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/head.png">
@@ -234,7 +233,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          C语言学习笔记-与运算符和或运算符的语句执行顺序
+          2021年第四周
         </h1>
 
         <div class="post-meta-container">
@@ -245,7 +244,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-11-05 10:11:38" itemprop="dateCreated datePublished" datetime="2021-11-05T10:11:38+08:00">2021-11-05</time>
+      <time title="创建时间：2022-01-30 09:51:25" itemprop="dateCreated datePublished" datetime="2022-01-30T09:51:25+08:00">2022-01-30</time>
     </span>
 
   
@@ -258,20 +257,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="与运算符和或运算符的语句执行顺序"><a href="#与运算符和或运算符的语句执行顺序" class="headerlink" title="与运算符和或运算符的语句执行顺序"></a>与运算符和或运算符的语句执行顺序</h2><p>有一个老生常谈的问题，那就是与运算符和或运算符的语句执行顺序。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">express1 || express2</span><br></pre></td></tr></table></figure>
-
-<p>先执行表达式<code>express1</code>如果为“真”，<code>express2</code>将不被执行，<code>express2</code>仅在<code>express1</code>为“假”时才被执行。因为第一个表达式为真了，整个表达式都为真，所以没有必要再去执行第二个表达式了。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">express1 &amp;&amp; express2</span><br></pre></td></tr></table></figure>
-
-<p>先执行表达式<code>express1</code>如果为“假”，<code>express2</code>将不被执行，<code>express2</code>仅在<code>express1</code>为“真”时才被执行。因为第一个表达式为假了，整个表达式都为假了，所以没有必要再去执行第二个表达式了。</p>
-<p>于是，他并不是你所想像的所有的表达式都会去执行，这点一定要明白，不然你的程序会出现一些莫明的运行时错误。</p>
+        <h2 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h2><ol>
+<li>完成 Sushi US 系统测试的部分。</li>
+<li>完成 LoRaWAN 协议的宣讲。</li>
+<li>51talk 学习了两节课。</li>
+<li>学习韦东山老师的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ar4y1C7En">韦东山freeRTOS系列教程：FreeRTOS的内部机制</a> 视频（学到了P14，总共29节。）。</li>
+</ol>
 <span id="more"></span>
 
-<p>例如，下面的程序：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (sum &gt; <span class="number">100</span> &amp;&amp; (fp=fopen( filename,<span class="string">&quot;a&quot;</span>) != <span class="literal">NULL</span> )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;Warring: it beyond one hundred/n&quot;</span>);</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">fprintf</span>( fp, <span class="string">&quot; sum is %id /n&quot;</span>, sum );</span><br><span class="line">fclose( fp );</span><br></pre></td></tr></table></figure>
-
-<p>本来的意图是，如果<code>sum &gt; 100</code>，向文件中写一条出错信息，为了方便，把两个条件判断写在一起，于是，如果<code>sum&lt;=100</code>时，打开文件的操作将不会做，最后，<code>fprintf</code>和<code>fclose</code>就会发现未知的结果。</p>
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
+<li>最近用 <code>C#</code> 的时候发现一些基础知识、基础概念还不牢固，所以过年期间，重新学习刘铁猛老师的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13b411b7Ht?from=search&seid=2147378515632539277&spm_id_from=333.337.0.0">《C#语言入门详解》</a>。</li>
+<li>学习韦东山老师的 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ar4y1C7En">韦东山freeRTOS系列教程：FreeRTOS的内部机制</a> 视频（所有都学完）。</li>
+</ol>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>本周调休，上七天班，所以是今日更新。下周过年，2月9日上班，停更一周。祝大家新年快乐。</p>
+<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p>喜欢 <code>C#</code> 的都推荐看一下刘铁猛老师的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13b411b7Ht?from=search&seid=2147378515632539277&spm_id_from=333.337.0.0">《C#语言入门详解》</a>这套视频，讲的非常精彩。</p>
 
     </div>
 
@@ -298,22 +297,21 @@
 </div>
 
           <div class="post-tags">
-              <a href="/blog/tags/C%E8%AF%AD%E8%A8%80/" rel="tag"># C语言</a>
-              <a href="/blog/tags/%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0/" rel="tag"># 语言学习</a>
-              <a href="/blog/tags/BUG/" rel="tag"># BUG</a>
+              <a href="/blog/tags/%E5%91%A8%E6%8A%A5/" rel="tag"># 周报</a>
+              <a href="/blog/tags/%E7%AE%A1%E7%90%86/" rel="tag"># 管理</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/" rel="prev" title="Linux 执行命令为什么要加 ./（点斜杠） ？">
-                  <i class="fa fa-chevron-left"></i> Linux 执行命令为什么要加 ./（点斜杠） ？
+                <a href="/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="prev" title="2021年第三周">
+                  <i class="fa fa-chevron-left"></i> 2021年第三周
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/%E5%87%BD%E6%95%B0%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E8%AE%BE%E8%AE%A1/" rel="next" title="函数的输入输出设计">
-                  函数的输入输出设计 <i class="fa fa-chevron-right"></i>
+                <a href="/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="next" title="2021年第五周">
+                  2021年第五周 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

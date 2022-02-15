@@ -596,6 +596,67 @@
       </tags>
   </entry>
   <entry>
+    <title>2021年第五周</title>
+    <url>/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E4%BA%94%E5%91%A8/</url>
+    <content><![CDATA[<h2 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h2><p>本周过年在家里，效率很低，所以没有什么学习或者产出。</p>
+<ol>
+<li>51talk 学习了两节课。</li>
+<li>学习韦东山老师的 <a href="https://www.bilibili.com/video/BV1Ar4y1C7En">韦东山freeRTOS系列教程：FreeRTOS的内部机制</a> 视频（学到了P16，总共29节）。</li>
+<li>刘铁猛老师的<a href="https://www.bilibili.com/video/BV13b411b7Ht?from=search&seid=2147378515632539277&spm_id_from=333.337.0.0">《C#语言入门详解》</a>看了前五节（共33节）。</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><p>目前有一个问题就是学的太杂了，所以试图精简一下，本周状态还不是很好，所以试着搭建一下开发板的学习环境，然后从 RTOS 开始比较专一的学习。</p>
+<ol>
+<li>完成 Sushi US 系统测试的Gateway  Configuration、Normal Action、MAC CMD6、PER部分。</li>
+<li>学习韦东山老师的 <a href="https://www.bilibili.com/video/BV1Ar4y1C7En">韦东山freeRTOS系列教程：FreeRTOS的内部机制</a> 视频（所有都学完）。</li>
+<li>搭建开发板环境。</li>
+</ol>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>过年回来，状态逐渐调整中。</p>
+<ol>
+<li><p>我从过年前开始睡不好，晚上一直在做梦。最近又看到天才滑雪少女谷爱凌的“秘密武器”是每天睡10小时，所以还需要尽快调整过来，保证高质量的睡眠。</p>
+<p> 昨晚的梦很有趣，在这里记录一下：</p>
+<blockquote>
+<p>做梦梦到姜部问我最近工作怎么样，我说工资太低了，每月都是月光。然后他就去开调研，研究薪资情况，哈哈哈哈。</p>
+</blockquote>
+<p> 这是一个很有趣的梦。</p>
+</li>
+<li><p>我每周的计划都会习惯性的多定一些，所以每次对比着看上周写的“下周计划”和本周的“本周工作”，都会发现做不完（只针对自学计划，不包括工作计划，工作要保质保量的完成的），这样会导致数据不好看，但是目前还是保持这种状态不变。</p>
+<p>我个人的习惯是“下周计划”总是很有挑战性的，过量的。如果太容易完成也会没什么意思。</p>
+</li>
+</ol>
+<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p>看视频<a href="https://www.bilibili.com/video/BV1ba411y7zG">《谈恋爱？你最好能明白这些事》</a> 被种草了<a href="https://book.douban.com/subject/35680673/">《爱，需要学习》</a>这本书，里面讲了如何维持亲密关系，以及如何进行积极有效的沟通。所以本周推荐这本书，希望大家都可以获得稳定、高质量的亲密关系。</p>
+<p>很久没有看完一本非专业的书籍了，所以本周推荐这本，也借此机会监督自己认真看完。</p>
+]]></content>
+      <tags>
+        <tag>周报</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2021年第四周</title>
+    <url>/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E5%9B%9B%E5%91%A8/</url>
+    <content><![CDATA[<h2 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h2><ol>
+<li>完成 Sushi US 系统测试的部分。</li>
+<li>完成 LoRaWAN 协议的宣讲。</li>
+<li>51talk 学习了两节课。</li>
+<li>学习韦东山老师的 <a href="https://www.bilibili.com/video/BV1Ar4y1C7En">韦东山freeRTOS系列教程：FreeRTOS的内部机制</a> 视频（学到了P14，总共29节。）。</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
+<li>最近用 <code>C#</code> 的时候发现一些基础知识、基础概念还不牢固，所以过年期间，重新学习刘铁猛老师的<a href="https://www.bilibili.com/video/BV13b411b7Ht?from=search&seid=2147378515632539277&spm_id_from=333.337.0.0">《C#语言入门详解》</a>。</li>
+<li>学习韦东山老师的 <a href="https://www.bilibili.com/video/BV1Ar4y1C7En">韦东山freeRTOS系列教程：FreeRTOS的内部机制</a> 视频（所有都学完）。</li>
+</ol>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>本周调休，上七天班，所以是今日更新。下周过年，2月9日上班，停更一周。祝大家新年快乐。</p>
+<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p>喜欢 <code>C#</code> 的都推荐看一下刘铁猛老师的<a href="https://www.bilibili.com/video/BV13b411b7Ht?from=search&seid=2147378515632539277&spm_id_from=333.337.0.0">《C#语言入门详解》</a>这套视频，讲的非常精彩。</p>
+]]></content>
+      <tags>
+        <tag>周报</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>写测试用例的痛苦</title>
     <url>/blog/%E5%86%99%E6%B5%8B%E8%AF%95%E7%94%A8%E4%BE%8B%E7%9A%84%E7%97%9B%E8%8B%A6/</url>
     <content><![CDATA[<p>近在写代码的测试用例，写的非常痛苦，完全无从下笔，在对整个工程没有全面的认知之前，不清除这个函数究竟从何而起、为何而生、最终又被谁调用、如何调用。</p>
