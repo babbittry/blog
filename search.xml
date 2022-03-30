@@ -588,7 +588,7 @@
 <h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
 <li>完成 Sushi CN 系统测试。</li>
 <li>RTOS 部分：STM32F103RCT6 移植 ThreadX 之后继续学习 ThreadX 的任务管理、基本使用等（基于<a href="">这个文档</a>学习）。</li>
-<li>项目部分：等待收获，因为深圳疫情，所以快递会受影响。<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2></li>
+<li>项目部分：等待电子元件到货，因为深圳疫情，所以快递会受影响。<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2></li>
 </ol>
 <p>暂无</p>
 <h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><h3 id="1-最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https-gitee-com-coll45-foc"><a href="#1-最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https-gitee-com-coll45-foc" class="headerlink" title="1. 最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https://gitee.com/coll45/foc"></a>1. 最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：<a href="https://gitee.com/coll45/foc">https://gitee.com/coll45/foc</a></h3><p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/20220321133450.png"></p>
@@ -655,6 +655,47 @@
 </ol>
 <h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p>看视频<a href="https://www.bilibili.com/video/BV1ba411y7zG">《谈恋爱？你最好能明白这些事》</a> 被种草了<a href="https://book.douban.com/subject/35680673/">《爱，需要学习》</a>这本书，里面讲了如何维持亲密关系，以及如何进行积极有效的沟通。所以本周推荐这本书，希望大家都可以获得稳定、高质量的亲密关系。</p>
 <p>很久没有看完一本非专业的书籍了，所以本周推荐这本，也借此机会监督自己认真看完。</p>
+]]></content>
+      <tags>
+        <tag>周报</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2021年第十周</title>
+    <url>/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%91%A8/</url>
+    <content><![CDATA[<h2 id="本周工作"><a href="#本周工作" class="headerlink" title="本周工作"></a>本周工作</h2><ol>
+<li>完成 Sushi CN 系统测试。</li>
+<li>RTOS 部分：学会了 ThreadX 的基本任务创建。</li>
+<li>莱洛三角形项目：SMT 之后的 PCB 已经收到，元件也陆陆续续收到，准备焊接。</li>
+</ol>
+ <span id="more"></span>
+
+<h2 id="下周计划"><a href="#下周计划" class="headerlink" title="下周计划"></a>下周计划</h2><ol>
+<li><p>开始 SuShi AU/KR/IN 的 Downlink、Unconfirm 部分的编码。</p>
+</li>
+<li><p>RTOS 部分：有一块 1.8 英寸的 ST7735 屏幕到货，驱动成功之后开始配合 GuiX 使用。</p>
+</li>
+<li><p>莱洛三角形项目：元件陆续到货，开始焊接，本周之内到不齐，到多少焊接多少。</p>
+</li>
+<li><p>完成转正的 PPT。</p>
+</li>
+</ol>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>暂无</p>
+<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p>今天向大家推荐一部日本电影<a href="https://movie.douban.com/subject/11500954/">《编舟记》</a>。</p>
+<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E7%BC%96%E8%88%9F%E8%AE%B0.jpg" alt="img"></p>
+<p>它讲述了一个编词典的故事，编辑们花了15年时间，终于完成了一部21世纪新的日语词典（上图）。他们既要跟上时代的发展，收集所有的新词，又要修订老词的解释，可想而知，付出了极其艰辛的努力。</p>
+<p>电影里面，编辑们开会讨论，<strong>左右的右，应该怎么定义？</strong> 大家提出了四种定义，很有意思。</p>
+<ol>
+<li>右是面朝西方站立时，朝北的方向。</li>
+<li>右是面对手表表盘时，从1点到5点的那一边。</li>
+<li>右是翻阅这本词典时，奇数页所在的位置。</li>
+<li>右是数字 10 里面，0所在的位置。</li>
+</ol>
+<p>因为每个词都要讨论，保证词典不能错，所以他们整整编了15年。</p>
+<p><strong>如果一件事情需要15年才能看到结果，此前完全没有回报，你还会去做吗？</strong></p>
+<p>互联网公司都采用敏捷开发，每个迭代大约是2周～6周。比三个迭代更遥远的事情，大家一般都不会去想。但是，人生是一个长期准备的过程，20岁的时候就需要定下35岁的目标，然后苦苦积累，不计得失，只为了无比遥远的多年以后，能够看到成果。</p>
+<p><strong>互联网是一个短期行为的行业，但是人生不是。要坚持长期主义。</strong></p>
 ]]></content>
       <tags>
         <tag>周报</tag>
