@@ -1,4 +1,4 @@
-name: Hexo Deploy
+name: Build and Deploy Hexo
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
           ref: master
 
@@ -35,7 +35,15 @@ jobs:
           npm install hexo-cli -g
           npm install
 
-      - name: Deploy
+      - name: Bulid
         run: |
           hexo clean
-          hexo deploy
+          hexo generate
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
+          BASE_BRANCH: master
