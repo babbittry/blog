@@ -15,7 +15,7 @@ System.Diagnostics.Process.Start("www.bing.com");
 
 但是在程序中这样写的时候，会发生如下错误：
 
-![WPF open URL error](https://gitee.com/babbittry321/blogImages/raw/master/img/WPF_open_URL_error.png)
+![WPF open URL error](/images/WPF_open_URL_error.png)
 
 <!-- more -->
 

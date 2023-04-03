@@ -9,7 +9,7 @@ comments: true
 
 如下图所示，当前文件夹下有一个名为 `Hello.sh` 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 `./` 才可以正确的运行这个脚本。那么这个是为什么呢？
 
-![Linux bash dot slash](https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png)
+![Linux bash dot slash](Linux执行命令为什么要加点斜杠/Linux%20bash%20dot%20slash.png)
 
 <!-- more -->
 
@@ -38,11 +38,11 @@ comments: true
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 ```
 
-![echo path](https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png)
+![echo path](Linux执行命令为什么要加点斜杠/echo%20path.png)
 
 我们在 Linux 上使用的命令都可以在这里面找到，例如`ls` 命令。但是如果我们想看命令具体的位置，可以使用 `which` 命令。
 
-![which ls](https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png)
+![which ls](Linux执行命令为什么要加点斜杠/which%20ls.png)
 
 ## 终端中命令搜索规则
 
@@ -55,19 +55,19 @@ comments: true
 
 比如我写了两个命令，分别是 `my_ls.sh` 和 `Hello.sh`，然后把他们放在了 `~/Desktop/myPATH` 中。
 
-![myPATH](https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png)
+![myPATH](Linux执行命令为什么要加点斜杠/mtPATH.png)
 
 在终端中输入：`export PATH=$PATH:/home/zxy/Desktop/myPATH`（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）
 
-![添加环境变量](https://gitee.com/babbittry321/blogImages/raw/master/img/PATH.png)
+![添加环境变量](Linux执行命令为什么要加点斜杠/PATH.png)
 
 然后执行 `Hello.sh`，就可以看到输出结果。
 
-![my option](https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png)
+![my option](Linux执行命令为什么要加点斜杠/my%20Hello.sh.png)
 
 这里提示 `my_ls.sh` 的权限不够，那么就提升一下权限。
 
-![提升权限](https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png)
+![提升权限](Linux执行命令为什么要加点斜杠/chmod.png)
 
 这样就可以，在不输入 `./` 的情况下直接运行 `Hello.sh`。
 
