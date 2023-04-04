@@ -23,30 +23,30 @@
     <meta name="description" content="问题引入如下图所示，当前文件夹下有一个名为 Hello.sh 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 .&#x2F; 才可以正确的运行这个脚本。那么这个是为什么呢？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux 执行命令为什么要加 .&#x2F;（点斜杠） ？">
-<meta property="og:url" content="https://babbittry.github.io/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/index.html">
+<meta property="og:url" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/index.html">
 <meta property="og:site_name" content="观心塾">
 <meta property="og:description" content="问题引入如下图所示，当前文件夹下有一个名为 Hello.sh 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 .&#x2F; 才可以正确的运行这个脚本。那么这个是为什么呢？">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/Linux%20bash%20dot%20slash.png">
-<meta property="og:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/echo%20path.png">
-<meta property="og:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/which%20ls.png">
-<meta property="og:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/mtPATH.png">
-<meta property="og:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/PATH.png">
-<meta property="og:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/my%20Hello.sh.png">
-<meta property="og:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/chmod.png">
+<meta property="og:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/Linux%20bash%20dot%20slash.png">
+<meta property="og:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/echo%20path.png">
+<meta property="og:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/which%20ls.png">
+<meta property="og:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/mtPATH.png">
+<meta property="og:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/PATH.png">
+<meta property="og:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/my%20Hello.sh.png">
+<meta property="og:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/chmod.png">
 <meta property="article:published_time" content="2021-09-17T13:25:18.000Z">
 <meta property="article:modified_time" content="2021-09-17T13:25:18.000Z">
 <meta property="article:author" content="海湾彭于晏">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://babbittry.github.io/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/Linux%20bash%20dot%20slash.png">
+<meta name="twitter:image" content="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/Linux%20bash%20dot%20slash.png">
 
 
-<link rel="canonical" href="https://babbittry.github.io/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/">
+<link rel="canonical" href="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/","path":"Llinux 执行命令为什么要加/","title":"Linux 执行命令为什么要加 ./（点斜杠） ？"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/","path":"Linux 执行命令为什么要加/","title":"Linux 执行命令为什么要加 ./（点斜杠） ？"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Linux 执行命令为什么要加 ./（点斜杠） ？ | 观心塾</title>
@@ -207,7 +207,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/">
+    <link itemprop="mainEntityOfPage" href="https://babbittry.github.io/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/blog/images/head.png">
@@ -250,7 +250,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p>如下图所示，当前文件夹下有一个名为 <code>Hello.sh</code> 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 <code>./</code> 才可以正确的运行这个脚本。那么这个是为什么呢？</p>
-<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
+<p><img src="/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
 <span id="more"></span>
 
 <h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>虽然我们的终端是在当前目录，而且当前目录中有我们要执行的文件，但是终端就是找不到它。需要我们指定文件的相对或绝对路径来告诉终端我们想运行的文件在哪里。</p>
@@ -266,22 +266,22 @@
 <p>在我的电脑上输出是（不同电脑输出可能不一样）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
 
-<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/echo%20path.png" alt="echo path"></p>
+<p><img src="/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/echo%20path.png" alt="echo path"></p>
 <p>我们在 Linux 上使用的命令都可以在这里面找到，例如<code>ls</code> 命令。但是如果我们想看命令具体的位置，可以使用 <code>which</code> 命令。</p>
-<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/which%20ls.png" alt="which ls"></p>
+<p><img src="/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/which%20ls.png" alt="which ls"></p>
 <h2 id="终端中命令搜索规则"><a href="#终端中命令搜索规则" class="headerlink" title="终端中命令搜索规则"></a>终端中命令搜索规则</h2><ul>
 <li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
 <li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
 </ul>
 <h2 id="把自己的命令添加进环境变量"><a href="#把自己的命令添加进环境变量" class="headerlink" title="把自己的命令添加进环境变量"></a>把自己的命令添加进环境变量</h2><p>如果自己写了几个命令，并且以后在运行的时候不想添加路径，那么可以把自己的命令所在路径添加进环境变量。</p>
 <p>比如我写了两个命令，分别是 <code>my_ls.sh</code> 和 <code>Hello.sh</code>，然后把他们放在了 <code>~/Desktop/myPATH</code> 中。</p>
-<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/mtPATH.png" alt="myPATH"></p>
+<p><img src="/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/mtPATH.png" alt="myPATH"></p>
 <p>在终端中输入：<code>export PATH=$PATH:/home/zxy/Desktop/myPATH</code>（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）</p>
-<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/PATH.png" alt="添加环境变量"></p>
+<p><img src="/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/PATH.png" alt="添加环境变量"></p>
 <p>然后执行 <code>Hello.sh</code>，就可以看到输出结果。</p>
-<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/my%20Hello.sh.png" alt="my option"></p>
+<p><img src="/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/my%20Hello.sh.png" alt="my option"></p>
 <p>这里提示 <code>my_ls.sh</code> 的权限不够，那么就提升一下权限。</p>
-<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/chmod.png" alt="提升权限"></p>
+<p><img src="/blog/Linux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/chmod.png" alt="提升权限"></p>
 <p>这样就可以，在不输入 <code>./</code> 的情况下直接运行 <code>Hello.sh</code>。</p>
 <h2 id="扩展：Linux中的-、-、-分别代表什么"><a href="#扩展：Linux中的-、-、-分别代表什么" class="headerlink" title="扩展：Linux中的~、/、./分别代表什么"></a>扩展：Linux中的<code>~</code>、<code>/</code>、<code>./</code>分别代表什么</h2><p><code>~</code>表示主目录，也就是当前登录用户的用户目录。</p>
 <p>比如：我登录用户是<code>chen</code>,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
