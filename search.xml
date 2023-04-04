@@ -26,8 +26,8 @@
 
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装完成后使用如下命令查看版本</span></span><br><span class="line">arm-linux-gnueabihf-gcc -v  或 arm-linux-gnueabihf-gcc --version</span><br></pre></td></tr></table></figure>
 
-<p>可以看到下图的内容，它表明交叉编译工具链安装成功了，输出信息中的 “Target: arm-linux-gnueabihf”表明了它的目标架构。<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20210306203223.png" alt="交叉编译工具链安装"></p>
-<p>安装完成后输入<code>arm-linux-gnueabihf-</code>，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链<code>Binutils</code>的各种工具。<img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Image.png" alt="安装后包含的Binutils工具集"></p>
+<p>可以看到下图的内容，它表明交叉编译工具链安装成功了，输出信息中的 “Target: arm-linux-gnueabihf”表明了它的目标架构。<br><img src="/blog/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/cross_build_tool_chain.png" alt="交叉编译工具链安装"></p>
+<p>安装完成后输入<code>arm-linux-gnueabihf-</code>，再按两下TAB键，终端会提示可用的相关命令，如下图包含了ARM-GCC工具链<code>Binutils</code>的各种工具。<img src="/blog/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/gnueabihf.png" alt="安装后包含的Binutils工具集"></p>
 <h2 id="交叉编译-需要提前装好交叉编译环境"><a href="#交叉编译-需要提前装好交叉编译环境" class="headerlink" title="交叉编译(需要提前装好交叉编译环境)"></a>交叉编译(需要提前装好交叉编译环境)</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3> <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">CFLAGS=-O2 CC=arm-linux-gnueabi-gcc ./configure --cache-file=arml_cachefile0 --prefix=/usr/local/</span><br></pre></td></tr></table></figure>
 <p>这里 .&#x2F;configure 必须放在后面，否则无法识别到交叉编译工具。 </p>
 <h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>编译命令：</p>
@@ -47,7 +47,7 @@
 
 <p>至此安装完成。</p>
 <h2 id="使用-lrzsz-传输文件"><a href="#使用-lrzsz-传输文件" class="headerlink" title="使用 lrzsz 传输文件"></a>使用 lrzsz 传输文件</h2><p><strong>注意</strong>：我用的串口软件是 mobaxterm，其它软件稍有区别。</p>
-<h3 id="执行-lrz-命令将文件从PC机传送到目标版上："><a href="#执行-lrz-命令将文件从PC机传送到目标版上：" class="headerlink" title="执行 lrz 命令将文件从PC机传送到目标版上："></a>执行 lrz 命令将文件从PC机传送到目标版上：</h3><p>进入目标板的文件夹，然后输入<code>lrz</code>，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”<br><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/20210306211059.png" alt="传送文件的截图"><br>然后在弹出的界面上选中文件，就可以将文件传输到目标版的目标文件夹。</p>
+<h3 id="执行-lrz-命令将文件从PC机传送到目标版上："><a href="#执行-lrz-命令将文件从PC机传送到目标版上：" class="headerlink" title="执行 lrz 命令将文件从PC机传送到目标版上："></a>执行 lrz 命令将文件从PC机传送到目标版上：</h3><p>进入目标板的文件夹，然后输入<code>lrz</code>，mobaxterm界面会出现一堆乱码，然后右键选择“send file using Z-modem”<br><img src="/blog/ARM-linux%20%E5%B5%8C%E5%85%A5%E5%BC%8F%E6%9D%BF%E5%AD%90%E7%A7%BB%E6%A4%8D%20lrzsz%20V1.1/20210306211059.png" alt="传送文件的截图"><br>然后在弹出的界面上选中文件，就可以将文件传输到目标版的目标文件夹。</p>
 <p><strong>注意</strong>：这里右键选择的和输入的命令正好相反。</p>
 <p>下面以“&#x2F;usr&#x2F;src”为目标文件夹为例，命令如下：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd /usr/src     # 进入目标文件夹</span><br><span class="line">lrc                 # 输入命令后右键，选择“send file using Z-modem”，然后选择文件</span><br></pre></td></tr></table></figure>
@@ -211,7 +211,7 @@
 <h2 id="为什么会有这样的结果？"><a href="#为什么会有这样的结果？" class="headerlink" title="为什么会有这样的结果？"></a>为什么会有这样的结果？</h2><p>这个问题测试你是否懂得 C 语言中的整数自动转换原则，原因是当表达式中存在有符号类型和无符号类型时，所有的操作数都自动转换为无符号类型。因此 <code>-10</code> 变成了一个非常大的正整数，所以程序输出的结果是 <code>a + b &gt; 0</code>。这一点对于应当频繁用到无符号数据类型的嵌入式系统来说是非常重要的。</p>
 <p>那么 <code>-10</code> 究竟被转换为了几呢？</p>
 <p>如下图所示，在程序中打断点，在左侧的监视区可以看到，此时 <code>a</code> 的值为 <code>6</code> ，<code>b</code> 的值为 <code>-10 </code>，但是 <code>a + b</code> 的值为 <code>4294967292</code>。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/uint%20add%20int.png" alt="变量监控"></p>
+<p><img src="/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9B%B8%E5%8A%A0%E7%9A%84%E9%97%AE%E9%A2%98/uint%20add%20int.png" alt="变量监控"></p>
 <p>所以此时 <code>b</code> 的值为 <code>4294967286</code>，它等于 <code>4294967295 - 9</code>，从上面的输出的结果可以验证，有符号类型的 <code>b</code> 被自动转换为无符号类型.</p>
 <h2 id="扩展：int的最大值和最小值和uint的最大值"><a href="#扩展：int的最大值和最小值和uint的最大值" class="headerlink" title="扩展：int的最大值和最小值和uint的最大值"></a>扩展：<code>int</code>的最大值和最小值和<code>uint</code>的最大值</h2><p>在 <code>limits.h</code> 这个文件中，有如下的宏定义：</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> INT_MIN     (-2147483647 - 1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INT_MAX       2147483647</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> UINT_MAX      0xffffffff</span></span><br></pre></td></tr></table></figure>
@@ -342,7 +342,7 @@
     <title>Linux 执行命令为什么要加 ./（点斜杠） ？</title>
     <url>/blog/Llinux%20%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0/</url>
     <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><p>如下图所示，当前文件夹下有一个名为 <code>Hello.sh</code> 的 shell 脚本，但是在执行它的时候却提示找不到文件，只有当前面加上 <code>./</code> 才可以正确的运行这个脚本。那么这个是为什么呢？</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
+<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/Linux%20bash%20dot%20slash.png" alt="Linux bash dot slash"></p>
 <span id="more"></span>
 
 <h2 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h2><p>虽然我们的终端是在当前目录，而且当前目录中有我们要执行的文件，但是终端就是找不到它。需要我们指定文件的相对或绝对路径来告诉终端我们想运行的文件在哪里。</p>
@@ -358,22 +358,22 @@
 <p>在我的电脑上输出是（不同电脑输出可能不一样）：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/echo%20path.png" alt="echo path"></p>
+<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/echo%20path.png" alt="echo path"></p>
 <p>我们在 Linux 上使用的命令都可以在这里面找到，例如<code>ls</code> 命令。但是如果我们想看命令具体的位置，可以使用 <code>which</code> 命令。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/which%20ls.png" alt="which ls"></p>
+<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/which%20ls.png" alt="which ls"></p>
 <h2 id="终端中命令搜索规则"><a href="#终端中命令搜索规则" class="headerlink" title="终端中命令搜索规则"></a>终端中命令搜索规则</h2><ul>
 <li>如果在路径名中存在 <code>./</code> 字符，那么就不搜索 <code>$PATH</code>。</li>
 <li>如果 <code>./</code> 不在路径名中，那么只在 <code>$PATH</code> 中搜索。</li>
 </ul>
 <h2 id="把自己的命令添加进环境变量"><a href="#把自己的命令添加进环境变量" class="headerlink" title="把自己的命令添加进环境变量"></a>把自己的命令添加进环境变量</h2><p>如果自己写了几个命令，并且以后在运行的时候不想添加路径，那么可以把自己的命令所在路径添加进环境变量。</p>
 <p>比如我写了两个命令，分别是 <code>my_ls.sh</code> 和 <code>Hello.sh</code>，然后把他们放在了 <code>~/Desktop/myPATH</code> 中。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/mtPATH.png" alt="myPATH"></p>
+<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/mtPATH.png" alt="myPATH"></p>
 <p>在终端中输入：<code>export PATH=$PATH:/home/zxy/Desktop/myPATH</code>（这是一次临时的指定方法，关闭终端之后就不再生效，这里只是演示效果，如果想了解更多，可以搜索“Linux 环境变量”）</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/PATH.png" alt="添加环境变量"></p>
+<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/PATH.png" alt="添加环境变量"></p>
 <p>然后执行 <code>Hello.sh</code>，就可以看到输出结果。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/my%20Hello.sh.png" alt="my option"></p>
+<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/my%20Hello.sh.png" alt="my option"></p>
 <p>这里提示 <code>my_ls.sh</code> 的权限不够，那么就提升一下权限。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/chmod.png" alt="提升权限"></p>
+<p><img src="/blog/Linux%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E7%82%B9%E6%96%9C%E6%9D%A0/chmod.png" alt="提升权限"></p>
 <p>这样就可以，在不输入 <code>./</code> 的情况下直接运行 <code>Hello.sh</code>。</p>
 <h2 id="扩展：Linux中的-、-、-分别代表什么"><a href="#扩展：Linux中的-、-、-分别代表什么" class="headerlink" title="扩展：Linux中的~、/、./分别代表什么"></a>扩展：Linux中的<code>~</code>、<code>/</code>、<code>./</code>分别代表什么</h2><p><code>~</code>表示主目录，也就是当前登录用户的用户目录。</p>
 <p>比如：我登录用户是<code>chen</code>,<code>~</code> 代表的就是<code>/home/chen</code>。</p>
@@ -392,7 +392,7 @@
 <figure class="highlight c#"><table><tr><td class="code"><pre><span class="line">System.Diagnostics.Process.Start(<span class="string">&quot;www.bing.com&quot;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>但是在程序中这样写的时候，会发生如下错误：</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/WPF_open_URL_error.png" alt="WPF open URL error"></p>
+<p><img src="/blog/images/WPF_open_URL_error.png" alt="WPF open URL error"></p>
 <span id="more"></span>
 
 <p>（我当前的运行环境是 VS2022 + .Net6.0）</p>
@@ -463,7 +463,7 @@
 <span id="more"></span>
 
 <h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p><strong>五只猴子的故事</strong></p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E4%BA%94%E5%8F%AA%E7%8C%B4%E5%AD%90.jpg" alt="五只猴子的故事"><br>科学家在笼子里放了五只猴子。笼子中间有一架梯子，梯子上面放着香蕉。每当一只猴子爬上梯子，科学家就用冷水泼洒其余的猴子。过了一阵子，只要一只猴子爬上梯子，其他猴子就会殴打它。一段时间后，所有猴子都不敢爬上梯子。</p>
+<p><img src="/blog/Weekly5/%E4%BA%94%E5%8F%AA%E7%8C%B4%E5%AD%90.jpg" alt="五只猴子的故事"><br>科学家在笼子里放了五只猴子。笼子中间有一架梯子，梯子上面放着香蕉。每当一只猴子爬上梯子，科学家就用冷水泼洒其余的猴子。过了一阵子，只要一只猴子爬上梯子，其他猴子就会殴打它。一段时间后，所有猴子都不敢爬上梯子。</p>
 <p>然后，科学家用一只新猴子，替换了原来的一只猴子，并且停止用冷水泼洒猴子。这只新猴子立即爬楼梯去拿香蕉，但随即遭到其他猴子的殴打。经过几次殴打，新猴子学会了不爬梯子，即使它从来不知道为什么。</p>
 <p>接着，替换了第二只猴子，也发生了同样的事情。刚才放进笼子的那只猴子，同样殴打了新来的猴子。替换了第三只猴子，也是如此。就这样，第四只、第五只猴子也接连被替换了。</p>
 <p>最终，笼子里面的五只猴子，尽管从未被泼冷水，仍然继续殴打任何试图爬上梯子的猴子。如果可以问猴子，为什么要殴打所有试图爬上梯子的成员，答案可能是：“这就是我们在这里做事的方式。”</p>
@@ -492,7 +492,7 @@
 <p>该负责人表示：“根据用户反馈，空调或座椅加热功能如果使用触屏，必须要分神看着屏幕才能完成操作，不利于行车安全；而物理按键可以唤醒人脑的动作记忆，用户只需记住刻度盘的位置即可完成操作，双眼能够始终关注道路情况。因此，本田回归了物理按键，以便用户操作时减少分神。”</p>
 <p>事实上本田并不是第一家取消触控大屏的车企，早在去年7月初，马自达官方发布消息称：将在未来所有新车型上取消大尺寸中控屏幕，仅保留一小块的显示屏，而即将海外上市的马自达3将不再配备触摸屏。</p>
 <p>前几日，英国一项道路安全研究报告指出触控大屏比酒驾、毒驾更危险。当使用触摸屏操作 CarPlay 和 Android Auto 等互联系统时，驾驶员对路面情况的反应时间，会增加多达57%和 53%。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E7%BE%8E%E5%9B%BD%E6%B5%B7%E5%86%9B%E5%8F%96%E6%B6%88%E8%A7%A6%E6%91%B8%E5%B1%8F.jpg" alt="美国海军取消触摸屏"><br>这让我想到去年的新闻，2017年8月21日，美国麦凯恩号航空母舰在新加坡与一艘油轮相撞，造成油轮的10名船员死亡，麦凯恩号48人受伤。美国军方最近公布了调查报告，事故原因之一是航母操作人员对复杂的触摸屏界面不熟悉，有人将操作系统置于手动模式，但是其他人没有发现。</p>
+<p><img src="/blog/Weekly4/%E7%BE%8E%E5%9B%BD%E6%B5%B7%E5%86%9B%E5%8F%96%E6%B6%88%E8%A7%A6%E6%91%B8%E5%B1%8F.jpg" alt="美国海军取消触摸屏"><br>这让我想到去年的新闻，2017年8月21日，美国麦凯恩号航空母舰在新加坡与一艘油轮相撞，造成油轮的10名船员死亡，麦凯恩号48人受伤。美国军方最近公布了调查报告，事故原因之一是航母操作人员对复杂的触摸屏界面不熟悉，有人将操作系统置于手动模式，但是其他人没有发现。</p>
 <p>事发后，海军进行了舰队范围内的调查，问卷调查中，大部分人表示，更喜欢机械控制，而不是触摸屏操作。因为机械装置“提供了即时的触觉反馈”。报告指出，如果存在机械控制，舵手可能会提前发现问题。军方因此决定，2020年开始在驱逐舰上，用机械装置取代触摸屏，控制油门和舵。</p>
 ]]></content>
       <tags>
@@ -591,7 +591,7 @@
 <li>项目部分：等待电子元件到货，因为深圳疫情，所以快递会受影响。</li>
 </ol>
 <h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>暂无</p>
-<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><h3 id="1-最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https-gitee-com-coll45-foc"><a href="#1-最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https-gitee-com-coll45-foc" class="headerlink" title="1. 最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https://gitee.com/coll45/foc"></a>1. 最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：<a href="https://gitee.com/coll45/foc">https://gitee.com/coll45/foc</a></h3><p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/20220321133450.png" alt="Reuleaux triangle"></p>
+<h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><h3 id="1-最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https-gitee-com-coll45-foc"><a href="#1-最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https-gitee-com-coll45-foc" class="headerlink" title="1. 最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：https://gitee.com/coll45/foc"></a>1. 最近发现了一个新项目，打算复刻一下，感觉这个项目的难度适中，是带一点挑战的，而且专业度也很契合。项目地址：<a href="https://gitee.com/coll45/foc">https://gitee.com/coll45/foc</a></h3><p><img src="/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E4%B9%9D%E5%91%A8/20220321133450.png" alt="Reuleaux triangle"></p>
 <h3 id="2-2022年3月4日，印度公布了2021年人口统计结果，14-1565亿人，正式超过中国2021年底公布的人口14-126亿人，成为世界第一人口大国。"><a href="#2-2022年3月4日，印度公布了2021年人口统计结果，14-1565亿人，正式超过中国2021年底公布的人口14-126亿人，成为世界第一人口大国。" class="headerlink" title="2.  2022年3月4日，印度公布了2021年人口统计结果，14.1565亿人，正式超过中国2021年底公布的人口14.126亿人，成为世界第一人口大国。"></a>2.  2022年3月4日，印度公布了2021年人口统计结果，14.1565亿人，正式超过中国2021年底公布的人口14.126亿人，成为世界第一人口大国。</h3><p>这个新闻在国内好像并没有特别大的反响，但是我觉得是很重要的新闻，这标志着中国持续几千年的人口第一大国正式结束，而且从目前来看一眼望不到头，没有反超的希望。</p>
 ]]></content>
       <tags>
@@ -630,7 +630,7 @@
 <ol>
 <li>51talk 学习了两节课。</li>
 <li>学习韦东山老师的 <a href="https://www.bilibili.com/video/BV1Ar4y1C7En">韦东山freeRTOS系列教程：FreeRTOS的内部机制</a> 视频（学到了P16，总共29节）。</li>
-<li>刘铁猛老师的<a href="https://www.bilibili.com/video/BV13b411b7Ht?from=search&seid=2147378515632539277&spm_id_from=333.337.0.0">《C#语言入门详解》</a>看了前五节（共33节）。</li>
+<li>刘铁猛老师的<a href="https://www.bilibili.com/video/BV13b411b7Ht">《C#语言入门详解》</a>看了前五节（共33节）。</li>
 </ol>
 <span id="more"></span>
 
@@ -733,7 +733,7 @@
 </ol>
 <h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>长期主义的一种解释：行动要迅速，但对结果要有耐心。</p>
 <h2 id="视野、情报"><a href="#视野、情报" class="headerlink" title="视野、情报"></a>视野、情报</h2><p>今天向大家推荐一部日本电影<a href="https://movie.douban.com/subject/11500954/">《编舟记》</a>。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E7%BC%96%E8%88%9F%E8%AE%B0.jpg" alt="《编舟记》"></p>
+<p><img src="/blog/%E3%80%90%E5%91%A8%E6%8A%A5%E3%80%912022%E5%B9%B4%E7%AC%AC%E5%8D%81%E5%91%A8/%E7%BC%96%E8%88%9F%E8%AE%B0.jpg" alt="《编舟记》"></p>
 <p>它讲述了一个编词典的故事，编辑们花了15年时间，终于完成了一部21世纪新的日语词典（上图）。他们既要跟上时代的发展，收集所有的新词，又要修订老词的解释，可想而知，付出了极其艰辛的努力。</p>
 <p>电影里面，编辑们开会讨论，<strong>左右的右，应该怎么定义？</strong> 大家提出了四种定义，很有意思。</p>
 <ol>
@@ -814,10 +814,26 @@
       </tags>
   </entry>
   <entry>
+    <title>如果批评不自由，则赞美无意义</title>
+    <url>/blog/%E5%A6%82%E6%9E%9C%E6%89%B9%E8%AF%84%E4%B8%8D%E8%87%AA%E7%94%B1%EF%BC%8C%E5%88%99%E8%B5%9E%E7%BE%8E%E6%97%A0%E6%84%8F%E4%B9%89/</url>
+    <content><![CDATA[<p>如果尖锐的批评完全消失，<br>温和的批评将会变得刺耳。</p>
+<span id="more"></span>
+
+<p>如果温和的批评也不被允许，<br>沉默将被认为居心叵测。</p>
+<p>如果沉默也不再允许，<br>赞扬不够卖力将是一种罪行。</p>
+<p>如果只允许一种声音存在，<br>那么，<br>唯一存在的那个声音就是谎言。</p>
+<p>——柏拉图</p>
+]]></content>
+      <tags>
+        <tag>感悟</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>我不想让你记住我的脸</title>
     <url>/blog/%E6%88%91%E4%B8%8D%E6%83%B3%E8%AE%A9%E4%BD%A0%E8%AE%B0%E4%BD%8F%E6%88%91%E7%9A%84%E8%84%B8/</url>
     <content><![CDATA[<h2 id="本周话题"><a href="#本周话题" class="headerlink" title="本周话题"></a>本周话题</h2><p>上海电视台最近报道：“本市徐汇区漕河泾街道的薛家宅小区，正在推行门禁系统的人脸识别。小区居民必须在指定时间，到社区办公区录入自己的脸。”</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/%E9%97%A8%E7%A6%81.jpg" alt="门禁"></p>
+<p><img src="/blog/%E6%88%91%E4%B8%8D%E6%83%B3%E8%AE%A9%E4%BD%A0%E8%AE%B0%E4%BD%8F%E6%88%91%E7%9A%84%E8%84%B8/%E9%97%A8%E7%A6%81.jpg" alt="门禁"></p>
 <p>人脸识别系统将来就安装在每栋楼的门口，居民进出的时候，就识别一下。</p>
 <p>我的第一反应是惊吓，以后每天何时到家、有没有在家过夜，有关部门就都知道了。难道上下班打卡还不够，到家也要打卡吗！</p>
 <span id="more"></span>
@@ -849,7 +865,7 @@
 <span id="more"></span>
 
 <p>这是来自apue里一张经典的ｃ程序内存分布图，着重看一下heap和stack的内存分布。</p>
-<p><img src="https://gitee.com/babbittry321/blogImages/raw/master/img/158a24c4c2301b1d170ecb2759419261_720w.jpg" alt="typical memory arrangement"></p>
+<p><img src="/blog/%E6%A0%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%B1%E9%AB%98%E5%9C%B0%E5%9D%80%E5%90%91%E4%BD%8E%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%9F/158a24c4c2301b1d170ecb2759419261_720w.jpg" alt="typical memory arrangement"></p>
 <h2 id="栈由高地址向低地址扩展的优点"><a href="#栈由高地址向低地址扩展的优点" class="headerlink" title="栈由高地址向低地址扩展的优点"></a>栈由高地址向低地址扩展的优点</h2><p><code>stack</code>从高地址向低地址扩展，这样栈空间的起始位置就能确定下来。动态的调整栈空间大小也不需要移动栈内的数据，如果是从低地址到高地址的扩展，结尾的地址是固定的，如果要扩大或缩小，则需要移动整个栈的数据。</p>
 <p>并且<strong>这样设计可以使得堆和栈能够充分利用空闲的地址空间。</strong>如果栈向上涨的话，我们就必须得指定栈和堆的一个严格分界线，但这个分界线怎么确定呢？平均分？但是有的程序使用的堆空间比较多，而有的程序使用的栈空间比较多。</p>
 <p>所以就可能出现这种情况：一个程序因为栈溢出而崩溃的时候，其实它还有大量闲置的堆空间呢，但是我们却无法使用这些闲置的堆空间。所以呢，最好的办法就是让堆和栈一个向上涨，一个向下涨，这样它们就可以最大程度地共用这块剩余的地址空间，达到利用率的最大化！</p>
@@ -900,6 +916,23 @@
       <tags>
         <tag>感悟</tag>
         <tag>面试经历</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>海恩法则</title>
+    <url>/blog/%E6%B5%B7%E6%81%A9%E6%B3%95%E5%88%99/</url>
+    <content><![CDATA[<p>海恩法则，是航空界关于飞行安全的法则。海恩法则指出: 每一起严重事故的背后，必然有29次轻微事故和300起未遂先兆以及1000起事故隐患。</p>
+<p>海恩法则告诉我们:</p>
+<ol>
+<li><p>事故案件的发生看似偶然，其实是各种因素积累到一定程度的必然结果。<br>任何重大事故都是有端倪可查的，其发生都是经过萌芽、发展到发生这样一个过程。<br>如果每次事故的隐患或苗头都能受到重视，那么每一次事故都可以避免。</p>
+</li>
+<li><p>是再好的技术再完美的规章在实际操作中也会出现失误，因此必须不断地加强安全意识和安全管理。</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>感悟</tag>
+        <tag>管理</tag>
       </tags>
   </entry>
   <entry>
