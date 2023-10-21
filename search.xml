@@ -59,6 +59,44 @@
       </tags>
   </entry>
   <entry>
+    <title>ASP.Net Core Web API 返回的 Json 的属性名格式问题</title>
+    <url>/blog/ASP.Net-Core-Web-API-Json-property-name-policy/</url>
+    <content><![CDATA[<p>在调试 ASP.Net Core Web API 的代码时，发现前后两端明明格式一致，名称一致，但是前端无法渲染出数据的情况。最后经过才发现看到，ASP.Net Core Web API 返回的 Json 属性名为小驼峰（Camel Case）格式。</p>
+<span id="more"></span>
+
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>如下图所示，在 <code>C#</code> 代码中，我使用的是大驼峰（Pascal Case）命名方式，即首字母是大写的。</p>
+<p><img src="/blog/ASP.Net-Core-Web-API-Json-property-name-policy/web-api-in-cs.png" alt="cs代码"></p>
+<p>而在 Postman 中，接收到的 Json 的属性名格式为小驼峰（Camel Case）格式，即首字母是小写的。而我在前端中的名称和后端一样，是采用的大驼峰（Pascal Case）命名方式，所以导致了前后两端明明格式一致，名称一致，但是前端无法渲染出数据的情况。</p>
+<p><img src="/blog/ASP.Net-Core-Web-API-Json-property-name-policy/postman-camel-case.png" alt="cs代码"></p>
+<h2 id="修改方法"><a href="#修改方法" class="headerlink" title="修改方法"></a>修改方法</h2><p><code>Program.cs</code> 的原代码为：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add services to the container.</span></span><br><span class="line">builder.Services.AddControllers();</span><br><span class="line">... ...</span><br></pre></td></tr></table></figure>
+
+<p>改为：</p>
+<figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> builder = WebApplication.CreateBuilder(args);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add services to the container.</span></span><br><span class="line">builder.Services.AddControllers().AddJsonOptions(options =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;</span><br><span class="line">&#125;);</span><br><span class="line">... ...</span><br></pre></td></tr></table></figure>
+
+<p>更改完成之后，在 Postman 中收到的就是自己定义的、未经处理的格式了。</p>
+<p><img src="/blog/ASP.Net-Core-Web-API-Json-property-name-policy/postman-null.png" alt="cs代码"></p>
+<h2 id="JsonSerializerOptions-PropertyNamingPolicy-属性的说明"><a href="#JsonSerializerOptions-PropertyNamingPolicy-属性的说明" class="headerlink" title="JsonSerializerOptions.PropertyNamingPolicy 属性的说明"></a>JsonSerializerOptions.PropertyNamingPolicy 属性的说明</h2><table>
+<thead>
+<tr>
+<th>JsonSerializerOptions.PropertyNamingPolicy 属性的官方说明：</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>获取或设置一个值，该值指定用于将对象的属性名称转换为其他格式（例如 camel 大小写）的策略；若为 <code>null</code>，则保持属性名称不变。</td>
+</tr>
+</tbody></table>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><p><a href="https://learn.microsoft.com/zh-cn/aspnet/core/web-api/advanced/formatting?view=aspnetcore-7.0">设置 ASP.NET Core Web API 中响应数据的格式 | Microsoft Learn</a> 中的“配置基于 <code>System.Text.Json</code> 的格式化程序”这一章节。</p>
+<p><a href="https://learn.microsoft.com/zh-cn/dotnet/api/system.text.json.jsonserializeroptions.propertynamingpolicy?view=net-7.0#system-text-json-jsonserializeroptions-propertynamingpolicy">JsonSerializerOptions.PropertyNamingPolicy 属性 (System.Text.Json) | Microsoft Learn</a></p>
+<h3 id="网友的博客"><a href="#网友的博客" class="headerlink" title="网友的博客"></a>网友的博客</h3><p><a href="https://www.cnblogs.com/taotaozhuanyong/p/13814891.html">.Net Core3.0 WebApi 十三：自定义返回Json大小写格式 - 冰乐 - 博客园 (cnblogs.com)</a></p>
+]]></content>
+      <tags>
+        <tag>ASP.Net Core</tag>
+        <tag>C#</tag>
+        <tag>语言学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C语言学习笔记-break和continue</title>
     <url>/blog/C%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-break%E5%92%8Ccontinue/</url>
     <content><![CDATA[<p>在循环体中，C 提供了下列的循环控制语句。</p>
@@ -87,8 +125,8 @@
 </ol>
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -106,8 +144,8 @@
 <p>输出的结果为：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">j不在i和k中间</span><br><span class="line">j不在i和k中间</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -129,8 +167,8 @@
 <p>本来的意图是，如果<code>sum &gt; 100</code>，向文件中写一条出错信息，为了方便，把两个条件判断写在一起，于是，如果<code>sum&lt;=100</code>时，打开文件的操作将不会做，最后，<code>fprintf</code>和<code>fclose</code>就会发现未知的结果。</p>
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
         <tag>BUG</tag>
       </tags>
   </entry>
@@ -161,8 +199,8 @@
 <p>同时在使用宏的时候，要充分考虑前后的语境，必要的时候亲自做一下代换试试，防止出现不必要的错误。</p>
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -186,8 +224,8 @@
 <p>数组的元素不是代表的这几个元素，而是代表的第一个元素的地址。</p>
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -218,8 +256,8 @@
 
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -239,8 +277,8 @@
 
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -334,8 +372,8 @@
 </tbody></table>
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -405,8 +443,8 @@
 <p><a href="https://stackoverflow.com/questions/60181640/open-browser-with-url-wpf/60221582#60221582">c# - Open Browser with URL WPF - Stack Overflow</a></p>
 ]]></content>
       <tags>
-        <tag>语言学习</tag>
         <tag>C#</tag>
+        <tag>语言学习</tag>
         <tag>WPF</tag>
       </tags>
   </entry>
@@ -808,8 +846,8 @@
 <p>同理，对于系统返回的或其它函数参数的参数，要先进行检查，例如<code>fopen</code>返回的是不是<code>NULL</code>。</p>
 ]]></content>
       <tags>
-        <tag>C语言</tag>
         <tag>语言学习</tag>
+        <tag>C语言</tag>
         <tag>程序设计</tag>
       </tags>
   </entry>
@@ -969,9 +1007,9 @@
 <p>最终重新看视频中的代码发现，老师除了声明这个属性之外，还声明了一个字段，但是首字母是小写的。所以属于看错了，但是也因此加深了一下对字段（field）和属性（property）的理解。</p>
 ]]></content>
       <tags>
+        <tag>C#</tag>
         <tag>语言学习</tag>
         <tag>BUG</tag>
-        <tag>C#</tag>
       </tags>
   </entry>
 </search>
