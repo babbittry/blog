@@ -21,3 +21,5 @@
 ### 站长最近作品
 
 - [AI wedding speech generator](https://www.aiweddinggenerator.com)
+
+- [朗思翻译](https://www.lance-translate.com)
